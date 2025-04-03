@@ -1,0 +1,58 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { WpImage, WpLink } from "@nextwp/core";
+// import Button from "../ui/button";
+
+export interface CtaProps {
+  firstItem: boolean;
+  cta_title?: string;
+  cta_copy?: string;
+  cta_link?: WpLink;
+  background_image?: WpImage;
+  background_colour?: string;
+}
+
+export function CallToAction({
+  firstItem,
+  cta_title,
+  cta_copy,
+  cta_link,
+  background_image,
+  background_colour = "equ-white",
+}: CtaProps) {
+  return (
+    <section className={`relative bg-${background_colour}`}>
+      <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-center">
+        {background_image?.url ? (
+          <Image
+            alt={background_image.alt || ""}
+            src={background_image.url}
+            width={background_image.width}
+            height={background_image.height}
+            className="absolute top-0 left-0 h-full w-full object-cover z-0"
+          />
+        ) : null}
+        <div className="relative">
+          {cta_title ? (
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              {cta_title}
+            </h2>
+          ) : null}
+
+          {cta_copy ? (
+            <p className="mt-3 text-lg text-gray-500">{cta_copy}</p>
+          ) : null}
+
+          {cta_link?.url ? (
+            <Link
+              className="mt-8 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white shadow hover:bg-indigo-700"
+              href={cta_link.url}
+            >
+              {cta_link.title}
+            </Link>
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+}

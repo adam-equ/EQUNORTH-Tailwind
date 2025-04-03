@@ -1,3 +1,9 @@
 export { Hero } from "./hero";
 export { Textarea } from "./textarea";
 export { TextImage } from "./text-image";
+export { CallToAction } from "./call-to-action";
+export { MediaPanel } from "./media-panel";
+export { ContentBlock } from "./content-block";
+export { DocumentList } from "./document-list";
+export { ImagePanel } from "./image-panel";
+export { TwoColContent } from "./two-col-content";

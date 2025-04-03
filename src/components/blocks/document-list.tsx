@@ -1,0 +1,64 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { AcfFile, WpImage, WpLink } from "@nextwp/core";
+import { FileIcon } from "lucide-react";
+
+export interface DocumentListProps {
+  docu_title?: string;
+  docu_copy?: string;
+  background_colour?: string;
+  docu_list_items?: {
+    document_title: string;
+    document_upload: AcfFile;
+  }[];
+}
+export function DocumentList({
+  docu_title,
+  docu_copy,
+  background_colour = "equ-white",
+  docu_list_items,
+}: DocumentListProps) {
+  return (
+    <section className={`relative bg-${background_colour}`}>
+      <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-center">
+        {docu_title ? (
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {docu_title}
+          </h2>
+        ) : null}
+
+        {docu_copy ? (
+          <p className="mt-3 text-lg text-gray-500">{docu_copy}</p>
+        ) : null}
+
+        {docu_list_items ? (
+          <div className="mt-10">
+            {docu_list_items.map(
+              ({ document_title, document_upload }, index) => {
+                return (
+                  <div
+                    className="w-full flex mt-2 p-2 border bg-white rounded-md"
+                    key={index}
+                  >
+                    <h4 className="mb-0">{document_title}</h4>
+                    <div className="flex ml-auto items-center">
+                      <FileIcon className="mr-3" />
+                      <p className="mr-3 mb-0 text-sm">
+                        {(document_upload.filesize / 1024 / 1024).toFixed(2)}
+                        <span className="text-xs text-gray-500">MB</span>
+                        <span className="border-r-2 ml-3"></span>
+                      </p>
+                      <Link href={document_upload.url} className="text-sm">
+                        View Document
+                      </Link>
+                    </div>
+                  </div>
+                );
+              }
+            )}
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}

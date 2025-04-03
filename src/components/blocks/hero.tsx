@@ -20,7 +20,7 @@ export function Hero(props: HeroProps) {
   const [headline1, headline2] = headline ? chunkString(headline) : [];
 
   return (
-    <section className="lg:relative">
+    <section className="lg:relative bg-equ-concrete">
       <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-left">
         <div className="px-6 sm:px-8 lg:w-1/2 xl:pr-16">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
