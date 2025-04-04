@@ -8,7 +8,7 @@ import {
 } from "@nextwp/core";
 import type { ArchivePageData } from "@nextwp/core/src/api/get-page-data/get-archive-page";
 import type { Post } from "types/post";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/old-ui/badge";
 import Edges from "@/components/edges";
 import { ArchivePagination } from "@/components/template-parts/archive-pagination";
 

@@ -4,7 +4,7 @@ import { swapWpUrl } from "@nextwp/core/src/utils/swap-wp-url";
 import { getFeaturedImage } from "@nextwp/core/src/utils/get-featured-image";
 import { stripWpUrl } from "@nextwp/core";
 import { type TaxonomyPage } from "@nextwp/core/src/api/taxonomy/get-taxonomy-page";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/old-ui/badge";
 import Edges from "@/components/edges";
 import { ArchivePagination } from "@/components/template-parts/archive-pagination";
 

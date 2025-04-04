@@ -1,8 +1,8 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { ButtonProps } from "@/components/ui/button";
-import { buttonVariants } from "@/components/ui/button";
+import type { ButtonProps } from "@/components/old-ui/button";
+import { buttonVariants } from "@/components/old-ui/button";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -90,9 +90,8 @@ PaginationPrevious.displayName = "PaginationPrevious";
 function PaginationNext({
   // @ts-expect-error -- false positive for PaginationLink
   className,
-  ...props
-} // @ts-expect-error -- false positive for PaginationLink
-: React.ComponentProps<typeof PaginationLink>) {
+  ...props // @ts-expect-error -- false positive for PaginationLink
+}: React.ComponentProps<typeof PaginationLink>) {
   return (
     <PaginationLink
       aria-label="Go to next page"

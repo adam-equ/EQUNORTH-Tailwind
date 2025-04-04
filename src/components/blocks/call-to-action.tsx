@@ -1,28 +1,45 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { WpImage, WpLink } from "@nextwp/core";
+import { cn } from "@/lib/utils";
 // import Button from "../ui/button";
 
 export interface CtaProps {
-  firstItem: boolean;
   cta_title?: string;
   cta_copy?: string;
   cta_link?: WpLink;
   background_image?: WpImage;
   background_colour?: string;
+  component_padding?: {
+    top_padding: string;
+    bottom_padding: string;
+  };
 }
 
 export function CallToAction({
-  firstItem,
   cta_title,
   cta_copy,
   cta_link,
   background_image,
-  background_colour = "equ-white",
+  background_colour,
+  component_padding,
 }: CtaProps) {
   return (
-    <section className={`relative bg-${background_colour}`}>
-      <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-center">
+    <section
+      className={cn(
+        "relative",
+        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
+        background_colour === "teal" ||
+          background_colour === "black" ||
+          background_colour === "grey"
+          ? "dark"
+          : "",
+        component_padding
+          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
+          : "pb-16 pt-16"
+      )}
+    >
+      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
         {background_image?.url ? (
           <Image
             alt={background_image.alt || ""}
@@ -34,13 +51,15 @@ export function CallToAction({
         ) : null}
         <div className="relative">
           {cta_title ? (
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
               {cta_title}
             </h2>
           ) : null}
 
           {cta_copy ? (
-            <p className="mt-3 text-lg text-gray-500">{cta_copy}</p>
+            <p className="mt-3 text-lg text-gray-500 dark:text-gray-200">
+              {cta_copy}
+            </p>
           ) : null}
 
           {cta_link?.url ? (

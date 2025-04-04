@@ -12,10 +12,7 @@ export default function Edges({
   [key: string]: any;
 }) {
   return (
-    <Component
-      className={clsx("mx-auto max-w-7xl px-2 py-2 sm:px-4 lg:px-8", className)}
-      {...rest}
-    >
+    <Component className={clsx("mx-auto max-w-7xl", className)} {...rest}>
       {children}
     </Component>
   );

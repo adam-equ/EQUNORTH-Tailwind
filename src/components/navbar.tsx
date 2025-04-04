@@ -3,7 +3,7 @@ import { getMenuItems, getSiteLogo, getSiteSettings } from "@nextwp/core";
 import Link from "next/link";
 import Image from "next/image";
 import Edges from "./edges";
-import Button from "./ui/button";
+import Button from "./old-ui/button";
 import { DesktopMenu } from "./menus/desktop-menu";
 
 export async function Navbar() {

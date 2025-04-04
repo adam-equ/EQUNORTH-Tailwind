@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -58,6 +59,13 @@ module.exports = {
           black: "#0d1a1c",
           white: "#ffffff",
         },
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -66,12 +74,20 @@ module.exports = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
         },
       },
       animation: {
@@ -84,5 +100,21 @@ module.exports = {
     require("tailwindcss-animate"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
+  ],
+  safelist: [
+    "bg-equ-teal",
+    "bg-equ-black",
+    "bg-equ-lavender",
+    "bg-equ-grey",
+    "bg-equ-white",
+    "bg-equ-concrete",
+    "pt-0",
+    "pb-0",
+    "pt-8",
+    "pb-8",
+    "pt-16",
+    "pb-16",
+    "pt-32",
+    "pb-32",
   ],
 };

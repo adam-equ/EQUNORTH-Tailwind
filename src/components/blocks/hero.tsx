@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { WpImage, WpLink } from "@nextwp/core";
-import Button from "../ui/button";
+import { Button } from "../ui/button";
+import { buttonVariants } from "../ui/button";
+// import Button from "../old-ui/button";
 
 export interface HeroProps {
   firstItem: boolean;
@@ -45,14 +47,18 @@ export function Hero(props: HeroProps) {
               ? links.map(({ link, variant }, index) => {
                   return (
                     <Button
-                      component={Link}
-                      href={link.url}
+                      asChild
                       key={index}
                       size="lg"
                       target={link.target}
-                      variant={variant}
+                      // variant={variant}
                     >
-                      {link.title}
+                      <Link
+                        href={link.url}
+                        className={buttonVariants({ variant: variant })}
+                      >
+                        {link.title}
+                      </Link>
                     </Button>
                   );
                 })

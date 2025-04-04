@@ -1,32 +1,54 @@
 import Image from "next/image";
-import Link from "next/link";
-import type { WpImage, WpLink } from "@nextwp/core";
+import type { WpImage } from "@nextwp/core";
 import { cn } from "@/lib/utils";
 
 // import Button from "../ui/button";
 
 export interface ImagePanelProps {
-  firstItem: boolean;
   image_image?: WpImage;
   full_width?: boolean;
   background_colour?: string;
+  component_padding?: {
+    top_padding: string;
+    bottom_padding: string;
+  };
 }
 
 export function ImagePanel({
   image_image,
   full_width = false,
-  background_colour = "equ-white",
+  background_colour,
+  component_padding,
 }: ImagePanelProps) {
   return (
-    <section className={`relative bg-${background_colour}`}>
-      <div className={cn(!full_width ? "mx-auto w-full max-w-7xl" : null)}>
+    <section
+      className={cn(
+        "relative",
+        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
+        background_colour === "teal" ||
+          background_colour === "black" ||
+          background_colour === "grey"
+          ? "dark"
+          : "",
+        component_padding
+          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
+          : "pb-16 pt-16"
+      )}
+    >
+      <div
+        className={cn(
+          !full_width
+            ? "mx-auto flex justify-center items-center w-full max-w-7xl max-h-[600px] overflow-hidden"
+            : "flex justify-center items-center max-h-[600px] overflow-hidden"
+        )}
+      >
         {image_image?.url ? (
           <Image
             alt={image_image.alt || ""}
             src={image_image.url}
             width={image_image.width}
             height={image_image.height}
-            className="relative top-0 left-0 h-full w-full object-cover z-0"
+            className="relative flex justify-center items-center object-cover object-center z-0"
           />
         ) : null}
       </div>
