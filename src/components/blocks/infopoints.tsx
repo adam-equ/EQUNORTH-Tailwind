@@ -6,6 +6,7 @@ export interface InfopointsProps {
   infop_title?: string;
   infop_copy?: string;
   background_colour?: string;
+  infop_bg?: WpImage;
   component_padding?: {
     top_padding: string;
     bottom_padding: string;
@@ -20,6 +21,7 @@ export function Infopoints({
   infop_title,
   infop_copy,
   background_colour,
+  infop_bg,
   infop_items,
   component_padding,
 }: InfopointsProps) {
@@ -38,6 +40,15 @@ export function Infopoints({
           : "pb-16 pt-16"
       )}
     >
+      {infop_bg?.url ? (
+        <Image
+          alt={infop_bg.alt || ""}
+          src={infop_bg.url}
+          width={infop_bg.width}
+          height={infop_bg.height}
+          className="absolute top-0 left-0 h-full w-full object-cover z-0"
+        />
+      ) : null}
       <div className="relative mx-auto w-full max-w-7xl text-center lg:text-center z-1">
         {infop_title ? (
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">

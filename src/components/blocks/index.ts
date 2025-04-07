@@ -13,3 +13,4 @@ export { PageCards } from "./page-cards";
 export { Quicklinks } from "./quicklinks";
 export { Infopoints } from "./infopoints";
 export { LogoImageGrid } from "./logo-image-grid";
+export { Testimonials } from "./testimonials";

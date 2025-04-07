@@ -27,9 +27,9 @@ export function PageCards({
   background_colour,
   component_padding,
 }: PageCardsProps) {
-  useEffect(() => {
-    console.log("pcard_pages:", JSON.stringify(pcard_pages, null, 2));
-  }, [pcard_pages]);
+  // useEffect(() => {
+  //   console.log("pcard_pages:", JSON.stringify(pcard_pages, null, 2));
+  // }, [pcard_pages]);
   return (
     <section
       className={cn(
