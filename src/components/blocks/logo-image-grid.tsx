@@ -75,7 +75,7 @@ export function LogoImageGrid({
                         {logo_item_description}
                       </p>
                     ) : null}
-                    {logo_item_link ? (
+                    {logo_item_link && logo_item_link.url ? (
                       <Link
                         href={logo_item_link.url}
                         className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"

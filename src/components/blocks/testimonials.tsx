@@ -1,9 +1,17 @@
 "use client";
 import Image from "next/image";
 import type { WpImage, WpLink } from "@nextwp/core";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import getTestimonials from "@/app/api/testimonials/route";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export interface TestimonialProps {
   testim_title?: string;
@@ -22,6 +30,7 @@ export interface Testimonial {
     company_job_title?: string;
     quote: string;
     profile_image_logo?: WpImage;
+    linkedin_url?: WpLink;
   };
 }
 export function Testimonials({
@@ -73,24 +82,53 @@ export function Testimonials({
           </p>
         ) : null}
         {select_testimonials ? (
-          <div className="">
-            {posts.map((post, index) => (
-              <div key={index}>
-                {post.acf?.full_name}
-                {post.acf?.company_job_title}
-                {post.acf?.quote}
-                {post.acf?.profile_image_logo?.url ? (
-                  <Image
-                    alt={post.acf?.profile_image_logo.alt || ""}
-                    height={post.acf?.profile_image_logo.height}
-                    src={post.acf?.profile_image_logo.url}
-                    width={post.acf.profile_image_logo.width}
-                    className="text-center max-w-[200px]"
-                  />
-                ) : null}
-              </div>
-            ))}
-          </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent className="-ml-16">
+              {posts.map((post, index) => {
+                return (
+                  <CarouselItem key={index} className="basis-1/2 pl-16">
+                    <div className="flex flex-col justify-center items-center p-16">
+                      {post.acf?.profile_image_logo?.url ? (
+                        <Image
+                          alt={post.acf?.profile_image_logo.alt || ""}
+                          height={post.acf?.profile_image_logo.height}
+                          src={post.acf?.profile_image_logo.url}
+                          width={post.acf.profile_image_logo.width}
+                          className="text-center w-[60px] h-[60px] rounded-full mb-8"
+                        />
+                      ) : null}
+                      <div className="quote text-lg pb-16">
+                        {post.acf?.quote}
+                      </div>
+                      <div className="profile-link relative">
+                        <div className="full-name text-lg font-semibold">
+                          {post.acf?.full_name}
+                        </div>
+                        <div className="company text-sm font-normal">
+                          {post.acf?.company_job_title}
+                        </div>
+                        {post.acf?.linkedin_url &&
+                        post.acf?.linkedin_url.url ? (
+                          <Link
+                            href={post.acf?.linkedin_url.url}
+                            target="_blank"
+                            className="absolute w-full h-full top-0 right-0 bottom-0 left-0"
+                          />
+                        ) : null}
+                      </div>
+                    </div>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         ) : null}
       </div>
     </section>

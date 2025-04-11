@@ -45,15 +45,20 @@ export function MediaPanel({
       <div className="relative mx-auto w-full max-w-7xl grid md:grid-cols-2 lg:gap-x-32 sm:gap-y-20 gap-y-10 gap-x-20">
         <div className={cn(reverse ? "order-1" : null)}>
           {mediap_title ? (
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2
+              className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white"
+              data-aos="fade-up"
+            >
               {mediap_title}
             </h2>
           ) : null}
 
           {mediap_copy ? (
             <div
-              className="mt-3 text-lg text-gray-500"
+              className="mt-3 text-lg text-gray-500 dark:text-equ-white"
               dangerouslySetInnerHTML={{ __html: mediap_copy }}
+              data-aos="fade-up"
+              data-aos-delay="100"
             ></div>
           ) : null}
 
@@ -61,6 +66,8 @@ export function MediaPanel({
             <Link
               className="mt-8 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white shadow hover:bg-indigo-700"
               href={mediap_link.url}
+              data-aos="fade-up"
+              data-aos-delay="50"
             >
               {mediap_link.title}
             </Link>
@@ -74,6 +81,7 @@ export function MediaPanel({
               width={mediap_image.width}
               height={mediap_image.height}
               className="absolute top-0 left-0 h-full w-full object-cover z-0"
+              data-aos="zoom-in-up"
             />
           ) : null}
         </div>

@@ -14,3 +14,7 @@ export { Quicklinks } from "./quicklinks";
 export { Infopoints } from "./infopoints";
 export { LogoImageGrid } from "./logo-image-grid";
 export { Testimonials } from "./testimonials";
+export { TeamMembers } from "./team-members";
+export { Video } from "./video";
+export { FeatureQuote } from "./feature-quote";
+export { Statistics } from "./statistics";
