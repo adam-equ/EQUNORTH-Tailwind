@@ -9,8 +9,9 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import getMembers from "@/app/api/member/route";
+import getMembers from "server-actions/getMembers";
 import { ChevronDown, ContactRound } from "lucide-react";
+import BlocksWrapper from "../blocks-wrapper";
 
 export interface TeamMembersProps {
   teamm_title?: string;
@@ -55,19 +56,9 @@ export function TeamMembers({
     }
   }, [select_members]);
   return (
-    <section
-      className={cn(
-        "relative",
-        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
-        background_colour === "teal" ||
-          background_colour === "black" ||
-          background_colour === "grey"
-          ? "dark"
-          : "",
-        component_padding
-          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
-          : "pb-16 pt-16"
-      )}
+    <BlocksWrapper
+      background_colour={background_colour}
+      component_padding={component_padding}
     >
       <div className="relative mx-auto w-full max-w-7xl text-center lg:text-center z-1">
         {teamm_title ? (
@@ -137,6 +128,6 @@ export function TeamMembers({
           </div>
         ) : null}
       </div>
-    </section>
+    </BlocksWrapper>
   );
 }

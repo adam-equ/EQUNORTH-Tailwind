@@ -2,7 +2,6 @@
 
 // @ts-ignore
 import React, { useEffect } from "react";
-// @ts-ignore
 import AOS from "aos";
 
 export default function Aos() {

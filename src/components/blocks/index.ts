@@ -18,3 +18,6 @@ export { TeamMembers } from "./team-members";
 export { Video } from "./video";
 export { FeatureQuote } from "./feature-quote";
 export { Statistics } from "./statistics";
+export { TabsPanel } from "./tabs";
+export { GoogleMap } from "./google-map";
+export { InsightCards } from "./insight-cards";

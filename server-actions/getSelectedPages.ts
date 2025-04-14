@@ -1,4 +1,4 @@
-const getSelectPages = async ({ include }: { include: string[] }) => {
+const getSelectedPages = async ({ include }: { include: string[] }) => {
   try {
     if (!include || !Array.isArray(include)) {
       throw new Error("Invalid include parameter");
@@ -19,4 +19,4 @@ const getSelectPages = async ({ include }: { include: string[] }) => {
     throw error;
   }
 };
-export default getSelectPages;
+export default getSelectedPages;

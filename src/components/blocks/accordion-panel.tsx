@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import BlocksWrapper from "../blocks-wrapper";
 
 export interface AccordionProps {
   accordion_title?: string;
@@ -33,19 +34,9 @@ export function AccordionPanel({
   component_padding,
 }: AccordionProps) {
   return (
-    <section
-      className={cn(
-        "relative",
-        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
-        background_colour === "teal" ||
-          background_colour === "black" ||
-          background_colour === "grey"
-          ? "dark"
-          : "",
-        component_padding
-          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
-          : "pb-16 pt-16"
-      )}
+    <BlocksWrapper
+      background_colour={background_colour}
+      component_padding={component_padding}
     >
       <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
         {accordion_title ? (
@@ -96,6 +87,6 @@ export function AccordionPanel({
           </div>
         ) : null}
       </div>
-    </section>
+    </BlocksWrapper>
   );
 }

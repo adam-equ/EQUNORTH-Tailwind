@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import BlocksWrapper from "../blocks-wrapper";
 
 export interface StatisticsProps {
   stats_title?: string;
@@ -32,19 +33,9 @@ export function Statistics({
     }
   };
   return (
-    <section
-      className={cn(
-        "relative",
-        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
-        background_colour === "teal" ||
-          background_colour === "black" ||
-          background_colour === "grey"
-          ? "dark"
-          : "",
-        component_padding
-          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
-          : "pb-16 pt-16"
-      )}
+    <BlocksWrapper
+      background_colour={background_colour}
+      component_padding={component_padding}
     >
       <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
         {stats_title ? (
@@ -159,6 +150,6 @@ export function Statistics({
             }
         `}
       </style>
-    </section>
+    </BlocksWrapper>
   );
 }

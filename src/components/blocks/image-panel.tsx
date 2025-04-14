@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { WpImage } from "@nextwp/core";
 import { cn } from "@/lib/utils";
+import BlocksWrapper from "../blocks-wrapper";
 
 // import Button from "../ui/button";
 
@@ -21,19 +22,9 @@ export function ImagePanel({
   component_padding,
 }: ImagePanelProps) {
   return (
-    <section
-      className={cn(
-        "relative",
-        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
-        background_colour === "teal" ||
-          background_colour === "black" ||
-          background_colour === "grey"
-          ? "dark"
-          : "",
-        component_padding
-          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
-          : "pb-16 pt-16"
-      )}
+    <BlocksWrapper
+      background_colour={background_colour}
+      component_padding={component_padding}
     >
       <div
         className={cn(
@@ -52,7 +43,7 @@ export function ImagePanel({
           />
         ) : null}
       </div>
-    </section>
+    </BlocksWrapper>
   );
 }
 

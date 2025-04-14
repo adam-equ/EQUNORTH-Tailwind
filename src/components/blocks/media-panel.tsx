@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { WpImage, WpLink } from "@nextwp/core";
 import { cn } from "@/lib/utils";
+import BlocksWrapper from "../blocks-wrapper";
 
 // import Button from "../ui/button";
 
@@ -28,19 +29,9 @@ export function MediaPanel({
   component_padding,
 }: MediaPanelProps) {
   return (
-    <section
-      className={cn(
-        "relative",
-        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
-        background_colour === "teal" ||
-          background_colour === "black" ||
-          background_colour === "grey"
-          ? "dark"
-          : "",
-        component_padding
-          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
-          : "pb-16 pt-16"
-      )}
+    <BlocksWrapper
+      background_colour={background_colour}
+      component_padding={component_padding}
     >
       <div className="relative mx-auto w-full max-w-7xl grid md:grid-cols-2 lg:gap-x-32 sm:gap-y-20 gap-y-10 gap-x-20">
         <div className={cn(reverse ? "order-1" : null)}>
@@ -86,7 +77,7 @@ export function MediaPanel({
           ) : null}
         </div>
       </div>
-    </section>
+    </BlocksWrapper>
   );
 }
 

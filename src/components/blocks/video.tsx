@@ -1,10 +1,4 @@
-"use client";
 import type { AcfFile } from "@nextwp/core";
-import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
-const ReactPlayer = dynamic(() => import("react-player"), {
-  ssr: false, // This line is important
-});
 import {
   Collapsible,
   CollapsibleContent,
@@ -12,7 +6,8 @@ import {
 } from "@/components/ui/collapsible";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ChevronDownCircle } from "lucide-react";
-//https://github.com/cookpete/react-player?tab=readme-ov-file
+import { VideoPlayer } from "../video-player";
+import BlocksWrapper from "../blocks-wrapper";
 export interface VideoProps {
   video_title?: string;
   video_copy?: string;
@@ -44,19 +39,9 @@ export function Video({
 }: VideoProps) {
   const videoUrl = video_file?.url ?? video_url ?? null;
   return (
-    <section
-      className={cn(
-        "relative",
-        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
-        background_colour === "teal" ||
-          background_colour === "black" ||
-          background_colour === "grey"
-          ? "dark"
-          : "",
-        component_padding
-          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
-          : "pb-16 pt-16"
-      )}
+    <BlocksWrapper
+      background_colour={background_colour}
+      component_padding={component_padding}
     >
       <div className="mx-auto w-full h-full max-w-7xl text-center lg:text-center">
         <div className="relative">
@@ -75,22 +60,7 @@ export function Video({
 
         {videoUrl ? (
           <div className="w-full h-[calc(100vh-72px)] lg:w-[56vw] m-auto flex flex-col items-center justify-center flex-grow relative">
-            <ReactPlayer
-              url={videoUrl}
-              playing={options?.autoplay}
-              muted={options?.muted}
-              loop={options?.loop}
-              controls={options?.controls}
-              playsinline={true}
-              width="100%"
-              height="100%"
-              style={{
-                width: "100%",
-                height: "100%", // use 100vh to fill the full height of the viewport
-                aspectRatio: "16/9",
-                overflow: "hidden", // position: "absolute",
-              }}
-            />
+            <VideoPlayer videoUrl={videoUrl} options={options} />
           </div>
         ) : null}
         {transcript ? (
@@ -113,6 +83,6 @@ export function Video({
         //
         null}
       </div>
-    </section>
+    </BlocksWrapper>
   );
 }

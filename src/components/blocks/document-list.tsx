@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { AcfFile } from "@nextwp/core";
 import { FileIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BlocksWrapper from "../blocks-wrapper";
 
 export interface DocumentListProps {
   docu_title?: string;
@@ -24,19 +25,9 @@ export function DocumentList({
   component_padding,
 }: DocumentListProps) {
   return (
-    <section
-      className={cn(
-        "relative",
-        background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
-        background_colour === "teal" ||
-          background_colour === "black" ||
-          background_colour === "grey"
-          ? "dark"
-          : "",
-        component_padding
-          ? `${component_padding.top_padding} ${component_padding.bottom_padding}`
-          : "pb-16 pt-16"
-      )}
+    <BlocksWrapper
+      background_colour={background_colour}
+      component_padding={component_padding}
     >
       <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
         {docu_title ? (
@@ -85,6 +76,6 @@ export function DocumentList({
           </div>
         ) : null}
       </div>
-    </section>
+    </BlocksWrapper>
   );
 }
