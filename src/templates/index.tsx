@@ -6,11 +6,13 @@ import { ContactPageTemplate } from "./page/contact";
 import { PostArchive } from "./archive/blog";
 import { ProductArchive } from "./archive/product";
 import { ExampleTaxonomyTemplate } from "./taxonomy/any-term";
+import { ServicesPageTemplate } from "./page/services";
 
 const templates: Templates = {
   page: {
     default: DefaultPageTemplate,
     contact: ContactPageTemplate,
+    services: ServicesPageTemplate,
   },
   post: {
     default: DefaultPostTemplate,

@@ -1,7 +1,7 @@
 "use client";
 
+// import { Button } from "@/components/ui/button";
 import React, { useEffect } from "react";
-import Button from "@/components/old-ui/button";
 
 export default function Error({
   error,
@@ -58,14 +58,6 @@ export default function Error({
       </div>
 
       <div className="flex items-center gap-x-6 flex-wrap justify-center mt-6">
-        <Button
-          onClick={() => {
-            reset();
-          }}
-        >
-          Click to retry
-        </Button>
-
         <a className="flex items-center gap-x-2" href="/">
           Go to home page{" "}
           <svg
