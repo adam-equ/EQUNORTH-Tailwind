@@ -1,28 +1,38 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
-const HubspotContactForm = (props) => {
+export interface HSProps {
+  region?: string;
+  portalId?: string;
+  formId?: string;
+}
+const HubspotContactForm = (props: HSProps) => {
   const { region, portalId, formId } = props;
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://js.hsforms.net/forms/shell.js";
-    document.body.appendChild(script);
+  const scriptLoadedRef = useRef(false);
 
-    script.addEventListener("load", () => {
-      console.log("HubSpot script loaded successfully!"); // Add this line
-      // @ts-ignore
-      if (window.hbspt) {
+  useEffect(() => {
+    if (!scriptLoadedRef.current) {
+      const script = document.createElement("script");
+      script.src = "https://js.hsforms.net/forms/shell.js";
+      document.body.appendChild(script);
+
+      script.addEventListener("load", () => {
+        scriptLoadedRef.current = true;
+        console.log("HubSpot script loaded successfully!"); // Add this line
         // @ts-ignore
-        window.hbspt.forms.create({
-          region: region,
-          portalId: portalId,
-          formId: formId,
-          target: "#hubspotForm",
-        });
-      }
-    });
-  }, []);
+        if (window.hbspt) {
+          // @ts-ignore
+          window.hbspt.forms.create({
+            region: region,
+            portalId: portalId,
+            formId: formId,
+            target: "#hubspotForm",
+          });
+        }
+      });
+    }
+  }, [region, portalId, formId]);
 
   return (
     <div>

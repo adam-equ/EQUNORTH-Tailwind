@@ -22,3 +22,4 @@ export { TabsPanel } from "./tabs";
 export { GoogleMap } from "./google-map";
 export { InsightCards } from "./insight-cards";
 export { FormPanel } from "./form-panel";
+export { FeaturePanelCarousel } from "./feature-panel-carousel";
