@@ -1,7 +1,5 @@
 "use client";
 //https://swiperjs.com/swiper-api#parameters
-import Image from "next/image";
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,10 +7,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
 
 // import required modules
-import { Navigation, Autoplay, EffectFade, Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { WpImage, WpLink } from "@nextwp/core";
 import TestimonialCard from "./blocks/testimonial-card";
 
@@ -39,17 +36,8 @@ export function TestimonialSlider({ testimonials }: TestimonialProps) {
         grabCursor
         loop
         modules={[Navigation, Pagination]}
-        // effect="fade"
-        // fadeEffect={{
-        //   crossFade: true,
-        // }}
         speed={1000}
         slidesPerView={2}
-        pagination={{
-          el: ".swiper-pagination",
-          type: "bullets",
-          clickable: true,
-        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -61,7 +49,6 @@ export function TestimonialSlider({ testimonials }: TestimonialProps) {
             <TestimonialCard testimonial={item.acf} />
           </SwiperSlide>
         ))}
-        <div className="swiper-pagination"></div>
         <div className="swiper-button-prev"></div>
         <div className="swiper-button-next"></div>
       </Swiper>
