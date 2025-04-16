@@ -1,14 +1,6 @@
-import Image from "next/image";
-import type { WpImage, WpLink } from "@nextwp/core";
-import { cn } from "@/lib/utils";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import type { WpImage } from "@nextwp/core";
 import BlocksWrapper from "../blocks-wrapper";
+import ThumbnailSlider from "../thumbnailSlider";
 
 export interface GalleryCarouselProps {
   gallery_title?: string;
@@ -41,30 +33,14 @@ export function GalleryCarousel({
         ) : null}
 
         {gallery_copy ? (
-          <p className="mt-3 text-lg text-gray-100">{gallery_copy}</p>
+          <p className="mt-3 text-lg dark:text-gray-100 text-gray-500">
+            {gallery_copy}
+          </p>
         ) : null}
         {gallery_items ? (
-          <Carousel>
-            <CarouselContent className="-ml-4">
-              {gallery_items.map((item, index) => {
-                return (
-                  <CarouselItem key={index} className="pl-4">
-                    {item.url && (
-                      <Image
-                        key={index}
-                        src={item.url}
-                        width={item.width}
-                        height={item.height}
-                        alt={item.alt ?? ""}
-                      />
-                    )}
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+          <div className="relative w-full h-screen flex items-center justify-center">
+            <ThumbnailSlider images={gallery_items} />
+          </div>
         ) : null}
       </div>
     </BlocksWrapper>

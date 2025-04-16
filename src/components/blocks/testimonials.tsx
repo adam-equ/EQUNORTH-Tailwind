@@ -11,6 +11,7 @@ import {
 import getTestimonials from "server-actions/getTestimonials";
 import TestimonialCard from "./testimonial-card";
 import BlocksWrapper from "../blocks-wrapper";
+import TestimonialSlider from "../testimonialSlider";
 
 export interface TestimonialProps {
   testim_title?: string;
@@ -71,20 +72,21 @@ export function Testimonials({
           </p>
         ) : null}
         {select_testimonials ? (
-          <Carousel>
-            <CarouselContent className="-ml-4">
-              {testimonials.map((post, index) => {
-                return (
-                  <CarouselItem key={index} className="basis-1/2 pl-4">
-                    <TestimonialCard testimonial={post.acf} />
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        ) : null}
+          <TestimonialSlider testimonials={testimonials} />
+        ) : // <Carousel>
+        //   <CarouselContent className="-ml-4">
+        //     {testimonials.map((post, index) => {
+        //       return (
+        //         <CarouselItem key={index} className="basis-1/2 pl-4">
+        //           <TestimonialCard testimonial={post.acf} />
+        //         </CarouselItem>
+        //       );
+        //     })}
+        //   </CarouselContent>
+        //   <CarouselPrevious />
+        //   <CarouselNext />
+        // </Carousel>
+        null}
       </div>
     </BlocksWrapper>
   );

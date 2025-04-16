@@ -130,3 +130,28 @@
 .edges {
   @apply mx-auto max-w-7xl px-2 py-2 sm:px-4 lg:px-8;
 }
+
+.slide-overlay::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(2, 0, 0, 0.42) 54%,
+    rgba(5, 0, 0, 1) 100%
+  );
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+.swiper-pagination .swiper-pagination-bullet {
+  width: 20px;
+  height: 20px;
+  border-radius: 0;
+  background: #ffffff;
+}
