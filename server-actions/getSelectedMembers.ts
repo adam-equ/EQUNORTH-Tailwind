@@ -1,9 +1,9 @@
-const getSelectedInsights = async ({ include }: { include: string[] }) => {
+const getSelectedMembers = async ({ include }: { include: string[] }) => {
   try {
     if (!include || !Array.isArray(include)) {
       throw new Error("Invalid include parameter");
     }
-    const url = `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts/by-id`;
+    const url = `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/members/by-id`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -23,4 +23,4 @@ const getSelectedInsights = async ({ include }: { include: string[] }) => {
     throw error;
   }
 };
-export default getSelectedInsights;
+export default getSelectedMembers;

@@ -1,17 +1,6 @@
-"use client";
-import type { WpImage, WpLink } from "@nextwp/core";
-import { useEffect, useState } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import getTestimonials from "server-actions/getTestimonials";
-import TestimonialCard from "./testimonial-card";
+import type { WpLink } from "@nextwp/core";
 import BlocksWrapper from "../blocks-wrapper";
-import TestimonialSlider from "../testimonialSlider";
+import { SelectedTestimonials } from "../selectedTestimonials";
 
 export interface TestimonialProps {
   testim_title?: string;
@@ -24,15 +13,6 @@ export interface TestimonialProps {
   };
   select_testimonials?: [];
 }
-export interface Testimonial {
-  acf: {
-    full_name: string;
-    company_job_title?: string;
-    quote: string;
-    profile_image_logo?: WpImage;
-    linkedin_url?: WpLink;
-  };
-}
 export function Testimonials({
   testim_title,
   testim_copy,
@@ -41,19 +21,6 @@ export function Testimonials({
   select_testimonials,
   component_padding,
 }: TestimonialProps) {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  useEffect(() => {
-    if (select_testimonials) {
-      const postIds = select_testimonials.map((item) => item);
-      getTestimonials({ include: postIds })
-        .then((data) => {
-          setTestimonials(data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [select_testimonials]);
   return (
     <BlocksWrapper
       background_colour={background_colour}
@@ -72,21 +39,8 @@ export function Testimonials({
           </p>
         ) : null}
         {select_testimonials ? (
-          <TestimonialSlider testimonials={testimonials} />
-        ) : // <Carousel>
-        //   <CarouselContent className="-ml-4">
-        //     {testimonials.map((post, index) => {
-        //       return (
-        //         <CarouselItem key={index} className="basis-1/2 pl-4">
-        //           <TestimonialCard testimonial={post.acf} />
-        //         </CarouselItem>
-        //       );
-        //     })}
-        //   </CarouselContent>
-        //   <CarouselPrevious />
-        //   <CarouselNext />
-        // </Carousel>
-        null}
+          <SelectedTestimonials select_testimonials={select_testimonials} />
+        ) : null}
       </div>
     </BlocksWrapper>
   );

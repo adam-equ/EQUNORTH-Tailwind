@@ -3,12 +3,16 @@ const getSelectedPages = async ({ include }: { include: string[] }) => {
     if (!include || !Array.isArray(include)) {
       throw new Error("Invalid include parameter");
     }
-    const url = `${
-      process.env.NEXT_PUBLIC_WP_URL
-    }/wp-json/wp/v2/pages?include=${include.join(
-      ","
-    )}&acf_format=standard&_embed`;
-    const response = await fetch(url);
+    const url = `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/pages/by-id`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        post_ids: include,
+      }),
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

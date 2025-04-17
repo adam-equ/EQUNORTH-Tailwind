@@ -1,18 +1,5 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
-import { type WpImage } from "@nextwp/core";
-import { useEffect, useState } from "react";
-import getSelectedPages from "server-actions/getSelectedPages";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import AOS from "aos";
 import BlocksWrapper from "../blocks-wrapper";
+import { SelectedPages } from "../selectedPages";
 
 // import Button from "../ui/button";
 
@@ -26,17 +13,6 @@ export interface PageCardsProps {
     bottom_padding: string;
   };
 }
-export interface PageListing {
-  slug: string;
-  title: {
-    rendered: string;
-  };
-  acf: {
-    pl_title: string;
-    pl_image?: WpImage;
-    pl_intro?: string;
-  };
-}
 
 export function PageCards({
   pcards_title,
@@ -45,21 +21,6 @@ export function PageCards({
   background_colour,
   component_padding,
 }: PageCardsProps) {
-  const [pageList, setPageList] = useState<PageListing[]>([]);
-  useEffect(() => {
-    if (pcard_pages) {
-      const postIds = pcard_pages.map((item) => item);
-      getSelectedPages({ include: postIds })
-        .then((data) => {
-          setPageList(data);
-          AOS.refresh();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [pcard_pages]);
-
   // useEffect(() => {
   //   console.log("pcard_pages:", JSON.stringify(pcard_pages, null, 2));
   // }, [pcard_pages]);
@@ -77,36 +38,7 @@ export function PageCards({
         {pcards_copy ? (
           <p className="mt-3 text-lg text-gray-500">{pcards_copy}</p>
         ) : null}
-        {pcard_pages ? (
-          <div className="grid grid-cols-3 gap-8 my-8">
-            {pageList.map((item, index) => {
-              return (
-                <Card key={index} className="rounded-t-none text-left relative">
-                  <CardHeader className="p-0">
-                    {item.acf?.pl_image?.url ? (
-                      <Image
-                        alt={item.acf.pl_image.alt || ""}
-                        height={item.acf.pl_image.height}
-                        src={item.acf.pl_image.url}
-                        width={item.acf.pl_image.width}
-                        className="text-center w-full h-full object-cover"
-                      />
-                    ) : null}
-                    <CardTitle className="py-4 px-6">
-                      {item.acf.pl_title || item.title.rendered}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-gray-500 text-sm">
-                    {item.acf.pl_intro}
-                  </CardContent>
-                  <CardFooter className="absolute w-full h-full top-0 left-0 right-0 bottom-0">
-                    <Link href={item.slug} className="w-full h-full" />
-                  </CardFooter>
-                </Card>
-              );
-            })}
-          </div>
-        ) : null}
+        {pcard_pages ? <SelectedPages select_pages={pcard_pages} /> : null}
       </div>
     </BlocksWrapper>
   );
