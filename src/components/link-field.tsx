@@ -19,9 +19,9 @@ export function LinkField({ link_field }: LinkFieldProps) {
       {!link_field.link_type ? (
         <Link href={internal_link}>{link_title}</Link>
       ) : (
-        <Link href={external_link} target={link_target}>
+        <a href={external_link} target={link_target}>
           {link_title}
-        </Link>
+        </a>
       )}
     </div>
   );

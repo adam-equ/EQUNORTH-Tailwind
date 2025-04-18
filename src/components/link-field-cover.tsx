@@ -26,7 +26,7 @@ export function LinkFieldCover({ link_field }: LinkFieldProps) {
           className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
         />
       ) : (
-        <Link
+        <a
           href={external_link}
           target={link_target}
           className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"

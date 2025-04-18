@@ -62,14 +62,15 @@ export function SelectedMembers({ select_members }: SelectedTestimonialProps) {
               <div className="flex items-start">
                 <h3 className="text-4xl">{member.acf?.full_name}</h3>
                 {member.acf?.linkedin_url && member.acf?.linkedin_url.url ? (
-                  <Link
+                  <a
                     href={member.acf?.linkedin_url.url}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center ml-auto border border-grey-300 rounded-md p-2 hover:bg-gray-100"
                   >
                     <ContactRound size={24} className="mr-2" />
                     <span className="text-sm">Connect</span>
-                  </Link>
+                  </a>
                 ) : null}
               </div>
               <p>{member.acf?.job_title_position}</p>

@@ -22,9 +22,9 @@ export function LinkFieldButton({ link_field }: LinkFieldProps) {
         </Button>
       ) : (
         <Button asChild>
-          <Link href={external_link} target={link_target}>
+          <a href={external_link} target={link_target}>
             {link_title}
-          </Link>
+          </a>
         </Button>
       )}
     </div>
