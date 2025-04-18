@@ -25,12 +25,14 @@ export function PageCards({
     >
       <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
         {pcards_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
             {pcards_title}
           </h2>
         ) : null}
         {pcards_copy ? (
-          <p className="mt-3 text-lg text-gray-500">{pcards_copy}</p>
+          <p className="mt-3 text-lg text-gray-500 dark:text-equ-white">
+            {pcards_copy}
+          </p>
         ) : null}
         {pcard_pages ? <SelectedPages select_pages={pcard_pages} /> : null}
       </div>

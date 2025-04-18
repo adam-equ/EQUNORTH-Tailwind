@@ -1,15 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
-import type { WpImage, WpLink } from "@nextwp/core";
+import type { WpImage } from "@nextwp/core";
 import { cn } from "@/lib/utils";
 import BlocksWrapper from "../blocks-wrapper";
-
-// import Button from "../ui/button";
-
+import { LinkFieldType } from "./types";
+import { LinkFieldButton } from "../link-field-button";
 export interface MediaPanelProps {
   mediap_title?: string;
   mediap_copy?: string;
-  mediap_link?: WpLink;
+  link_field?: LinkFieldType;
   mediap_image?: WpImage;
   reverse?: boolean;
   background_colour?: string;
@@ -22,7 +20,7 @@ export interface MediaPanelProps {
 export function MediaPanel({
   mediap_title,
   mediap_copy,
-  mediap_link,
+  link_field,
   mediap_image,
   reverse,
   background_colour,
@@ -52,16 +50,10 @@ export function MediaPanel({
               data-aos-delay="100"
             ></div>
           ) : null}
-
-          {mediap_link?.url ? (
-            <Link
-              className="mt-8 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white shadow hover:bg-indigo-700"
-              href={mediap_link.url}
-              data-aos="fade-up"
-              data-aos-delay="50"
-            >
-              {mediap_link.title}
-            </Link>
+          {link_field?.display_link ? (
+            <div className="mt-8" data-aos="fade-up" data-aos-delay="50">
+              <LinkFieldButton link_field={link_field} />
+            </div>
           ) : null}
         </div>
         <div className="relative">

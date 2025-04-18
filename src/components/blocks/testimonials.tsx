@@ -1,11 +1,12 @@
-import type { WpLink } from "@nextwp/core";
 import BlocksWrapper from "../blocks-wrapper";
+import { LinkFieldButton } from "../link-field-button";
 import { SelectedTestimonials } from "../selectedTestimonials";
+import { LinkFieldType } from "./types";
 
 export interface TestimonialProps {
   testim_title?: string;
   testim_copy?: string;
-  testim_link?: WpLink;
+  link_field?: LinkFieldType;
   background_colour?: string;
   component_padding?: {
     top_padding: string;
@@ -16,7 +17,7 @@ export interface TestimonialProps {
 export function Testimonials({
   testim_title,
   testim_copy,
-  testim_link,
+  link_field,
   background_colour,
   select_testimonials,
   component_padding,
@@ -40,6 +41,9 @@ export function Testimonials({
         ) : null}
         {select_testimonials ? (
           <SelectedTestimonials select_testimonials={select_testimonials} />
+        ) : null}
+        {link_field?.display_link ? (
+          <LinkFieldButton link_field={link_field} />
         ) : null}
       </div>
     </BlocksWrapper>

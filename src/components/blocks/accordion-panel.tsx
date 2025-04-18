@@ -56,7 +56,9 @@ export function AccordionPanel({
                 ({ acc_intro, acc_copy, acc_image, reverse }, index) => {
                   return (
                     <AccordionItem key={index} value={`value-${index}`}>
-                      <AccordionTrigger>{acc_intro}</AccordionTrigger>
+                      <AccordionTrigger className="text-2xl">
+                        {acc_intro}
+                      </AccordionTrigger>
                       <AccordionContent>
                         <div className="flex gap-12">
                           <div

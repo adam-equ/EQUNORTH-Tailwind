@@ -4,15 +4,18 @@ import type { AcfFile, WpImage, WpLink } from "@nextwp/core";
 import { FileIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import BlocksWrapper from "../blocks-wrapper";
+import { LinkFieldType } from "./types";
+import { LinkFieldCover } from "../link-field-cover";
 
 export interface QuicklinksProps {
   quickl_title?: string;
   quickl_copy?: string;
   background_colour?: string;
   quickl_items?: {
-    quickl_link: WpLink;
+    link_field?: LinkFieldType;
     quickl_link_image?: WpImage;
     quickl_link_copy?: string;
+    quickl_link_title?: string;
   }[];
   component_padding?: {
     top_padding: string;
@@ -44,7 +47,15 @@ export function Quicklinks({
         {quickl_items ? (
           <div className="grid grid-flow-col gap-2">
             {quickl_items.map(
-              ({ quickl_link, quickl_link_copy, quickl_link_image }, index) => {
+              (
+                {
+                  link_field,
+                  quickl_link_title,
+                  quickl_link_copy,
+                  quickl_link_image,
+                },
+                index
+              ) => {
                 return (
                   <div
                     className="text-left p-8 bg-equ-concrete rounded-md relative hover:bg-equ-lavender transition duration-300 ease-in-out"
@@ -58,9 +69,9 @@ export function Quicklinks({
                         width={quickl_link_image.width}
                       />
                     ) : null}
-                    {quickl_link.title ? (
+                    {quickl_link_title ? (
                       <h4 className="font-bold text-2xl">
-                        {quickl_link.title}
+                        {quickl_link_title}
                       </h4>
                     ) : null}
                     {quickl_link_copy ? (
@@ -68,11 +79,8 @@ export function Quicklinks({
                         {quickl_link_copy}
                       </p>
                     ) : null}
-                    {quickl_link.url ? (
-                      <Link
-                        href={quickl_link.url}
-                        className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
-                      />
+                    {link_field?.display_link ? (
+                      <LinkFieldCover link_field={link_field} />
                     ) : null}
                   </div>
                 );

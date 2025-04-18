@@ -2,9 +2,6 @@ import Image from "next/image";
 import type { WpImage } from "@nextwp/core";
 import { cn } from "@/lib/utils";
 import BlocksWrapper from "../blocks-wrapper";
-
-// import Button from "../ui/button";
-
 export interface ImagePanelProps {
   image_image?: WpImage;
   full_width?: boolean;

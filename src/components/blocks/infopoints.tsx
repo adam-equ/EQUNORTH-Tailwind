@@ -1,8 +1,6 @@
 import Image from "next/image";
 import type { WpImage } from "@nextwp/core";
-import { cn } from "@/lib/utils";
 import BlocksWrapper from "../blocks-wrapper";
-
 export interface InfopointsProps {
   infop_title?: string;
   infop_copy?: string;

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import type { WpImage, WpLink } from "@nextwp/core";
+import type { WpImage } from "@nextwp/core";
 import BlocksWrapper from "../blocks-wrapper";
 import { LinkFieldType } from "./types";
-import { LinkField } from "../link-field";
+import { LinkFieldButton } from "../link-field-button";
 
 export interface CtaProps {
   cta_title?: string;
@@ -53,7 +53,7 @@ export function CallToAction({
           ) : null}
 
           {link_field?.display_link ? (
-            <LinkField link_field={link_field} />
+            <LinkFieldButton link_field={link_field} />
           ) : null}
         </div>
       </div>

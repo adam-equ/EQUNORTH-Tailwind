@@ -6,7 +6,7 @@ export interface LinkFieldProps {
   link_field: LinkFieldType;
 }
 
-export function LinkField({ link_field }: LinkFieldProps) {
+export function LinkFieldButton({ link_field }: LinkFieldProps) {
   const link_target = link_field.link?.target
     ? link_field.link?.target
     : "_self";
@@ -17,11 +17,15 @@ export function LinkField({ link_field }: LinkFieldProps) {
   return (
     <div className="link-wrap">
       {!link_field.link_type ? (
-        <Link href={internal_link}>{link_title}</Link>
+        <Button asChild>
+          <Link href={internal_link}>{link_title}</Link>
+        </Button>
       ) : (
-        <Link href={external_link} target={link_target}>
-          {link_title}
-        </Link>
+        <Button asChild>
+          <Link href={external_link} target={link_target}>
+            {link_title}
+          </Link>
+        </Button>
       )}
     </div>
   );

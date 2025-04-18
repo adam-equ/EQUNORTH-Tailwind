@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import type { WpImage, WpLink } from "@nextwp/core";
-import { cn } from "@/lib/utils";
+import type { WpImage } from "@nextwp/core";
 import BlocksWrapper from "../blocks-wrapper";
 
 export interface FeatureQuoteProps {

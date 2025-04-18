@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { AcfFile } from "@nextwp/core";
 import { FileIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
 import BlocksWrapper from "../blocks-wrapper";
 
 export interface DocumentListProps {

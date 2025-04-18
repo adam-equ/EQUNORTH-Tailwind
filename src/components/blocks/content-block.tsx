@@ -1,7 +1,4 @@
 import BlocksWrapper from "../blocks-wrapper";
-import Edges from "../edges";
-import { cn } from "@/lib/utils";
-
 export interface ContentBlockProps {
   contentb_copy: string;
   background_colour?: string;

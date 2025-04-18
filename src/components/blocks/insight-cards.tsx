@@ -1,7 +1,5 @@
 import BlocksWrapper from "../blocks-wrapper";
 import { SelectedInsights } from "../selectedInsights";
-// import Button from "../ui/button";
-
 export interface InsightCardsProps {
   icards_title?: string;
   icards_copy?: string;
@@ -20,9 +18,6 @@ export function InsightCards({
   background_colour,
   component_padding,
 }: InsightCardsProps) {
-  // useEffect(() => {
-  //   console.log("pcard_pages:", JSON.stringify(pcard_pages, null, 2));
-  // }, [pcard_pages]);
   return (
     <BlocksWrapper
       background_colour={background_colour}

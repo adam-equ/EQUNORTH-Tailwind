@@ -1,8 +1,8 @@
 import Image from "next/image";
-import type { WpImage, WpLink } from "@nextwp/core";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+import type { WpImage } from "@nextwp/core";
 import BlocksWrapper from "../blocks-wrapper";
+import { LinkFieldType } from "./types";
+import { LinkFieldCover } from "../link-field-cover";
 
 export interface LogoImageGridProps {
   logo_title?: string;
@@ -15,7 +15,7 @@ export interface LogoImageGridProps {
   logo_items?: {
     logo_item_image?: WpImage;
     logo_item_description: string;
-    logo_item_link?: WpLink;
+    link_field?: LinkFieldType;
   }[];
 }
 export function LogoImageGrid({
@@ -44,7 +44,7 @@ export function LogoImageGrid({
           <div className="grid grid-cols-3 gap-8">
             {logo_items.map(
               (
-                { logo_item_image, logo_item_description, logo_item_link },
+                { logo_item_image, logo_item_description, link_field },
                 index
               ) => {
                 return (
@@ -66,11 +66,8 @@ export function LogoImageGrid({
                         {logo_item_description}
                       </p>
                     ) : null}
-                    {logo_item_link && logo_item_link.url ? (
-                      <Link
-                        href={logo_item_link.url}
-                        className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
-                      />
+                    {link_field?.display_link ? (
+                      <LinkFieldCover link_field={link_field} />
                     ) : null}
                   </div>
                 );
