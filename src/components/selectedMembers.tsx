@@ -3,7 +3,6 @@ import { WpImage, WpLink } from "@nextwp/core";
 import { useEffect, useState } from "react";
 import getSelectedMembers from "server-actions/getSelectedMembers";
 import Image from "next/image";
-import Link from "next/link";
 import { ChevronDown, ContactRound } from "lucide-react";
 import {
   Collapsible,

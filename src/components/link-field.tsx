@@ -7,12 +7,13 @@ export interface LinkFieldProps {
 }
 
 export function LinkField({ link_field }: LinkFieldProps) {
+  const publicUrl = process.env.NEXT_PUBLIC_WP_URL;
   const link_target = link_field.link?.target
     ? link_field.link?.target
     : "_self";
   const link_title = link_field.link?.title;
   const internal_link =
-    link_field.link?.url?.replace("http://equnorthwp.local", "") || "";
+    link_field.link?.url?.replace(publicUrl ?? "", "") || "";
   const external_link = link_field?.link?.url || "";
   return (
     <div className="link-wrap">
