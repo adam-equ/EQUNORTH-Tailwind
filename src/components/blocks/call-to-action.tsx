@@ -1,26 +1,25 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { WpImage, WpLink } from "@nextwp/core";
-import { cn } from "@/lib/utils";
 import BlocksWrapper from "../blocks-wrapper";
-// import Button from "../ui/button";
+import { LinkFieldType } from "./types";
+import { LinkField } from "../link-field";
 
 export interface CtaProps {
   cta_title?: string;
   cta_copy?: string;
-  cta_link?: WpLink;
   background_image?: WpImage;
   background_colour?: string;
   component_padding?: {
     top_padding: string;
     bottom_padding: string;
   };
+  link_field?: LinkFieldType;
 }
 
 export function CallToAction({
   cta_title,
   cta_copy,
-  cta_link,
+  link_field,
   background_image,
   background_colour,
   component_padding,
@@ -53,13 +52,8 @@ export function CallToAction({
             </p>
           ) : null}
 
-          {cta_link?.url ? (
-            <Link
-              className="mt-8 inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white shadow hover:bg-indigo-700"
-              href={cta_link.url}
-            >
-              {cta_link.title}
-            </Link>
+          {link_field?.display_link ? (
+            <LinkField link_field={link_field} />
           ) : null}
         </div>
       </div>
