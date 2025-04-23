@@ -1,4 +1,5 @@
 import { FlexibleContent } from "@nextwp/core";
+import { GlobalStuff } from "@/components/global-stuff";
 import type { WpPage, TemplateProps } from "@nextwp/core";
 import * as blocks from "../../components/blocks";
 

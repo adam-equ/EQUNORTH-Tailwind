@@ -155,3 +155,57 @@
   border-radius: 0;
   background: #ffffff;
 }
+.slider-controls-small .swiper-button-prev,
+.slider-controls-small .swiper-button-next {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e6e7e8;
+}
+.slider-controls-small .swiper-button-prev::after,
+.slider-controls-small .swiper-button-next::after {
+  font-size: 18px;
+  color: #bada55;
+}
+.timeline-card {
+  position: relative;
+}
+.timeline-card::after {
+  display: block;
+  content: "";
+  width: 1px;
+  background: #e6e7e8;
+  height: calc(100% - 50px);
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  z-index: -1;
+}
+.timeline-date {
+  position: relative;
+}
+.timeline-date span {
+  background: #ffffff;
+  padding-right: 4px;
+}
+
+.timeline-date::after {
+  display: block;
+  content: "";
+  width: 100%;
+  background: #bada55;
+  height: 2px;
+  position: absolute;
+  top: calc(50% - 1px);
+  z-index: -1;
+}
+.timeline-date::before {
+  display: block;
+  content: "";
+  width: 16px;
+  background: #e6e7e8;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  left: -24px;
+  z-index: -1;
+}

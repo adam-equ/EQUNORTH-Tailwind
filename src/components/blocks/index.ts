@@ -23,3 +23,5 @@ export { GoogleMap } from "./google-map";
 export { InsightCards } from "./insight-cards";
 export { FormPanel } from "./form-panel";
 export { FeaturePanelCarousel } from "./feature-panel-carousel";
+export { Timeline } from "./timeline";
+export { GlobalTestimonials } from "./global-testimonials";
