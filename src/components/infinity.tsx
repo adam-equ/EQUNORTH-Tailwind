@@ -14,8 +14,10 @@ const cycleIndex = (setHoveredPathIndex: (index: number) => void) => {
 };
 export function Infinity() {
   const [hoveredPathIndex, setHoveredPathIndex] = useState<number>(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(false);
     return cycleIndex(setHoveredPathIndex);
   }, [setHoveredPathIndex]);
 
@@ -29,19 +31,26 @@ export function Infinity() {
   //   const handleMouseOut = () => {
   //     setHoveredPathIndex(3);
   //   };
+  if (loading) {
+    return (
+      <div className="w-full h-screen relative flex flex-col items-center justify-center">
+        <span>Loading...</span>
+      </div>
+    );
+  }
   return (
-    <div className="w-full h-full relative">
-      <div className="infinity-container relative text-left w-[481px] pr-[28px]">
+    <div className="w-full h-full relative flex flex-col items-center py-8">
+      <div className="infinity-container relative text-center">
         <svg
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 509 247"
-          className="w-[481px] h-[247px] "
+          viewBox="0 0 481 247"
+          className="w-[481px] h-[247px]"
         >
           <path
             onMouseOver={(event) => handleMouseOver(event, 0)}
             className={hoveredPathIndex === 0 ? "path-highlight" : ""}
-            d="M131.6 20.5c-56.94 0-103.1 46.07-103.1 102.901 0 20.631 7.187 40.128 18.259 56.387 6.74 9.899 20.662 9.895 29.216 1.512 8.595-8.422 8.413-22.239 3.295-33.13-3.65-7.768-5.898-16.352-5.898-24.769 0-32.096 26.07-58.115 58.227-58.115 8.217 0 16.112 1.656 23.274 4.678 11.344 4.788 25.474 5.317 34.189-3.381 8.686-8.67 8.801-22.987-1.511-29.642C171.433 26.539 152.215 20.5 131.6 20.5Z"
+            d="M117.459 18.612c-56.941 0-103.1 46.07-103.1 102.901 0 20.631 7.186 40.128 18.258 56.387 6.74 9.9 20.662 9.895 29.216 1.513 8.595-8.423 8.413-22.24 3.295-33.131-3.65-7.768-5.898-16.352-5.898-24.769 0-32.096 26.07-58.115 58.228-58.115 8.217 0 16.111 1.656 23.273 4.679 11.344 4.788 25.474 5.317 34.189-3.382 8.687-8.67 8.802-22.987-1.511-29.642-16.118-10.402-35.335-16.44-55.95-16.44Z"
             fill="#E5E8FA"
             data-index={0}
           />
@@ -49,28 +58,28 @@ export function Infinity() {
           <path
             onMouseOver={(event) => handleMouseOver(event, 1)}
             className={hoveredPathIndex === 1 ? "path-highlight" : ""}
-            d="M314.7 148.031c9.631 8.298 10.232 22.993 1.311 32.05-8.155 8.28-21.353 8.804-30.139 1.197l-91.635-79.341c-9.586-8.3-10.105-22.975-1.13-31.932 8.105-8.09 21.089-8.566 29.764-1.092l91.829 79.118Z"
+            d="M300.559 146.144c9.63 8.297 10.231 22.992 1.31 32.05-8.155 8.279-21.353 8.803-30.138 1.197l-91.636-79.342c-9.586-8.3-10.105-22.974-1.13-31.932 8.105-8.09 21.09-8.565 29.764-1.091l91.83 79.118Z"
             fill="#E5E8FA"
             data-index={1}
           />
           <path
             onMouseOver={(event) => handleMouseOver(event, 2)}
             className={hoveredPathIndex === 2 ? "path-highlight" : ""}
-            d="M377.683 227.444c56.941 0 103.1-46.07 103.1-102.901 0-20.631-7.187-40.128-18.258-56.387-6.741-9.9-20.662-9.895-29.216-1.512-8.595 8.422-8.414 22.239-3.295 33.13 3.65 7.768 5.898 16.352 5.898 24.769 0 32.096-26.07 58.115-58.228 58.115-8.217 0-16.111-1.656-23.273-4.679-11.345-4.787-25.474-5.316-34.189 3.382-8.687 8.671-8.802 22.987 1.51 29.642 16.119 10.402 35.336 16.441 55.951 16.441Z"
+            d="M363.541 225.556c56.941 0 103.101-46.07 103.101-102.9 0-20.632-7.187-40.129-18.259-56.388-6.741-9.899-20.662-9.894-29.216-1.512-8.595 8.423-8.413 22.24-3.295 33.13 3.65 7.769 5.898 16.352 5.898 24.769 0 32.096-26.069 58.115-58.228 58.115-8.217 0-16.111-1.656-23.273-4.678-11.344-4.788-25.474-5.317-34.189 3.382-8.687 8.67-8.802 22.987 1.511 29.642 16.118 10.402 35.335 16.44 55.95 16.44Z"
             fill="#E5E8FA"
             data-index={2}
           />
           <path
             onMouseOver={(event) => handleMouseOver(event, 3)}
             className={hoveredPathIndex === 3 ? "path-highlight" : ""}
-            d="M355.58 68.484c-10.684 3.733-18.477 9.064-28.093 18.128-4.715 4.445-13.447 12.868-21.122 20.297-8.39 8.123-21.591 8.524-30.441.904-9.942-8.56-10.502-23.768-1.217-33.036l26.43-26.378c15.838-13.584 28.694-19.843 43.225-23.634 7.802-2.317 14.121-3.398 23.453-3.997 1.446-.096 3.096-.182 5.072-.268h7.479c20.789 2.184 32.935 5.856 45.912 13.793 10.955 6.7 11.557 22.068 2.443 31.113-7.619 7.561-19.683 7.984-29.862 4.577-16.958-5.676-35.335-4.274-43.279-1.499Z"
+            d="M341.439 66.597c-10.684 3.732-18.478 9.064-28.093 18.128-4.716 4.445-13.448 12.867-21.122 20.297-8.391 8.123-21.592 8.523-30.442.904-9.942-8.56-10.502-23.769-1.216-33.036l26.429-26.379c15.838-13.584 28.694-19.843 43.225-23.634 7.802-2.317 14.122-3.398 23.453-3.996 1.447-.097 3.097-.183 5.073-.269h7.478c20.789 2.185 32.935 5.857 45.913 13.793 10.954 6.7 11.557 22.069 2.442 31.114-7.619 7.56-19.683 7.983-29.862 4.576-16.957-5.675-35.334-4.273-43.278-1.498Z"
             fill="#E5E8FA"
             data-index={3}
           />
           <path
             onMouseOver={(event) => handleMouseOver(event, 4)}
             className={hoveredPathIndex === 4 ? "path-highlight" : ""}
-            d="M153.779 182.291c10.684-3.732 18.478-9.064 28.093-18.128 4.716-4.445 13.448-12.868 21.122-20.297 8.391-8.123 21.592-8.524 30.442-.904 9.942 8.56 10.502 23.768 1.216 33.036l-26.429 26.378c-15.838 13.585-28.694 19.843-43.225 23.634-7.802 2.317-14.122 3.398-23.453 3.997a219.85 219.85 0 0 1-5.073.268h-7.478c-20.789-2.184-32.935-5.856-45.913-13.793-10.954-6.699-11.557-22.068-2.442-31.113 7.619-7.561 19.683-7.984 29.862-4.577 16.957 5.676 35.334 4.274 43.278 1.499Z"
+            d="M139.638 180.403c10.684-3.732 18.477-9.064 28.093-18.127 4.715-4.446 13.447-12.868 21.121-20.298 8.391-8.123 21.592-8.523 30.442-.904 9.942 8.56 10.502 23.769 1.217 33.036l-26.43 26.379c-15.838 13.584-28.694 19.843-43.225 23.633-7.802 2.318-14.121 3.399-23.453 3.997a218.85 218.85 0 0 1-5.072.269h-7.479c-20.79-2.184-32.935-5.857-45.912-13.793-10.955-6.7-11.557-22.069-2.443-31.113 7.62-7.561 19.683-7.984 29.862-4.577 16.958 5.676 35.334 4.273 43.279 1.498Z"
             fill="#E5E8FA"
             data-index={4}
           />
@@ -181,9 +190,8 @@ export function Infinity() {
           <span>Consideration</span>
         </div>
       </div>
-
       {/* Explainers */}
-      <div className="explainers w-[802px] relative min-h-[140px]">
+      <div className="explainers w-[802px] relative min-h-[140px] mt-16">
         <div
           className={`explainer flex p-4 bg-[#fcfdfc] rounded-md gap-4 items-center ${
             hoveredPathIndex === 2 ? "active" : ""
@@ -406,7 +414,6 @@ export function Infinity() {
       <style jsx>
         {`
           .infinity-container svg {
-            margin: 40px;
             z-index: -1;
           }
 
@@ -462,8 +469,8 @@ export function Infinity() {
           //data0 -> Awareness
 
           .icon[data-index="0"] {
-            top: 14%;
-            left: 16%;
+            top: 13%;
+            left: 4%;
             transition: transform 0.3s ease-in-out;
           }
 
@@ -496,7 +503,7 @@ export function Infinity() {
 
           .icon[data-index="1"] {
             top: calc(50% - 20px);
-            left: calc(50% + 18px);
+            left: calc(50% - 20px);
             transition: transform 0.3s ease-in-out;
           }
 
@@ -516,39 +523,39 @@ export function Infinity() {
             fill: #a8b4f0 !important;
           }
 
-          //data4 -> Advocacy
+          //data2 -> Decision
 
-          .icon[data-index="4"] {
-            bottom: 3%;
-            left: 38%;
+          .icon[data-index="2"] {
+            top: 70%;
+            left: 88%;
             transition: transform 0.3s ease-in-out;
           }
 
-          .icon[data-index="4"].flex span {
+          .icon[data-index="2"].flex span {
             visibility: visible;
-            width: 69px;
+            width: 62px;
           }
 
-          .icon[data-index="4"].flex,
-          .infinity-container path:hover ~ .icon[data-index="4"],
-          .icon[data-index="4"]:hover {
-            transform: translateX(-35px);
+          .icon[data-index="2"].flex,
+          .infinity-container path:hover ~ .icon[data-index="2"],
+          .icon[data-index="2"]:hover {
+            transform: translateX(-25px);
           }
 
-          .infinity-container path:hover ~ .icon[data-index="4"] span,
-          .icon[data-index="4"]:hover span {
+          .infinity-container path:hover ~ .icon[data-index="2"] span,
+          .icon[data-index="2"]:hover span {
             visibility: visible;
           }
 
-          .icon[data-index="4"]:hover ~ path.path-highlight {
+          .icon[data-index="2"]:hover ~ path.path-highlight {
             filter: drop-shadow(0px 0px 8.5px rgba(180, 187, 228, 0.8));
             fill: #a8b4f0 !important;
           }
 
           //data3 -> Loyalty
           .icon[data-index="3"] {
-            top: 4%;
-            left: 78%;
+            top: -1%;
+            left: 72%;
             transition: transform 0.3s ease-in-out;
           }
 
@@ -573,33 +580,35 @@ export function Infinity() {
             fill: #a8b4f0 !important;
           }
 
-          //data2 -> Decision
-          .icon[data-index="2"] {
-            top: 70%;
-            left: 93%;
+          //data4 -> Advocacy
+
+          .icon[data-index="4"] {
+            bottom: 3%;
+            left: 28%;
             transition: transform 0.3s ease-in-out;
           }
 
-          .icon[data-index="2"].flex span {
+          .icon[data-index="4"].flex span {
             visibility: visible;
-            width: 62px;
+            width: 69px;
           }
 
-          .icon[data-index="2"].flex,
-          .infinity-container path:hover ~ .icon[data-index="2"],
-          .icon[data-index="2"]:hover {
-            transform: translateX(-25px);
+          .icon[data-index="4"].flex,
+          .infinity-container path:hover ~ .icon[data-index="4"],
+          .icon[data-index="4"]:hover {
+            transform: translateX(-35px);
           }
 
-          .infinity-container path:hover ~ .icon[data-index="2"] span,
-          .icon[data-index="2"]:hover span {
+          .infinity-container path:hover ~ .icon[data-index="4"] span,
+          .icon[data-index="4"]:hover span {
             visibility: visible;
           }
 
-          .icon[data-index="2"]:hover ~ path.path-highlight {
+          .icon[data-index="4"]:hover ~ path.path-highlight {
             filter: drop-shadow(0px 0px 8.5px rgba(180, 187, 228, 0.8));
             fill: #a8b4f0 !important;
           }
+
           .explainer {
             position: absolute;
             visibility: hidden;
