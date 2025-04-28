@@ -1,0 +1,45 @@
+.play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+    background: $color-white;
+    border-radius: 50%;
+    position: relative;
+    opacity: 0.8;
+    @include basic-transition((opacity, background-color));
+
+    @include mq($until: tablet) {
+        height: 48px;
+        width: 48px;
+    }
+
+    &::after {
+        @include pseudo;
+        @include square(20px);
+        @include basic-transition(background-color);
+        position: relative;
+        background: $color-secondary-vibrant;
+        mask-image: url('/assets/static/images/svg/mask-play-button.svg');
+    }
+
+    @include on-event {
+        background: $color-secondary-vibrant;
+        opacity: 1;
+
+        &::after {
+            background: $color-white;
+        }
+    }
+
+    &--small {
+        height: 40px;
+        width: 40px;
+
+        &::after {
+            border-width: 12px 0 12px 16px;
+            margin-left: 3px;
+        }
+    }
+}

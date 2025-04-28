@@ -1,0 +1,40 @@
+/*------------------------------------*\
+  SETTINGS > TYPOGRAPHY-VARIABLES
+\*------------------------------------*/
+
+:root {
+    --font-size--extralarge: calc((22 / 16) * 1rem); /* 22px */
+    --font-size--large: calc((20 / 16) * 1rem); /* 20px */
+    --font-size--default: calc((18 / 16) * 1rem); /* 18px */
+    --font-size--small: calc((16 / 16) * 1rem); /* 16px */
+    --font-size--tiny: calc((14 / 16) * 1rem); /* 14px */
+    --font-size--micro: calc((12 / 16) * 1rem); /* 12px */
+}
+
+$font-miera: 'MierA', sans-serif;
+
+$font-body: $font-miera;
+
+$base-font-size: var(--font-size--default);
+
+$font-size-extralarge: var(--font-size--extralarge);
+$font-size-large: var(--font-size--large);
+$font-size-medium: $base-font-size;
+$font-size-small: var(--font-size--small);
+$font-size-tiny: var(--font-size--tiny);
+$font-size-micro: var(--font-size--micro);
+
+$font-size-body: $font-size-medium;
+
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+$line-height-body: 1.4;
+$line-height-headings: 1.2;

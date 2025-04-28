@@ -1,0 +1,13 @@
+/*------------------------------------*\
+  TOOLS > SIZE
+\*------------------------------------*/
+
+@mixin square($size, $important: false) {
+    @if $important {
+        height: $size !important;
+        width: $size !important;
+    } @else {
+        height: $size;
+        width: $size;
+    }
+}

@@ -1,0 +1,11 @@
+/*------------------------------------*\
+  UTILITIES > LIST
+\*------------------------------------*/
+
+.u-list-reset {
+    @include reset-list;
+}
+
+.u-list-inline {
+    display: inline-block;
+}

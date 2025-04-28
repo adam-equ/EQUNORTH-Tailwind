@@ -1,0 +1,110 @@
+.grecaptcha-badge {
+    display: none;
+}
+
+.form-panel {
+    &__container {
+        margin-top: 40px;
+    }
+
+    &__form {
+        max-width: 800px;
+    }
+
+    .form-field-group {
+        &:not(:first-child) {
+            margin-top: 30px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+        }
+    }
+
+    input[type='text'],
+    input[type='number'],
+    input[type='tel'],
+    input[type='email'],
+    textarea {
+        padding: 10px 20px;
+        border: solid 1px $color-grey;
+        border-radius: 8px;
+        width: 100%;
+
+        &.input-validation-error {
+            border-color: $color-error;
+        }
+    }
+
+    textarea {
+        height: 114px;
+    }
+
+    .styled-select {
+        width: 100%;
+
+        select {
+            border-radius: 8px;
+            background: #fff;
+            border: solid 1px $color-grey-light;
+            color: #000;
+
+            &.input-validation-error {
+                border-color: $color-error;
+            }
+        }
+    }
+
+    .validation-message {
+        color: $color-error;
+        font-size: 13px;
+        display: block;
+        margin-top: 8px;
+
+        @include mq($from: tablet) {
+            font-size: 14px;
+        }
+    }
+
+    .choice-options {
+        .choice-option {
+            display: flex;
+            align-items: center;
+            line-height: 1;
+
+            &:not(:first-child) {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    [type='radio'] {
+        @include box(24px);
+        margin-right: 8px;
+        accent-color: $color-primary-default;
+    }
+
+    [type='checkbox'] {
+        @include box(20px);
+        margin-right: 8px;
+        accent-color: $color-primary-default;
+    }
+
+    .checkbox-field-group {
+        position: relative;
+
+        label {
+            position: absolute;
+            left: 30px;
+            top: 0;
+        }
+    }
+
+    .spinner {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 200px;
+    }
+}

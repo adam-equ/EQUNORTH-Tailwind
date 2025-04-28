@@ -1,0 +1,26 @@
+.filter-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+
+    @include mq($until: tablet) {
+        flex-direction: column;
+    }
+
+    &__options {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    &__clear {
+        display: flex;
+        align-items: center;
+        border-left: 1px solid $color-grey-light;
+        margin-left: 12px;
+        padding-left: 24px;
+    }
+}

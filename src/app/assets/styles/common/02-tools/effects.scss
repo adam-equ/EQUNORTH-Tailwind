@@ -1,0 +1,11 @@
+/*------------------------------------*\
+  TOOLS > EFFECTS
+\*------------------------------------*/
+
+@mixin drop-shadow {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+@mixin drop-shadow-subtle {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+}

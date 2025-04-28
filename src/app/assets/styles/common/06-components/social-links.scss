@@ -1,0 +1,83 @@
+.social-links {
+    ul {
+        gap: 8px;
+
+        li {
+            a {
+                @include square(32px);
+                color: $color-body;
+                cursor: pointer;
+                box-sizing: content-box;
+                display: block;
+                position: relative;
+
+                @include basic-transition(color);
+
+                svg {
+                    @include position-center;
+                    @include square(24px);
+                    pointer-events: none;
+                    @include basic-transition((height, width));
+
+                    path {
+                        fill: currentColor;
+                    }
+                }
+
+                @include on-event {
+                    color: $color-ui-cta-vibrant;
+
+                    svg {
+                        @include square(28px);
+                    }
+                }
+            }
+        }
+    }
+
+    &--white {
+        ul {
+            li {
+                a {
+                    color: $color-white;
+                }
+            }
+        }
+    }
+
+    &--light {
+        a {
+            @include on-event {
+                color: $color-primary-default !important;
+            }
+        }
+    }
+
+    &--dark {
+        a {
+            @include on-event {
+                color: $color-ui-cta-vibrant !important;
+            }
+        }
+    }
+
+    &--large {
+        ul {
+            li {
+                a {
+                    @include square(40px);
+
+                    svg {
+                        @include square(32px);
+                    }
+
+                    @include on-event {
+                        svg {
+                            @include square(36px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,365 @@
+/*------------------------------------*\
+  UTILITIES > LAYOUT
+\*------------------------------------*/
+
+.u-relative {
+    position: relative;
+}
+
+.u-absolute {
+    position: absolute;
+}
+
+.u-fixed {
+    position: fixed;
+}
+
+.u-block {
+    display: block;
+}
+
+.u-inline-block {
+    display: inline-block;
+}
+
+.u-flex {
+    display: flex;
+
+    &\:max-sm {
+        @include mq($until: tablet) {
+            display: flex;
+        }
+    }
+
+    &\:max-md {
+        @include mq($until: desktop) {
+            display: flex;
+        }
+    }
+
+    &\:md {
+        @include mq($from: tablet) {
+            display: flex;
+        }
+    }
+
+    &\:lg {
+        @include mq($from: desktop) {
+            display: flex;
+        }
+    }
+
+    &\:xl {
+        @include mq($from: desktop-large) {
+            display: flex;
+        }
+    }
+}
+
+.u-flex-column {
+    flex-direction: column;
+}
+
+.u-flex-gap {
+    gap: $page-gutter;
+
+    &\@below-desktop {
+        @include mq($until: desktop) {
+            gap: $page-gutter;
+        }
+    }
+
+    &\@desktop {
+        @include mq($from: desktop) {
+            gap: $page-gutter;
+        }
+    }
+
+    &-xxs {
+        gap: $spacing-xxs;
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                gap: $spacing-xxs;
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                gap: $spacing-xxs;
+            }
+        }
+    }
+
+    &-xs {
+        gap: $spacing-xs;
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                gap: $spacing-xs;
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                gap: $spacing-xs;
+            }
+        }
+    }
+
+    &-md {
+        gap: $spacing-md;
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                gap: $spacing-md;
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                gap: $spacing-md;
+            }
+        }
+    }
+
+    &-lg {
+        gap: $spacing-lg;
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                gap: $spacing-lg;
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                gap: $spacing-lg;
+            }
+        }
+    }
+
+    &-xl {
+        gap: $spacing-xl;
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                gap: $spacing-xl;
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                gap: $spacing-xl;
+            }
+        }
+    }
+}
+
+.u-flex-space-between {
+    justify-content: space-between;
+}
+
+.u-flex-space-evenly {
+    justify-content: space-evenly;
+
+    > * {
+        flex: 1;
+    }
+}
+
+.u-flex-expand {
+    flex: 1;
+}
+
+.u-flex-rigid {
+    flex: 0 0 auto;
+}
+
+.u-flex-center {
+    align-items: center;
+    align-content: center;
+}
+
+.u-flex-end {
+    align-items: flex-end;
+    align-content: flex-end;
+}
+
+.u-flex-justify {
+    justify-content: center;
+}
+
+.u-flex-justify-start {
+    justify-content: flex-start;
+}
+
+.u-flex-justify-center {
+    justify-content: center;
+}
+
+.u-flex-justify-end {
+    justify-content: flex-end;
+}
+
+.u-flex-wrap {
+    flex-wrap: wrap;
+}
+
+.u-flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.u-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+}
+
+.u-fill-gutter {
+    @include mq($until: tablet) {
+        margin-left: -$gutter-width-mobile !important;
+        margin-right: -$gutter-width-mobile !important;
+    }
+}
+
+.u-full-width {
+    width: 100%;
+
+    &\:max-xs {
+        @include mq($until: mobile-large) {
+            width: 100%;
+        }
+    }
+
+    &\:max-sm {
+        @include mq($until: tablet) {
+            width: 100%;
+        }
+    }
+
+    &\:max-md {
+        @include mq($until: desktop) {
+            width: 100%;
+        }
+    }
+
+    &\:sm {
+        @include mq($from: tablet) {
+            width: 100%;
+        }
+    }
+
+    &\:md {
+        @include mq($from: desktop) {
+            width: 100%;
+        }
+    }
+}
+
+.u-height-100 {
+    height: 100%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.u-padding-0 {
+    padding: 0 !important;
+
+    &\:max-sm {
+        @include mq($until: tablet) {
+            padding: 0 !important;
+        }
+    }
+
+    &\:max-md {
+        @include mq($until: desktop) {
+            padding: 0 !important;
+        }
+    }
+
+    &\:lg {
+        @include mq($from: desktop) {
+            padding: 0 !important;
+        }
+    }
+}
+
+.u-padding-t-0 {
+    padding-top: 0 !important;
+    &\:max-sm {
+        @include mq($until: tablet) {
+            padding-top: 0 !important;
+        }
+    }
+
+    &\:max-md {
+        @include mq($until: desktop) {
+            padding-top: 0 !important;
+        }
+    }
+
+    &\:lg {
+        @include mq($from: desktop) {
+            padding-top: 0 !important;
+        }
+    }
+}
+
+.u-margin-t-0 {
+    margin-top: 0 !important;
+}
+
+.u-margin-t-lg {
+    margin-top: clamp(2rem, 1.795vw + 1.596rem, 3.75rem);
+}
+
+.u-padding-b-0 {
+    padding-bottom: 0 !important;
+
+    &\:max-sm {
+        @include mq($until: tablet) {
+            padding-bottom: 0 !important;
+        }
+    }
+
+    &\:max-md {
+        @include mq($until: desktop) {
+            padding-bottom: 0 !important;
+        }
+    }
+
+    &\:lg {
+        @include mq($from: desktop) {
+            padding-bottom: 0 !important;
+        }
+    }
+}
+
+.u-padding-b-10 {
+    padding-bottom: 10px !important;
+}
+
+.u-padding-b-20 {
+    padding-bottom: 20px !important;
+}
+
+.u-overflow-hidden {
+    overflow: hidden;
+}
+
+.u-overflow-x-hidden {
+    overflow-x: hidden;
+}
+
+.u-overflow-y-hidden {
+    overflow-y: hidden;
+}

@@ -1,0 +1,33 @@
+// To override styles, create corresponding folders under the site folder and import immediately after each common import
+// Placeholder override imports have been provided
+
+// 01. Settings - Global settings and constants
+@import "../../common/01-settings/_import";
+// @import '01-settings/_import';
+
+// 02.Tools - Mixins and functions
+@import "../../common/02-tools/_import";
+// @import '02-tools/_import';
+
+// 03. Generic - High-level rules & resets
+@import "../../common/03-generic/_import";
+// @import '03-generic/_import';
+
+// 04. Elements - Styled native elements
+@import "../../common/04-elements/_import";
+// @import '04-elements/_import';
+
+// 05. Objects - Generic structural styles
+@import "../../common/05-objects/_import";
+// @import '05-objects/_import';
+
+// 06. Components - Specific UI widgets and parts
+@import "../../common/06-components/_import";
+// @import '06-components/_import';
+
+// 98. Vendor - Third-party vendor styles
+@import "../../common/98-vendor/_import";
+// @import '98-vendor/_import';
+
+// 99. Utilities - Helper classes (no need to override)
+@import "../../common/99-utilities/_import";

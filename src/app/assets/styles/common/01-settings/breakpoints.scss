@@ -1,0 +1,25 @@
+/*------------------------------------*\
+  SETTINGS > BREAKPOINTS-VARIABLES
+\*------------------------------------*/
+
+$bp-mobile: 360px;
+$bp-mobile-large: 600px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-desktop-large: 1280px;
+$bp-wide: 1560px;
+$bp-maxwidth: 1920px;
+
+/* Sass MQ Library */
+/* http://sass-mq.github.io/sass-mq/ */
+
+/* Breakpoints */
+$mq-breakpoints: (
+    mobile: $bp-mobile,
+    mobile-large: $bp-mobile-large,
+    tablet: $bp-tablet,
+    desktop: $bp-desktop,
+    desktop-large: $bp-desktop-large,
+    wide: $bp-wide,
+    maxwidth: $bp-maxwidth
+);

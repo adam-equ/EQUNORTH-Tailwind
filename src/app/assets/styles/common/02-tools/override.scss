@@ -1,0 +1,27 @@
+/*------------------------------------*\
+  TOOLS > OVERRIDE
+\*------------------------------------*/
+
+@mixin override-section-dark {
+    .o-section--dark & {
+        @content;
+    }
+}
+
+@mixin override-section-white {
+    .o-section--white & {
+        @content;
+    }
+}
+
+@mixin override-container-narrow {
+    .o-container--narrow & {
+        @content;
+    }
+}
+
+@mixin override-page-narrow {
+    .page-layout--sidebar & {
+        @content;
+    }
+}

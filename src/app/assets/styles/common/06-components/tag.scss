@@ -1,0 +1,41 @@
+.c-tag {
+    @include font-tag;
+    display: inline-block;
+    background: $color-elevation-offcolour;
+    color: $color-text-default;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 14px;
+    padding: 0 16px;
+    @include basic-transition(background-color);
+
+    &--large {
+        font-size: $font-size-body;
+    }
+
+    &--small {
+        font-size: $font-size-small;
+    }
+
+    &--hover {
+        @include on-event {
+            background: darken($color-secondary-default, 10%);
+        }
+    }
+
+    &--no-padding {
+        padding: 0;
+    }
+
+    &--no-bg {
+        background: transparent;
+    }
+
+    &--light {
+        color: #8e8e8e;
+    }
+
+    &--hidden {
+        background: transparent !important;
+    }
+}

@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./assets/styles/sites/equnorth/main.scss";
 import { Navbar } from "@/components/navbar";
 import Footer from "@/components/footer";
 import SmoothScrolling from "@/components/smoothScrolling";
@@ -13,10 +13,12 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SmoothScrolling>
-          <Navbar />
-          <AOSInitialiser />
-          {children}
-          <Footer />
+          <div className="site-wrap">
+            <Navbar />
+            <AOSInitialiser />
+            {children}
+            <Footer />
+          </div>
         </SmoothScrolling>
       </body>
     </html>

@@ -1,0 +1,169 @@
+/*------------------------------------*\
+  OBJECTS > PAGE BANNER
+\*------------------------------------*/
+
+.page-banner {
+    $page-banner: &;
+
+    background: $color-grey-light;
+    overflow: hidden;
+
+    @include mq($from: tablet) {
+        display: flex;
+        align-items: center;
+        min-height: 280px;
+    }
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+
+        @include mq($from: tablet) {
+            align-items: center;
+        }
+
+        > * {
+            flex: 1 0 100%;
+            max-width: 100%;
+
+            @include mq($from: tablet) {
+                flex: 1 0 50%;
+                max-width: 50%;
+            }
+        }
+    }
+
+    &__content {
+        @include mq($until: tablet) {
+            padding: 24px 0;
+            text-align: center;
+        }
+
+        @include mq($from: tablet) {
+            padding: 48px 0 24px;
+        }
+
+        @include mq($from: desktop) {
+            padding: 100px 0 24px;
+        }
+
+        &-inner {
+            @include mq($from: tablet) {
+                padding-right: 32px;
+            }
+
+            @include mq($from: desktop) {
+                padding-right: 64px;
+            }
+
+            p {
+                @include font-body-regular($size: $font-size-large);
+
+                @include mq($until: tablet) {
+                    font-size: $font-size-medium;
+                    margin-top: 0.5em;
+                }
+            }
+        }
+    }
+
+    &__image {
+        position: relative;
+        height: 100%;
+
+        @include mq($until: tablet) {
+            height: 190px;
+            order: -1;
+            margin: 0 -#{$gutter-width-mobile};
+            max-width: none;
+        }
+
+        &-container {
+            @include mq($until: tablet) {
+                height: 100%;
+                position: relative;
+
+                > * {
+                    @include absolute-fit-parent;
+                }
+            }
+
+            @include mq($from: tablet) {
+                mask-image: url('/assets/static/images/svg/mask-brush-stroke.svg');
+                height: 420px;
+                width: 860px;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    &--article {
+        @include mq($from: tablet) {
+            height: 320px;
+        }
+
+        #{$page-banner}__container {
+            @include mq($from: tablet) {
+                padding: 32px 0;
+            }
+        }
+
+        #{$page-banner}__content {
+            @include mq($from: tablet) {
+                display: flex;
+                align-items: center;
+                flex: 1;
+                max-width: none;
+
+                @include mq($until: desktop) {
+                    padding-top: 0;
+                }
+            }
+
+            @include mq($from: desktop) {
+                padding-top: 68px;
+            }
+
+            &-inner {
+                @include mq($until: tablet) {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                @include mq($from: tablet, $until: desktop) {
+                    padding-right: 32px;
+                }
+            }
+        }
+
+        #{$page-banner}__image {
+            @include mq($from: tablet) {
+                flex: 0 0 280px;
+                max-width: 280px;
+                border-radius: $border-radius-large;
+                overflow: hidden;
+            }
+
+            @include mq($from: desktop) {
+                flex: 0 0 380px;
+                max-width: 380px;
+            }
+
+            &-container {
+                mask-image: none !important;
+
+                @include mq($from: tablet) {
+                    @include absolute-fit-parent;
+                    height: 100%;
+                    width: 100%;
+                    transform: none;
+                }
+            }
+        }
+    }
+}

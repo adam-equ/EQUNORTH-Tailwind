@@ -1,0 +1,70 @@
+// Generate Duration && Delay
+[data-aos] {
+    @for $i from 1 through 35 {
+        body[data-aos-duration='#{$i * 50}'] &,
+        &[data-aos][data-aos-duration='#{$i * 50}'] {
+            transition-duration: #{$i * 50}ms;
+        }
+
+        body[data-aos-delay='#{$i * 50}'] &,
+        &[data-aos][data-aos-delay='#{$i * 50}'] {
+            transition-delay: 0;
+
+            &.aos-animate {
+                transition-delay: #{$i * 50}ms;
+            }
+        }
+    }
+}
+
+[data-aos].col-2 {
+    &\:md {
+        &:nth-child(2n + 2) {
+            @include mq(tablet, desktop) {
+                transition-delay: 50ms;
+            }
+        }
+    }
+}
+
+[data-aos].col-3 {
+    &\:lg {
+        &:nth-child(3n + 2) {
+            @include mq($from: desktop) {
+                transition-delay: 50ms;
+            }
+        }
+    }
+}
+
+[data-aos].col-3 {
+    &\:lg {
+        &:nth-child(3n + 3) {
+            @include mq($from: desktop) {
+                transition-delay: 100ms;
+            }
+        }
+    }
+}
+
+.swiper.-col3 {
+    [data-aos].swiper-slide {
+        &:nth-child(1) {
+            @include mq($from: tablet) {
+                transition-delay: 50ms;
+            }
+        }
+
+        &:nth-child(2) {
+            @include mq($from: tablet) {
+                transition-delay: 100ms;
+            }
+        }
+
+        &:nth-child(3) {
+            @include mq($from: tablet) {
+                transition-delay: 150ms;
+            }
+        }
+    }
+}

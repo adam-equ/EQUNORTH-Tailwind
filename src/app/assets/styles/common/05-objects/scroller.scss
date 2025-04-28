@@ -1,0 +1,49 @@
+/*------------------------------------*\
+  OBJECTS > SCROLLER
+\*------------------------------------*/
+
+.mobile-scroller {
+    @include mq($until: desktop) {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        width: 100%;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
+
+.scroll-container {
+    height: 100%;
+    width: 100%;
+    padding-right: $spacing-xs;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    &::-webkit-scrollbar {
+        background: transparent;
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba($color-primary-default, 0.5);
+        border-radius: 2px;
+    }
+}

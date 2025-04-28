@@ -1,0 +1,62 @@
+.o-ad-space {
+    $o-ad-space: &;
+
+    background: #000;
+    padding: 8px 20px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 99;
+
+    @include mq($from: tablet) {
+        padding: 12px 20px 20px;
+    }
+
+    @include mq($from: desktop) {
+        padding: 20px;
+    }
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__label {
+        @include font-body-bold($size: 12px, $color: $color-white, $ls: 0.04em);
+        margin-bottom: 4px;
+
+        @include mq($until: tablet) {
+            text-align: center;
+        }
+
+        @include mq($from: desktop) {
+            position: absolute;
+            top: 0;
+            right: calc(100% + 8px);
+        }
+    }
+
+    &__zone {
+        background: $color-grey-light;
+        height: 90px !important;
+        width: 728px !important;
+        overflow: hidden;
+
+        @include mq($until: tablet) {
+            height: 70px !important;
+            width: 320px !important;
+        }
+    }
+
+    &--inline {
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    &--mobile {
+        #{$o-ad-space}__zone {
+            height: 70px !important;
+            width: 320px !important;
+        }
+    }
+}

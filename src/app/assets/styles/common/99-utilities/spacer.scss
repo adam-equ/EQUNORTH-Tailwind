@@ -1,0 +1,206 @@
+/*------------------------------------*\
+  UTILITIES > SPACER
+\*------------------------------------*/
+
+$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100);
+$sides: (top, bottom, left, right, x, y);
+
+@each $space in $spaceamounts {
+    @each $side in $sides {
+        // margin
+        .u-margin-#{str-slice($side, 0, 1)}-#{$space} {
+            @if $side == x {
+                margin-left: #{$space}px;
+                margin-right: #{$space}px;
+            } @else if $side == y {
+                margin-top: #{$space}px;
+                margin-bottom: #{$space}px;
+            } @else {
+                margin-#{$side}: #{$space}px;
+            }
+        }
+
+        // padding
+        // .u-padding-#{str-slice($side, 0, 1)}-#{$space} {
+        // 	@if $side == x {
+        // 		margin-left: #{$space}px;
+        // 		margin-right: #{$space}px;
+        // 	}
+        // 	@else if $side == y {
+        // 		margin-top: #{$space}px;
+        // 		margin-bottom: #{$space}px;
+        // 	} @else {
+        // 		padding-#{$side}: #{$space}px;
+        // 	}
+        // }
+    }
+}
+
+@mixin spacer-top {
+    &,
+    &-xs {
+        margin-top: $spacing-xs;
+    }
+
+    &-md {
+        @include interpolate('margin-top', $bp-tablet, $spacing-xs, $bp-desktop-large, $spacing-md, 'ease-in-out');
+    }
+
+    &-lg {
+        @include interpolate('margin-top', $bp-tablet, $spacing-md, $bp-desktop-large, $spacing-lg, 'ease-in-out');
+    }
+
+    &-xl {
+        @include interpolate('margin-top', $bp-tablet, $spacing-lg, $bp-desktop-large, $spacing-xl, 'ease-in-out');
+    }
+
+    &-xxl {
+        @include interpolate('margin-top', $bp-tablet, $spacing-xl, $bp-desktop-large, $spacing-xxl, 'ease-in-out');
+    }
+
+    &-none {
+        margin-top: 0 !important;
+    }
+}
+
+@mixin spacer-bottom {
+    &,
+    &-xs {
+        margin-bottom: $spacing-xs;
+    }
+
+    &-md {
+        @include interpolate('margin-bottom', $bp-tablet, $spacing-xs, $bp-desktop-large, $spacing-md, 'ease-in-out');
+    }
+
+    &-lg {
+        @include interpolate('margin-bottom', $bp-tablet, $spacing-md, $bp-desktop-large, $spacing-lg, 'ease-in-out');
+    }
+
+    &-xl {
+        @include interpolate('margin-bottom', $bp-tablet, $spacing-lg, $bp-desktop-large, $spacing-xl, 'ease-in-out');
+    }
+
+    &-xxl {
+        @include interpolate('margin-bottom', $bp-tablet, $spacing-xl, $bp-desktop-large, $spacing-xxl, 'ease-in-out');
+    }
+
+    &-none {
+        margin-bottom: 0 !important;
+    }
+}
+
+@mixin padding {
+    &,
+    &-xs {
+        padding: $spacing-xs;
+    }
+
+    &-md {
+        @include interpolate('padding', $bp-tablet, $spacing-xs, $bp-desktop-large, $spacing-md, 'ease-in-out');
+    }
+
+    &-lg {
+        @include interpolate('padding', $bp-tablet, $spacing-md, $bp-desktop-large, $spacing-lg, 'ease-in-out');
+    }
+
+    &-xl {
+        @include interpolate('padding', $bp-tablet, $spacing-lg, $bp-desktop-large, $spacing-xl, 'ease-in-out');
+    }
+}
+
+.u-spacer {
+    @include spacer-top;
+    @include spacer-bottom;
+
+    &\@below-desktop {
+        @include mq($until: desktop) {
+            @include spacer-top;
+            @include spacer-bottom;
+        }
+    }
+    &\@mobile {
+        @include mq($until: tablet) {
+            @include spacer-top;
+            @include spacer-bottom;
+        }
+    }
+    &\@tablet {
+        @include mq($from: tablet) {
+            @include spacer-top;
+            @include spacer-bottom;
+        }
+    }
+    &\@desktop {
+        @include mq($from: desktop) {
+            @include spacer-top;
+            @include spacer-bottom;
+        }
+    }
+}
+
+.u-spacer-bottom {
+    @include spacer-bottom;
+
+    &\@below-desktop {
+        @include mq($until: desktop) {
+            @include spacer-bottom;
+        }
+    }
+    &\@mobile {
+        @include mq($until: tablet) {
+            @include spacer-bottom;
+        }
+    }
+    &\@tablet {
+        @include mq($from: tablet) {
+            @include spacer-bottom;
+        }
+    }
+    &\@desktop {
+        @include mq($from: desktop) {
+            @include spacer-bottom;
+        }
+    }
+}
+
+.u-spacer-top {
+    @include spacer-top;
+
+    &\@below-desktop {
+        @include mq($until: desktop) {
+            @include spacer-top;
+        }
+    }
+    &\@mobile {
+        @include mq($until: tablet) {
+            @include spacer-top;
+        }
+    }
+    &\@tablet {
+        @include mq($from: tablet) {
+            @include spacer-top;
+        }
+    }
+    &\@desktop {
+        @include mq($from: desktop) {
+            @include spacer-top;
+        }
+    }
+}
+
+.u-padding {
+    @include padding;
+}
+
+.u-no-margin {
+    margin: 0 !important;
+
+    > svg {
+        margin: 0 !important;
+    }
+}
+
+.u-no-padding {
+    padding: 0 !important;
+}

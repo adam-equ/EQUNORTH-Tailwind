@@ -1,0 +1,44 @@
+/*------------------------------------*\
+  ELEMENTS > MENU TOGGLE
+\*------------------------------------*/
+
+.menu-toggle {
+    transform: translate(15px, -5px);
+    overflow: hidden;
+
+    .ham {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 400ms;
+        user-select: none;
+
+        &.is-active {
+            transform: rotate(45deg);
+
+            .line {
+                stroke: #fff;
+            }
+
+            .top {
+                stroke-dashoffset: -98px;
+            }
+            .bottom {
+                stroke-dashoffset: -138px;
+            }
+        }
+
+        .line {
+            fill: none;
+            transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+            stroke: $color-dark;
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+        .top {
+            stroke-dasharray: 40 139;
+        }
+        .bottom {
+            stroke-dasharray: 40 180;
+        }
+    }
+}

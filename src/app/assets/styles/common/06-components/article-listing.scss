@@ -1,0 +1,24 @@
+.article-listing {
+    &__cards {
+        gap: 16px;
+
+        @include mq($until: tablet) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @include mq($from: tablet) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            > * {
+                height: 100%;
+            }
+        }
+
+        @include mq($from: desktop) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}

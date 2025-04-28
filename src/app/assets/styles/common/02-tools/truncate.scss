@@ -1,0 +1,19 @@
+/*------------------------------------*\
+  TOOLS > TRUNCATE-MIXNS
+\*------------------------------------*/
+
+// Truncate Text
+@mixin truncate-text($overflow: ellipsis) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: $overflow; // values are: clip, ellipsis, or a string
+}
+
+// Vertical Line Ellipsis (WebKit browsers)
+@mixin ellipsis($clamp-height: 80px, $line-clamp: 4) {
+    height: $clamp-height;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line-clamp;
+}

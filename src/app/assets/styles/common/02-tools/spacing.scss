@@ -1,0 +1,116 @@
+/*------------------------------------*\
+  TOOLS > SPACING-MIXINS
+\*------------------------------------*/
+
+@mixin spacing-sides($right: true, $left: true) {
+    @if $right {
+        padding-right: $base-spacing-sides;
+    }
+
+    @if $left {
+        padding-left: $base-spacing-sides;
+    }
+
+    @include mq($from: tablet) {
+        @if $right {
+            padding-right: $base-spacing-sides\@tablet;
+        }
+
+        @if $left {
+            padding-left: $base-spacing-sides\@tablet;
+        }
+    }
+
+    @include mq($from: desktop) {
+        @if $right {
+            padding-right: $base-spacing-sides\@desktop;
+        }
+
+        @if $left {
+            padding-left: $base-spacing-sides\@desktop;
+        }
+    }
+}
+
+@mixin margin-sides($right: true, $left: true, $negative: false) {
+    $minus: if($negative, '-', '');
+
+    @if $right {
+        margin-right: #{$minus}$base-spacing-sides;
+    }
+
+    @if $left {
+        margin-left: #{$minus}$base-spacing-sides;
+    }
+
+    @include mq($from: tablet) {
+        @if $right {
+            margin-right: #{$minus}$base-spacing-sides\@tablet;
+        }
+
+        @if $left {
+            margin-left: #{$minus}$base-spacing-sides\@tablet;
+        }
+    }
+
+    @include mq($from: desktop) {
+        @if $right {
+            margin-right: #{$minus}$base-spacing-sides\@desktop;
+        }
+
+        @if $left {
+            margin-left: #{$minus}$base-spacing-sides\@desktop;
+        }
+    }
+}
+
+// Used to define consistent spacing between sections in grid content
+// Set padding to true when the section has a background and/or shouldn't have a gap between neighbouring sections
+@mixin section-spacing($min: $section-spacing-min, $max: $section-spacing-max, $padding: false) {
+    @if $padding {
+        // Fallback
+        padding-top: 4em;
+        padding-bottom: 4em;
+
+        @include interpolate('padding-top', $bp-tablet, $min, $bp-wide, $max, 'ease-in-out');
+        @include interpolate('padding-bottom', $bp-tablet, $min, $bp-wide, $max, 'ease-in-out');
+    } @else {
+        // Fallback
+        margin-top: 4em;
+        margin-bottom: 4em;
+
+        @include interpolate('margin-top', $bp-tablet, $min, $bp-wide, $max, 'ease-in-out');
+        @include interpolate('margin-bottom', $bp-tablet, $min, $bp-wide, $max, 'ease-in-out');
+    }
+}
+
+@mixin widget-spacing {
+    margin: $spacing-xl auto;
+
+    @include mq($from: tablet) {
+        @include interpolate('margin-top', $bp-tablet, $spacing-xl, $bp-wide, ($base-spacing-unit * 12), 'ease-in-out');
+        @include interpolate(
+            'margin-bottom',
+            $bp-tablet,
+            $spacing-xl,
+            $bp-wide,
+            ($base-spacing-unit * 12),
+            'ease-in-out'
+        );
+    }
+}
+
+// Used to calculate widths of containers based on columns and gutters
+@function width($columns, $gutters: true, $padding: false) {
+    $numGutters: $columns - 1;
+
+    @if $gutters {
+        $numGutters: $columns + 1;
+    }
+
+    @if $padding {
+        $numGutters: $numGutters + 2;
+    }
+
+    @return ($columns * $column-width) + ($numGutters * $gutter-width);
+}

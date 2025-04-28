@@ -1,0 +1,23 @@
+/*------------------------------------*\
+  TOOLS > PUESDO MIXIN
+\*------------------------------------*/
+
+// Default pseudo-element definitions
+// Must be placed inside a before/after pseudo element
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+// Creates a pseudo background
+// Must be placed inside a before/after pseudo element
+@mixin pseudo-background($color) {
+    @include pseudo;
+    background: $color;
+    top: 0;
+    bottom: 0;
+    left: -9999em;
+    right: -9999em;
+    z-index: -1;
+}

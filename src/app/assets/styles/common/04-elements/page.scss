@@ -1,0 +1,103 @@
+/*------------------------------------*\
+  ELEMENTS > PAGE
+\*------------------------------------*/
+
+:root {
+    --app-height: 100%;
+    --scrollbar-width: 17px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+
+    &.overflow-hidden {
+        overflow: hidden;
+
+        body {
+            overflow-y: scroll;
+        }
+    }
+}
+
+body {
+    color: $color-body;
+    font-size: $font-size-small;
+    font-family: $font-body;
+    line-height: $line-height-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @include mq($from: tablet) {
+        font-size: $font-size-body;
+    }
+
+    &.js-menu-active {
+        @include mq($until: desktop-large) {
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+        }
+    }
+}
+
+::selection {
+    background: rgba($color-primary-default, 0.2);
+}
+
+::-moz-selection {
+    background: rgba($color-primary-default, 0.2);
+}
+
+* {
+    -webkit-tap-highlight-color: rgba($color-primary-default, 0.2);
+}
+
+.site-wrap {
+    margin: 0 auto;
+    overflow: clip; // Better alernative to hidden, compatible with Chrome 90+/Edge 90+/Firefox 81+/Safari 16+
+    position: relative;
+    padding-top: calc($header-height + $header-top-height);
+
+    @include mq($until: desktop) {
+        padding-top: $header-height-tablet;
+    }
+
+    @include mq($until: tablet) {
+        padding-top: $header-height-mobile;
+    }
+}
+
+p {
+    @include font-body-regular($size: $font-size-body, $color: $color-body, $lh: $line-height-body);
+    margin: 1em 0;
+
+    @include mq($until: desktop) {
+        font-size: $font-size-small;
+    }
+
+    &.large {
+        font-size: $font-size-large;
+
+        @include mq($until: desktop) {
+            font-size: $font-size-body;
+        }
+
+        @include mq($until: tablet) {
+            font-size: $font-size-small;
+        }
+    }
+
+    &.small {
+        font-size: $font-size-small;
+
+        @include mq($until: tablet) {
+            font-size: $font-size-tiny;
+        }
+    }
+}

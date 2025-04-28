@@ -1,0 +1,97 @@
+.o-aspect-ratio {
+    &--1-1 {
+        @include aspect-ratio(1, 1);
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                @include aspect-ratio(1, 1);
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                @include aspect-ratio(1, 1);
+            }
+        }
+    }
+
+    &--4-3 {
+        @include aspect-ratio(4, 3);
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                @include aspect-ratio(4, 3);
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                @include aspect-ratio(4, 3);
+            }
+        }
+    }
+
+    &--3-4 {
+        @include aspect-ratio(3, 4);
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                @include aspect-ratio(3, 4);
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                @include aspect-ratio(3, 4);
+            }
+        }
+    }
+
+    &--16-9 {
+        @include aspect-ratio(16, 9);
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                @include aspect-ratio(16, 9);
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                @include aspect-ratio(16, 9);
+            }
+        }
+    }
+
+    &--9-16 {
+        @include aspect-ratio(9, 16);
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                @include aspect-ratio(9, 16);
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                @include aspect-ratio(9, 16);
+            }
+        }
+    }
+
+    &--24-10 {
+        @include aspect-ratio(24, 10);
+
+        &\@below-desktop {
+            @include mq($until: desktop) {
+                @include aspect-ratio(24, 10);
+            }
+        }
+
+        &\@desktop {
+            @include mq($from: desktop) {
+                @include aspect-ratio(24, 10);
+            }
+        }
+    }
+}

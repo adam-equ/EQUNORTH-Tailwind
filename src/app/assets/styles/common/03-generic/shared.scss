@@ -1,0 +1,82 @@
+/*------------------------------------*\
+  GENERIC > SHARED
+\*------------------------------------*/
+
+/**
+ * Shared declarations for certain elements.
+ * Always declare margins in the same direction:
+ * csswizardry.com/2012/06/single-direction-margin-declarations
+ */
+address,
+blockquote,
+p,
+pre,
+dl,
+ol,
+figure,
+hr,
+table,
+fieldset {
+    margin-bottom: $base-spacing-unit;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+img {
+    display: block;
+}
+
+// ReactSVG, svg-inline
+.injected-svg {
+    display: block;
+
+    g,
+    path {
+        &[fill] {
+            fill: currentColor;
+        }
+
+        &[stroke] {
+            stroke: currentColor;
+        }
+    }
+}
+
+.swiper {
+    &-pagination {
+        font-size: 0;
+        position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: auto !important;
+
+        &-bullet {
+            background: $color-elevation-offcolour !important;
+            border-radius: 6px !important;
+            height: 12px !important;
+            width: 12px !important;
+            margin: 0 4px !important;
+            opacity: 1 !important;
+            cursor: pointer;
+            @include basic-transition((background-color, width));
+
+            @include on-event {
+                &:not(.swiper-pagination-bullet-active) {
+                    background: $color-primary-vibrant !important;
+                }
+            }
+
+            &-active {
+                background: $color-primary-vibrant !important;
+                width: 24px !important;
+            }
+        }
+    }
+}

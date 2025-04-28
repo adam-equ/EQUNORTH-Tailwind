@@ -1,0 +1,70 @@
+/*------------------------------------*\
+  UTILITIES > VISIBILITY
+\*------------------------------------*/
+
+/**
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.u-sr-only {
+    @include sr-only;
+}
+
+.u-hidden-visually {
+    @include hidden-visually;
+}
+
+/**
+ * Hide visually and from screen readers.
+ */
+
+.u-hidden {
+    display: none !important;
+
+    &\:max-sm {
+        @include mq($until: tablet) {
+            display: none;
+        }
+    }
+
+    &\:max-md {
+        @include mq($until: desktop) {
+            display: none !important;
+        }
+    }
+
+    &\:max-lg {
+        @include mq($until: desktop-large) {
+            display: none !important;
+        }
+    }
+
+    &\:max-xl {
+        @include mq($until: wide) {
+            display: none !important;
+        }
+    }
+
+    &\:md {
+        @include mq($from: tablet) {
+            display: none !important;
+        }
+    }
+
+    &\:lg {
+        @include mq($from: desktop) {
+            display: none !important;
+        }
+    }
+
+    &\:xl {
+        @include mq($from: wide) {
+            display: none !important;
+        }
+    }
+}
+
+.u-opacity-0 {
+    opacity: 0;
+}

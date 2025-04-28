@@ -21,7 +21,7 @@ export default function BlocksWrapper({
   return (
     <Component
       className={cn(
-        "relative",
+        "o-section",
         background_colour ? `bg-equ-${background_colour}` : "bg-equ-white",
         background_colour === "teal" ||
           background_colour === "black" ||

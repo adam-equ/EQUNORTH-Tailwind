@@ -1,0 +1,85 @@
+/*/*------------------------------------*\
+  UTILITIES > TEXT
+\*------------------------------------*/
+
+.u-text-large {
+    font-size: $font-size-large;
+
+    @include mq($until: tablet) {
+        line-height: 28px;
+    }
+}
+
+.u-text-extralarge {
+    font-size: $font-size-extralarge;
+
+    @include mq($until: tablet) {
+        line-height: 28px;
+    }
+}
+
+.u-text-small {
+    font-size: $font-size-small;
+}
+
+.u-text-upper {
+    text-transform: uppercase;
+}
+
+.u-text-normal {
+    font-family: $font-body !important;
+}
+
+.u-text-left {
+    text-align: left !important;
+}
+
+.u-text-right {
+    text-align: right !important;
+}
+
+.u-text-center {
+    text-align: center;
+
+    &\:max-sm {
+        @include mq($until: tablet) {
+            text-align: center;
+        }
+    }
+
+    &\:max-md {
+        @include mq($until: desktop) {
+            text-align: center;
+        }
+    }
+
+    &\:md {
+        @include mq($from: tablet) {
+            text-align: center;
+        }
+    }
+
+    &\:lg {
+        @include mq($from: desktop) {
+            text-align: center;
+        }
+    }
+}
+
+.u-text-justify {
+    text-align: justify !important;
+}
+
+.u-text-nowrap {
+    white-space: nowrap !important;
+}
+
+.u-text-balance {
+    @supports (text-wrap: balance) {
+        text-wrap: balance !important;
+    }
+}
+
+.u-text-italic {
+    font-style: italic !important;
+}

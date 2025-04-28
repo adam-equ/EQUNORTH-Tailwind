@@ -1,0 +1,14 @@
+/*------------------------------------*\
+  SETTINGS > IMAGES
+\*------------------------------------*/
+
+$base-image-path: '/assets/static/images/';
+
+// Icons
+
+$icon-path: $base-image-path + 'svg/';
+
+$icon-chevron: $icon-path + 'icon-chevron-up.svg';
+// $icon-check-white: $icon-path + 'icon-check-white.svg';
+
+$icon-url-arrow: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m22 12.011-20-.01M12.187 22l9.548-9.375a.876.876 0 0 0 0-1.25L12.187 2' stroke='%23231f20' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");

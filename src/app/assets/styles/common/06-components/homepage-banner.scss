@@ -1,0 +1,261 @@
+$slide-transition-duration: 1s;
+
+.homepage-banner {
+    $homepage-banner: &;
+
+    padding: $spacing-md 0;
+
+    @include mq($from: desktop) {
+        padding: 84px 0 32px;
+    }
+
+    @include mq($from: desktop-large) {
+        padding: 84px 0 64px;
+    }
+
+    &__slide {
+        &-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 32px;
+
+            @include interpolate('gap', $bp-tablet, 32px, $bp-wide, 120px);
+
+            @include mq($until: tablet) {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 24px;
+            }
+
+            opacity: 0;
+            transition-property: opacity;
+            transition-timing-function: ease;
+            transition-duration: $slide-transition-duration;
+
+            .swiper-slide-active & {
+                opacity: 1;
+            }
+        }
+
+        &--video {
+            #{$homepage-banner}__image-container {
+                @include mq($until: tablet) {
+                    &::before {
+                        @include pseudo;
+                        @include absolute-fit-parent;
+                        background: rgba(0, 0, 0, 0.4);
+                        z-index: 2;
+                    }
+                }
+            }
+        }
+    }
+
+    &__content-container {
+        @include mq($from: tablet) {
+            flex: 1;
+            padding: 0 0 24px;
+        }
+    }
+
+    &__content {
+        opacity: 0;
+        transition-property: opacity;
+        transition-timing-function: ease;
+        transition-duration: $slide-transition-duration;
+
+        @include mq($until: tablet) {
+            text-align: center;
+        }
+
+        @include mq($from: tablet) {
+            padding: 0 16px;
+        }
+
+        .swiper-slide-active & {
+            opacity: 1;
+        }
+
+        &-title {
+            @include font-heading-large;
+            @include hero-size;
+            margin: 0 !important;
+
+            @include mq($until: tablet) {
+                text-wrap: balance;
+            }
+
+            strong {
+                color: $color-secondary-default;
+                font-weight: $font-weight-black !important;
+            }
+        }
+
+        &-summary {
+            @include h6;
+            margin-top: 1em;
+        }
+
+        &-link {
+            margin-top: 24px;
+        }
+    }
+
+    &__image-container {
+        position: relative;
+        border-radius: $border-radius-large;
+        overflow: hidden;
+
+        @include mq($until: tablet) {
+            border-radius: $border-radius-default;
+            height: 180px;
+            order: -1;
+        }
+
+        @include mq($from: tablet) {
+            flex: 0 1 50%;
+            min-height: 480px;
+        }
+
+        @include mq($from: desktop-large) {
+            flex: 0 1 60%;
+            max-width: 840px;
+        }
+    }
+
+    &__image {
+        @include absolute-fit-parent;
+        z-index: 1;
+    }
+
+    &__play {
+        position: absolute;
+        padding: 20px;
+        z-index: 3;
+
+        @include mq($until: tablet) {
+            @include position-center;
+        }
+
+        @include mq($from: tablet) {
+            bottom: 24px;
+            right: 24px;
+        }
+
+        > * {
+            pointer-events: none;
+        }
+
+        // Circle text
+        > svg {
+            @include absolute-fit-parent;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            pointer-events: none;
+
+            .homepage-banner--playing & {
+                // animation: rotating 30s linear infinite;
+            }
+
+            text {
+                @include font-label-tiny($bold: true);
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 8px;
+                fill: $color-white;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+            }
+        }
+
+        @include on-event {
+            > svg {
+                animation-play-state: paused;
+            }
+
+            .play-button {
+                background: $color-secondary-vibrant;
+                opacity: 1;
+
+                &::after {
+                    background: $color-white;
+                }
+            }
+        }
+    }
+
+    &__pips {
+        gap: 8px;
+
+        @include mq($until: tablet) {
+            position: relative;
+            margin-top: 32px;
+            justify-content: center;
+        }
+
+        @include mq($from: tablet) {
+            position: absolute;
+            bottom: -24px;
+            left: 16px;
+            z-index: 1;
+        }
+    }
+
+    &__pause {
+        @include square(18px);
+        border-radius: 50%;
+        background-color: transparent;
+        position: relative;
+        cursor: pointer;
+        @include basic-transition(background-color);
+
+        &::after {
+            @include pseudo;
+            @include square(10px);
+            @include position-center;
+            @include basic-transition(opacity);
+            background: $color-primary-default;
+            mask-image: url('/assets/static/images/svg/icon-pause.svg');
+            mask-size: contain;
+            opacity: 0.6; // Designer note: Should just set a background color rather than use transparency
+        }
+
+        @include on-event {
+            background-color: $color-primary-light;
+
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__pagination {
+        position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: auto !important;
+    }
+
+    &--paused {
+        #{$homepage-banner}__pause {
+            &::after {
+                mask-image: url('/assets/static/images/svg/mask-play-button.svg');
+            }
+        }
+    }
+
+    .swiper {
+        overflow: visible;
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}

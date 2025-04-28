@@ -1,0 +1,58 @@
+/*------------------------------------*\
+  COMPONENT > SITEMAP
+\*------------------------------------*/
+
+.sitemap {
+    &__list {
+        a {
+            @include basic-transition(color);
+
+            @include on-event {
+                color: $color-text-hover;
+            }
+        }
+
+        ul {
+            @include reset-list;
+        }
+
+        > li {
+            margin-bottom: 40px;
+
+            > a {
+                @include h4;
+                margin-bottom: 0.7em;
+                position: relative;
+            }
+
+            > ul {
+                margin-top: 20px;
+                padding-left: 18px;
+
+                @include mq($from: tablet) {
+                    padding-left: 33px;
+                }
+
+                > li {
+                    margin-bottom: 15px;
+
+                    > a {
+                        @include h6;
+                    }
+                }
+
+                ul {
+                    margin: 15px 0 15px 0 !important;
+
+                    @include mq($from: tablet) {
+                        margin-left: 20px !important;
+                    }
+
+                    li {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

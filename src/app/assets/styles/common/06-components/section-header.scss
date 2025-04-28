@@ -1,0 +1,22 @@
+.section-header {
+    $section-header: &;
+
+    &__inner {
+        max-width: 768px;
+        margin: 0 auto;
+        text-align: center;
+        text-wrap: balance;
+
+        p {
+            @include font-body-regular($size: $font-size-large);
+            line-height: 1.5;
+            margin-top: 1.5em;
+
+            @include interpolate('font-size', $bp-desktop, 16px, $bp-wide, 20px);
+
+            // @include mq($until: desktop) {
+            //     font-size: $font-size-small;
+            // }
+        }
+    }
+}

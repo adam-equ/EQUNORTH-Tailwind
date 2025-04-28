@@ -1,0 +1,799 @@
+/*------------------------------------*\
+  OBJECTS > MAIN NAVIGATION
+\*------------------------------------*/
+
+.main-nav {
+    height: 100%;
+
+    > ul {
+        @include reset-list;
+
+        @include mq($until: desktop-large) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        @include mq($from: desktop-large) {
+            display: inline-flex;
+            flex-wrap: nowrap;
+            gap: 16px;
+            height: 100%;
+        }
+
+        > li {
+            @include mq($until: desktop-large) {
+                display: block;
+
+                &::after {
+                    display: none;
+                }
+            }
+
+            @include mq($from: desktop-large) {
+                display: flex;
+                align-items: center;
+                @include basic-transition(background-color);
+            }
+
+            > a {
+                @include font-body-bold($size: 18px, $color: $color-body, $lh: 1);
+                display: block;
+                padding: 4px 12px;
+                position: relative;
+                white-space: nowrap;
+                z-index: 1;
+                @include basic-transition(color);
+
+                &::before {
+                    @include pseudo;
+                    @include absolute-fit-parent;
+                    background: $color-primary-light;
+                    border-radius: 16px;
+                    opacity: 0;
+                    z-index: -1;
+                    @include basic-transition;
+
+                    @include mq($until: desktop-large) {
+                        border-radius: 23px;
+                    }
+                }
+
+                @include mq($until: desktop-large) {
+                    font-size: $font-size-large !important;
+                    margin: 0;
+                    padding: 0 16px;
+                    display: inline-flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    height: 46px;
+                }
+
+                > span {
+                    display: flex;
+                    pointer-events: none;
+
+                    svg {
+                        transform: rotate(-90deg);
+                    }
+                }
+
+                @include on-event {
+                    &::before {
+                        background: $color-primary-light;
+                        opacity: 1;
+
+                        @include mq($from: desktop-large) {
+                            top: -4px;
+                            right: -4px;
+                            left: -4px;
+                            bottom: -4px;
+                        }
+                    }
+                }
+
+                .site-header--sticky & {
+                    font-size: $font-size-small;
+                }
+            }
+
+            &.has-children {
+                @include mq($from: desktop-large) {
+                    > a {
+                        padding-right: 32px;
+
+                        &::after {
+                            @include pseudo;
+                            background: $color-text-default;
+                            mask-image: url('/assets/static/images/svg/icon-chevron-up.svg');
+                            height: 12px;
+                            width: 12px;
+                            right: 12px;
+                            top: 50%;
+                            transform: translateY(-50%) rotate(180deg);
+                            @include basic-transition(background-color);
+                        }
+                    }
+                }
+            }
+
+            &.nav-item {
+            }
+
+            &.current-parent {
+                > a {
+                    &::before {
+                        @include mq($from: desktop-large) {
+                            background: $color-primary-light;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            &.js-mega-visible {
+                > a {
+                    @include mq($from: desktop-large) {
+                        color: $color-white;
+                    }
+
+                    &::before {
+                        @include mq($from: desktop-large) {
+                            background: $color-primary-default;
+                            opacity: 1;
+                            top: -4px;
+                            right: -4px;
+                            left: -4px;
+                            bottom: -4px;
+                        }
+                    }
+
+                    &::after {
+                        @include mq($from: desktop-large) {
+                            transform: translateY(-50%) rotate(0deg);
+                            background: $color-white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__expand {
+        @include mq($from: desktop-large) {
+            display: none !important;
+        }
+    }
+}
+
+.mega-menu {
+    $mega-menu: &;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+
+    @include mq($until: desktop-large) {
+        width: 100%;
+        height: calc(100vh - $header-height-mobile);
+        height: calc(100dvh - $header-height-mobile);
+        transition: opacity 0.4s ease;
+        visibility: visible;
+
+        .site-header--sticky & {
+            height: calc(100vh - $header-height-sticky-mobile + 1px);
+            height: calc(100dvh - $header-height-sticky-mobile + 1px);
+        }
+    }
+
+    @include mq($from: desktop-large) {
+        top: 100%;
+        margin-top: 8px;
+        padding-left: 120px;
+        max-width: 1200px;
+        box-sizing: content-box;
+    }
+
+    &__inner {
+        background: $color-white;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+
+        @include mq($until: desktop-large) {
+            transform: translate3d(100%, 0, 0);
+            z-index: 10;
+            @include basic-transition((opacity, transform));
+        }
+
+        @include mq($from: desktop-large) {
+            @include drop-shadow;
+            min-height: 360px;
+            border: 1px solid $color-grey-light;
+            border-radius: $border-radius-default;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+    }
+
+    &__close {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        @include square(30px);
+        @include basic-transition(color);
+
+        @include mq($until: desktop-large) {
+            top: 20px;
+            right: 20px;
+        }
+
+        svg {
+            @include square(24px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            path {
+                stroke: currentColor;
+            }
+        }
+
+        @include on-event {
+            color: $color-primary-default;
+        }
+    }
+
+    &__wrapper {
+        max-width: $container-width;
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+
+        @include mq($until: desktop-large) {
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        @include mq($from: desktop-large) {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            height: 100%;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        flex: 1;
+        padding: 24px;
+    }
+
+    // Tier 2
+    &__sub-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        @include mq($from: desktop-large) {
+            position: relative;
+        }
+
+        > ul {
+            @include reset-list;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            @include mq($until: desktop-large) {
+                gap: 16px;
+            }
+
+            @include mq($from: desktop-large) {
+                max-width: 270px;
+            }
+
+            > li {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                > a {
+                    @include font-label-standard($bold: true);
+                    color: $color-primary-default;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    position: relative;
+                    z-index: 1;
+                    @include basic-transition(color);
+
+                    @include mq($until: desktop-large) {
+                        font-size: $font-size-medium;
+                        margin: 0;
+                        padding: 0 16px;
+                        display: inline-flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        height: 40px;
+                    }
+
+                    @include mq($from: desktop-large) {
+                        padding: 8px 4px 8px 16px;
+                    }
+
+                    span {
+                        pointer-events: none;
+                    }
+
+                    @include on-event {
+                        color: $color-text-hover;
+                    }
+                }
+
+                &.has-children {
+                    > a {
+                        color: $color-text-default !important;
+                        width: 100%;
+
+                        &::before {
+                            @include pseudo;
+                            @include absolute-fit-parent;
+                            background: $color-primary-light;
+                            border-radius: 18px;
+                            opacity: 0;
+                            z-index: -1;
+                            @include basic-transition(opacity);
+                        }
+
+                        @include on-event {
+                            &::before {
+                                opacity: 1;
+                            }
+                        }
+                    }
+
+                    &.js-active {
+                        > a {
+                            &::before {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &-back {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            gap: 4px;
+
+            &::before {
+                @include pseudo;
+                @include square(24px);
+                position: relative;
+                background-image: $icon-url-arrow;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 12px;
+                transform: rotate(180deg);
+            }
+
+            @include mq($from: desktop-large) {
+                display: none !important;
+            }
+        }
+    }
+
+    // Tier 3
+    &__sub-level {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        left: 270px;
+        top: 0;
+
+        @include mq($until: desktop-large) {
+            background: $color-white;
+            padding: 24px;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: calc(100vh - $header-height-mobile);
+            height: calc(100dvh - $header-height-mobile);
+            transition: opacity 0.4s ease;
+            visibility: visible;
+
+            .site-header--sticky & {
+                height: calc(100vh - $header-height-sticky-mobile + 1px);
+                height: calc(100dvh - $header-height-sticky-mobile + 1px);
+            }
+        }
+
+        @include mq($from: desktop-large) {
+            padding-left: 16px;
+            margin-left: 16px;
+            border-left: 1px solid $color-grey-light;
+            @include basic-transition(opacity);
+        }
+
+        &-back {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            gap: 4px;
+
+            &::before {
+                @include pseudo;
+                @include square(24px);
+                position: relative;
+                background-image: $icon-url-arrow;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 12px;
+                transform: rotate(180deg);
+            }
+
+            @include mq($from: desktop-large) {
+                display: none !important;
+            }
+        }
+
+        &-inner {
+            @include mq($until: desktop-large) {
+                background: $color-white;
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                transform: translate3d(100%, 0, 0);
+                z-index: 10;
+                @include basic-transition((opacity, transform));
+            }
+
+            > ul {
+                @include reset-list;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 8px;
+
+                @include mq($until: desktop-large) {
+                    gap: 32px;
+                    margin-top: 16px;
+                }
+
+                @include mq($from: desktop-large) {
+                    max-width: 340px;
+                }
+
+                > li {
+                    padding: 0 12px;
+
+                    @include mq($until: desktop-large) {
+                        padding: 0 6px;
+                    }
+
+                    > a {
+                        @include font-label-standard;
+                        color: $color-text-default;
+                        @include basic-transition(color);
+
+                        @include on-event {
+                            color: $color-text-hover;
+                            text-decoration: underline;
+                            text-underline-offset: 2px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.js-active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            z-index: 22;
+
+            @include mq($from: desktop-large) {
+                height: 100%;
+            }
+
+            #{$mega-menu}__sub-level-inner {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    }
+
+    &__sub-title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px 12px 12px 8px;
+
+        @include mq($until: desktop-large) {
+            padding: 24px 6px 24px;
+        }
+    }
+
+    &__sub-title-link {
+        @include font-label-large($bold: true);
+        @include basic-transition(color);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        &::after {
+            @include pseudo;
+            @include square(24px);
+            flex: 1 0 24px;
+            border-radius: 50%;
+            background-color: $color-ui-cta-default;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 12 12'%3E%3Cpath fill='%23002B49' d='M11.288 6.1a.387.387 0 0 0 0-.544L7.045 1.312a.387.387 0 0 0-.545 0 .387.387 0 0 0 0 .545l3.585 3.585h-9.1a.387.387 0 0 0-.385.386c0 .212.174.386.386.386h9.099L6.5 9.799a.387.387 0 0 0 0 .545c.15.15.395.15.545 0L11.288 6.1Z'/%3E%3C/svg%3E");
+            background-size: 12px;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            @include basic-transition((background-color, transform));
+        }
+
+        @include on-event {
+            color: $color-text-hover;
+
+            &::after {
+                background-color: $color-ui-cta-vibrant;
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &__sub-title-summary {
+        @include font-body-regular($size: $font-size-small);
+        color: $color-text-grey;
+        line-height: 1.5;
+
+        @include mq($until: tablet) {
+            font-size: $font-size-tiny;
+        }
+    }
+
+    &__menu-control {
+        @include square(24px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        @include basic-transition(color);
+
+        svg {
+            @include square(12px);
+            transform: rotate(-90deg);
+
+            path {
+                fill: currentColor;
+            }
+        }
+
+        @include on-event {
+            color: $color-text-hover;
+        }
+    }
+
+    &__title-link {
+        @include font-label-large($bold: true);
+        color: $color-text-default;
+        display: inline-block;
+        position: relative;
+        @include basic-transition(color);
+
+        @include mq($until: desktop-large) {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            height: 48px;
+        }
+
+        @include mq($from: desktop-large) {
+            padding: 8px 32px 8px 16px;
+            max-width: 270px;
+        }
+
+        span {
+            position: relative;
+
+            &::before {
+                @include pseudo;
+                height: 2px;
+                left: 0;
+                right: 0;
+                bottom: -2px;
+                background: currentColor;
+            }
+        }
+
+        @include on-event {
+            color: $color-text-hover;
+        }
+    }
+
+    &__summary {
+        @include mq($until: desktop) {
+            @include font-body-regular($size: $font-size-small);
+            opacity: 1 !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
+
+        @include mq($from: desktop) {
+            @include h6;
+        }
+
+        @include mq($from: desktop-large) {
+            @include h5;
+        }
+    }
+
+    &__child-summary {
+        margin-top: 1em;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        @include mq($until: desktop-large) {
+            opacity: 1 !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
+    }
+
+    &__feature {
+        background: $color-grey-light;
+        padding: 16px;
+        @include basic-transition(max-width);
+
+        @include mq($until: desktop-large) {
+            flex: 1;
+            max-width: none;
+        }
+
+        @include mq($from: desktop-large) {
+            flex: 1 1 50%;
+            max-width: 500px;
+        }
+    }
+
+    .js-animating & {
+        transition: opacity 0.4s ease;
+
+        #{$mega-menu}__inner {
+            transition: opacity 0.4s ease;
+        }
+
+        #{$mega-menu}__graphic {
+            transition: opacity 0.4s 0.2s ease;
+        }
+    }
+
+    .js-mega-visible & {
+        opacity: 1;
+
+        #{$mega-menu}__inner {
+            opacity: 1;
+        }
+
+        #{$mega-menu}__graphic {
+            opacity: 1;
+        }
+    }
+
+    .js-mega-active & {
+        pointer-events: auto;
+        visibility: visible;
+        z-index: 21;
+
+        #{$mega-menu}__inner {
+            @include mq($until: desktop-large) {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    }
+
+    &.js-menu-expanded {
+        #{$mega-menu}__feature {
+            @include mq($from: desktop-large) {
+                max-width: 320px;
+            }
+        }
+    }
+}
+
+.promo-panel {
+    position: relative;
+    background: $color-grey-light;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__image {
+        height: 280px;
+
+        @include mq($until: desktop-large) {
+            height: 240px;
+        }
+
+        @include mq($until: desktop) {
+            height: 180px;
+        }
+
+        img {
+            @include basic-transition(transform);
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        position: relative;
+        padding-right: 36px;
+        width: 100%;
+        box-sizing: border-box;
+
+        &::after {
+            @include pseudo;
+            @include square(36px);
+            flex: 0 0 36px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 12 12'%3E%3Cpath fill='%23002B49' d='M11.288 6.1a.387.387 0 0 0 0-.544L7.045 1.312a.387.387 0 0 0-.545 0 .387.387 0 0 0 0 .545l3.585 3.585h-9.1a.387.387 0 0 0-.385.386c0 .212.174.386.386.386h9.099L6.5 9.799a.387.387 0 0 0 0 .545c.15.15.395.15.545 0L11.288 6.1Z'/%3E%3C/svg%3E");
+            background-size: 20px;
+            background-position: center;
+            background-repeat: no-repeat;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        span {
+            &:nth-child(2) {
+                font-size: $font-size-small !important;
+            }
+        }
+    }
+
+    @include on-event {
+        img {
+            transform: scale(1.05);
+        }
+    }
+}

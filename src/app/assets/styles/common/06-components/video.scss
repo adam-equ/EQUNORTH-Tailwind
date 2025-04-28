@@ -1,0 +1,38 @@
+/*------------------------------------*\
+  COMPONENTS > VIDEO
+\*------------------------------------*/
+
+.video-widget {
+    &__background {
+        background-color: $color-grey;
+        overflow: hidden;
+
+        @include mq($until: tablet) {
+            border-radius: $border-radius-default !important;
+        }
+    }
+
+    &__play {
+        @include position-center;
+        z-index: 1;
+
+        > span {
+            @include font-body-bold($size: 24px, $color: $color-white);
+
+            @include mq($until: tablet) {
+                font-size: $font-size-small;
+            }
+        }
+    }
+
+    &__title {
+        @include font-label-small($bold: true);
+        color: $color-text-light;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        padding: 24px 32px;
+    }
+}

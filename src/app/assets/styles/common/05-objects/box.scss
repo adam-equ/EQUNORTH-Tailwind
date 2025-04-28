@@ -1,0 +1,30 @@
+.o-box {
+    display: block;
+
+    &--rounded {
+        border-radius: $border-radius-default;
+        overflow: hidden;
+    }
+
+    &--rounded-large {
+        border-radius: $border-radius-large;
+        overflow: hidden;
+    }
+
+    &--border {
+        @include drop-shadow-subtle;
+        border: 1px solid $color-grey-light;
+    }
+
+    &--padding {
+        padding: 24px;
+    }
+
+    &--hover {
+        @include basic-transition(box-shadow);
+
+        @include on-event {
+            @include drop-shadow;
+        }
+    }
+}

@@ -1,0 +1,188 @@
+.logo-grid {
+    $logo-grid: &;
+
+    &__header {
+        margin-bottom: 24px;
+
+        @include mq($from: tablet) {
+            margin-bottom: 32px;
+        }
+    }
+
+    &__items {
+        @include reset-list;
+        display: flex;
+    }
+
+    &__item {
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding: 16px 24px;
+        text-align: center;
+
+        &-inner {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            picture {
+                height: 110px;
+                width: 100%;
+            }
+
+            img {
+                display: block;
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+
+            a {
+                @include on-event {
+                    & ~ .o-label {
+                        text-decoration: underline;
+                        text-underline-offset: 0.25em;
+                    }
+                }
+            }
+        }
+    }
+
+    &--grid {
+        #{$logo-grid}__items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+
+            > * {
+                flex: 1 0 100%;
+                max-width: 330px;
+
+                @include mq($from: tablet) {
+                    flex: 1 0 calc(50% - 16px);
+                    max-width: calc(50% - 16px);
+                }
+
+                @include mq($from: desktop) {
+                    flex: 1 0 calc((100% / 3) - 16px);
+                    max-width: calc((100% / 3) - 16px);
+                }
+
+                @include override-page-narrow {
+                    @include mq($until: desktop-large) {
+                        flex: 1 0 calc(50% - 16px);
+                        max-width: calc(50% - 16px);
+                    }
+                }
+            }
+        }
+
+        #{$logo-grid}__item {
+            padding: 32px 24px;
+
+            &-inner {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+
+                picture {
+                    @include mq($until: tablet) {
+                        height: 100px;
+                    }
+                }
+            }
+        }
+    }
+
+    &--grid-compact {
+        #{$logo-grid}__items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+
+            > * {
+                flex: 1 0 100%;
+                max-width: 330px;
+
+                @include mq($from: tablet) {
+                    flex: 1 0 calc(50% - 16px);
+                    max-width: calc(50% - 16px);
+                }
+
+                @include mq($from: desktop) {
+                    flex: 1 0 calc((100% / 3) - 16px);
+                    max-width: calc((100% / 3) - 16px);
+                }
+
+                @include mq($from: desktop-large) {
+                    flex: 1 0 calc(20% - 16px);
+                    max-width: calc(20% - 16px);
+                }
+            }
+        }
+
+        #{$logo-grid}__item {
+            padding: 24px 16px;
+
+            &-inner {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+
+                picture {
+                    @include mq($until: tablet) {
+                        height: 100px;
+                    }
+                }
+            }
+        }
+    }
+
+    &--marquee {
+        #{$logo-grid}__container {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+
+            @include mq($until: tablet) {
+                height: 140px;
+            }
+        }
+
+        #{$logo-grid}__item {
+            width: 300px;
+
+            @include mq($until: tablet) {
+                width: 180px;
+            }
+
+            &-inner {
+                picture {
+                    @include mq($until: tablet) {
+                        height: 60px;
+                    }
+                }
+            }
+        }
+
+        &.is-scrolling {
+            #{$logo-grid}__container {
+                justify-content: flex-start;
+            }
+
+            #{$logo-grid}__list {
+                position: absolute;
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,73 @@
+/*------------------------------------*\
+  ELEMENTS > FORMS
+\*------------------------------------*/
+
+// Generic form styles
+
+form,
+.c-form {
+    label,
+    legend {
+        @include label-style;
+    }
+
+    legend {
+        font-weight: $font-weight-extra-bold;
+        margin-bottom: 1em;
+    }
+
+    input {
+        &[type='text'],
+        &[type='email'],
+        &[type='tel'],
+        &[type='url'],
+        &[type='password'] {
+            @include input-style;
+        }
+    }
+
+    textarea {
+        @include input-style;
+        line-height: 1.4;
+        min-height: 100px;
+    }
+
+    .styled-select {
+        @include select-style;
+    }
+
+    .field-validation-error {
+        @include field-validation-style;
+    }
+}
+
+form.hs-form {
+    ul {
+        margin: 0 0 0 -20px !important;
+        padding: 0 !important;
+
+        li {
+            padding-left: 20px !important;
+        }
+    }
+}
+
+// Allow styles to be used outside of form elements
+input:not(.hs-input) {
+    &[type='checkbox'] {
+        @include checkbox-input-style;
+
+        & + label,
+        & + input + label {
+            @include checkbox-label-style;
+        }
+    }
+
+    &[type='radio'] {
+        @include radio-input-style;
+
+        & + label {
+            @include radio-label-style;
+        }
+    }
+}

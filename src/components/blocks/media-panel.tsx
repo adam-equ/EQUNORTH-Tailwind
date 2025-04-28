@@ -31,42 +31,48 @@ export function MediaPanel({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="relative mx-auto w-full max-w-7xl grid md:grid-cols-2 lg:gap-x-32 sm:gap-y-20 gap-y-10 gap-x-20">
-        <div className={cn(reverse ? "order-1" : null)}>
-          {mediap_title ? (
-            <h2
-              className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white"
-              data-aos="fade-up"
-            >
-              {mediap_title}
-            </h2>
-          ) : null}
+      <div className="o-container">
+        <div
+          className={cn("media-panel", reverse ? "media-panel--reverse" : null)}
+        >
+          <div className="media-panel__container o-box--rounded-large o-box--border">
+            <div className="media-panel__content-container">
+              <div className="media-panel__content">
+                {mediap_title ? (
+                  <h3 className="media-panel__title">{mediap_title}</h3>
+                ) : null}
 
-          {mediap_copy ? (
-            <div
-              className="mt-3 text-lg text-gray-500 dark:text-equ-white"
-              dangerouslySetInnerHTML={{ __html: mediap_copy }}
-              data-aos="fade-up"
-              data-aos-delay="100"
-            ></div>
-          ) : null}
-          {link_field?.display_link ? (
-            <div className="mt-8" data-aos="fade-up" data-aos-delay="50">
-              <LinkFieldButton link_field={link_field} />
+                {mediap_copy ? (
+                  <div
+                    className="media-panel__text o-rich-text"
+                    dangerouslySetInnerHTML={{ __html: mediap_copy }}
+                  />
+                ) : null}
+                {link_field?.display_link ? (
+                  <div className="media-panel__link">
+                    <LinkFieldButton
+                      link_field={link_field}
+                      className="arrow-link"
+                    />
+                  </div>
+                ) : null}
+              </div>
             </div>
-          ) : null}
-        </div>
-        <div className="relative">
-          {mediap_image?.url ? (
-            <Image
-              alt={mediap_image.alt || ""}
-              src={mediap_image.url}
-              width={mediap_image.width}
-              height={mediap_image.height}
-              className="absolute top-0 left-0 h-full w-full object-cover z-0"
-              data-aos="zoom-in-up"
-            />
-          ) : null}
+            <div className="media-panel__image-container">
+              <div className="media-panel__image o-box-rounded">
+                {mediap_image?.url ? (
+                  <div className="o-image o-image--fit u-overlay">
+                    <Image
+                      alt={mediap_image.alt || ""}
+                      src={mediap_image.url}
+                      width={mediap_image.width}
+                      height={mediap_image.height}
+                    />
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </BlocksWrapper>

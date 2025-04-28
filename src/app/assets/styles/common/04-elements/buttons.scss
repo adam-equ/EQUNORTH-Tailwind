@@ -1,0 +1,185 @@
+/*------------------------------------*\
+  ELEMENTS > BUTTONS
+\*------------------------------------*/
+
+// TODO: Conditional side padding based on icons
+
+button,
+.btn {
+    @include reset-appearance;
+    cursor: pointer;
+}
+
+@mixin button {
+    @include font-label-large($bold: true);
+    @include reset-appearance;
+    cursor: pointer;
+    line-height: 1;
+    background-color: $color-ui-cta-default;
+    border: 1px solid $color-ui-cta-default;
+    border-radius: $border-radius-buttons;
+    color: $color-text-default;
+    display: inline-flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    padding: 14px 24px;
+    text-align: center;
+    gap: 8px;
+    position: relative;
+    @include basic-transition((background-color, border-color, color));
+
+    @include mq($until: desktop) {
+        padding: 18px 32px !important;
+    }
+
+    @include mq($from: tablet) {
+        white-space: nowrap;
+    }
+
+    // Ensure click events don't occur on icons
+    * {
+        pointer-events: none;
+    }
+
+    span {
+        line-height: inherit;
+        position: relative;
+        top: -0.05em;
+    }
+
+    svg {
+        @include square(20px);
+
+        path {
+            &[fill] {
+                fill: currentColor;
+            }
+
+            &[stroke] {
+                stroke: currentColor;
+            }
+        }
+    }
+
+    // ReactSVG
+    > div:first-child {
+        @include square(20px);
+
+        > div {
+            @include square(20px);
+
+            svg {
+                @include square(100%);
+            }
+        }
+    }
+
+    @include on-event {
+        background-color: $color-ui-cta-vibrant !important;
+        border-color: $color-ui-cta-vibrant !important;
+        color: $color-text-default !important;
+    }
+
+    &:focus-visible {
+        background-color: $color-ui-cta-vibrant !important;
+        border-color: $color-ui-cta-vibrant !important;
+        color: $color-text-default !important;
+        outline: 2px solid $color-body !important;
+    }
+}
+
+.btn {
+    @include button;
+
+    &--outline {
+        background: transparent !important;
+        border-color: $color-primary-default !important;
+        color: $color-text-default !important;
+    }
+
+    &--outline-light {
+        background: transparent !important;
+        border-color: $color-white !important;
+        color: $color-white !important;
+    }
+
+    &--dark {
+        background: $color-primary-dark !important;
+        border-color: $color-primary-dark !important;
+        color: $color-white !important;
+    }
+
+    &--nav {
+        padding: 10px 24px;
+
+        background: $color-secondary-default;
+        border-color: $color-secondary-default;
+        color: $color-neutrals-white-100;
+
+        @include on-event {
+            background-color: $color-secondary-vibrant !important;
+            border-color: $color-secondary-vibrant !important;
+            color: $color-neutrals-white-100 !important;
+        }
+
+        &:focus-visible {
+            background-color: $color-secondary-vibrant !important;
+            border-color: $color-secondary-vibrant !important;
+            color: $color-neutrals-white-100 !important;
+            outline: 2px solid $color-body !important;
+        }
+    }
+
+    &--chip {
+        @include font-label-small($bold: true);
+        height: 36px !important;
+        line-height: 36px !important;
+        border-radius: 18px !important;
+        padding: 0 24px !important;
+
+        @include mq($until: desktop) {
+            height: 44px !important;
+            line-height: 44px !important;
+            border-radius: 22px !important;
+            padding: 0 24px !important;
+        }
+
+        // ReactSVG
+        > div:first-child {
+            @include square(12px);
+
+            > div {
+                @include square(12px);
+            }
+        }
+    }
+
+    &--circle {
+        @include square(44px);
+        background: transparent !important;
+        border-color: $color-primary-default !important;
+        border-radius: 50%;
+        color: $color-text-default !important;
+        text-indent: -9999em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+        flex: 0 0 44px;
+
+        svg {
+            @include square(20px);
+        }
+    }
+
+    &--no-expand {
+        @include mq($until: desktop) {
+            padding: 14px 24px !important;
+
+            &.btn--nav {
+                padding: 10px 24px !important;
+            }
+        }
+    }
+}

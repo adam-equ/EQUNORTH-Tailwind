@@ -1,0 +1,150 @@
+/*------------------------------------*\
+  SETTINGS > COLOR-VARIABLES
+\*------------------------------------*/
+
+/* Brand */
+
+$color-brand-navy-14: #002b49;
+$color-brand-navy-tints-4: #00243d;
+$color-brand-navy-tints-24: #00487a;
+$color-brand-navy-tints-34: #0066ad;
+$color-brand-navy-tints-44: #0084e0;
+$color-brand-navy-tints-54: #149fff;
+$color-brand-navy-tints-64: #47b4ff;
+$color-brand-navy-tints-74: #7ac9ff;
+$color-brand-navy-tints-84: #adddff;
+$color-brand-navy-tints-94: #e0f2ff;
+$color-brand-navy-tints-98: #f5fbff;
+
+$color-brand-blue-37: #008fbe;
+$color-brand-blue-tints-7: #001b24;
+$color-brand-blue-tints-17: #004157;
+$color-brand-blue-tints-27: #00688a;
+$color-brand-blue-tints-47: #009acc;
+$color-brand-blue-tints-57: #24c9ff;
+$color-brand-blue-tints-67: #57d5ff;
+$color-brand-blue-tints-77: #8ae2ff;
+$color-brand-blue-tints-87: #bdefff;
+$color-brand-blue-tints-97: #f0fbff;
+
+$color-brand-pink-66: #e85462;
+$color-brand-pink-tints-6: #1b0406;
+$color-brand-pink-tints-16: #480910;
+$color-brand-pink-tints-26: #750f19;
+$color-brand-pink-tints-36: #a21523;
+$color-brand-pink-tints-46: #cf1b2d;
+$color-brand-pink-tints-56: #e32739;
+$color-brand-pink-tints-76: #f1939c;
+$color-brand-pink-tints-86: #f7c0c5;
+$color-brand-pink-tints-96: #fdedee;
+
+$color-brand-green: #63a70a;
+$color-brand-orange: #ff671b;
+$color-brand-dark-grey: #4a565b;
+$color-brand-gold: #f9e0a4;
+$color-brand-pale-blue: #c7dae7;
+$color-brand-steel-grey: #7b8a9e;
+$color-brand-yellow-50: #ffce00;
+$color-brand-yellow-tints-40: #f5c600;
+$color-brand-yellow-tints-68: #ffe05c;
+$color-brand-yellow-tints-90: #fffae5;
+
+$color-neutrals-black-0: #000000;
+$color-neutrals-grey-38: #4d6677;
+$color-neutrals-grey-92: #e3ecf3;
+$color-neutrals-white-100: #ffffff;
+$color-neutrals-white-99: #fcfdfd;
+
+$color-status-error-35: #af0225;
+$color-status-error-90: #fecdd7;
+$color-status-success-45: #3caa7b;
+$color-status-success-90: #d9f2e7;
+$color-status-warning-55: #fbab1d;
+$color-status-warning-90: #feeccd;
+
+/* Neutral */
+
+$color-black: #000000;
+$color-black-off: #333333;
+$color-white: #ffffff;
+$color-grey-light: $color-neutrals-grey-92;
+$color-grey: $color-brand-pale-blue;
+$color-grey-dark: $color-brand-dark-grey;
+
+/* Elevation */
+
+$color-elevation-light: $color-brand-navy-tints-98;
+$color-elevation-offwhite: $color-neutrals-white-99;
+$color-elevation-offcolour: $color-brand-pale-blue;
+$color-elevation-vibrant: $color-brand-navy-tints-94;
+$color-elevation-dark: $color-brand-steel-grey;
+
+/* Palette */
+
+$color-primary-default: $color-brand-navy-14;
+$color-primary-vibrant: $color-brand-navy-tints-34;
+$color-primary-light: $color-brand-navy-tints-94;
+$color-primary-dark: $color-brand-navy-tints-4;
+
+$color-secondary-default: $color-brand-pink-66;
+$color-secondary-vibrant: $color-brand-pink-tints-56;
+$color-secondary-light: $color-brand-pink-tints-86;
+$color-secondary-dark: $color-brand-pink-tints-36;
+
+$color-tertiary-default: $color-brand-blue-37;
+$color-tertiary-vibrant: $color-brand-blue-tints-47;
+$color-tertiary-light: $color-brand-blue-tints-87;
+$color-tertiary-dark: $color-brand-blue-tints-27;
+
+$color-ui-cta-default: $color-brand-yellow-50;
+$color-ui-cta-vibrant: $color-brand-yellow-tints-68;
+$color-ui-cta-light: $color-brand-yellow-tints-90;
+$color-ui-cta-dark: $color-brand-yellow-tints-40;
+
+$color-ui-accent: $color-brand-yellow-50;
+
+$color-dark: #26272c;
+
+$color-body: $color-brand-navy-tints-4;
+$color-body-light: $color-neutrals-white-100;
+
+$color-text-default: $color-primary-dark;
+$color-text-grey: $color-neutrals-grey-38;
+$color-text-light: $color-neutrals-white-100;
+$color-text-hover: $color-secondary-default;
+
+$color-text-link: $color-brand-blue-tints-27;
+$color-text-link-light: $color-brand-blue-tints-57;
+
+// $color-font-default-brand-navy: $color-brand-navy-14;
+// $color-font-default-brand-pink: $color-brand-pink-66;
+// $color-font-default-default: $color-brand-navy-tints-4;
+// $color-font-default-default-2: $neutrals-grey-38;
+// $color-font-default-link: $color-brand-blue-tints-27;
+// $color-font-default-on-dark-1: $neutrals-white-100;
+// $color-font-default-on-dark-2: $color-brand-pale-blue;
+// $color-font-default-on-dark-link: $color-brand-blue-tints-47;
+// $color-font-default-on-dark-link-hover: $color-brand-pink-tints-76;
+// $color-font-default-on-dark-link-visited: $color-brand-blue-tints-57;
+
+/* Utility */
+
+$color-error: $color-status-error-35;
+
+/* Tokens */
+
+$button-color-bg-dark-default: $color-secondary-default;
+$button-color-border-dark-default: $color-secondary-default;
+$button-color-text-dark-default: $color-neutrals-white-100;
+
+$button-color-bg-dark-hover: $color-secondary-vibrant;
+$button-color-border-dark-hover: $color-secondary-default;
+$button-color-text-dark-hover: $color-neutrals-white-100;
+
+$button-color-bg-outline-default: $color-neutrals-white-100;
+$button-color-border-outline-default: $color-primary-vibrant;
+$button-color-text-outline-default: $color-body;
+
+$button-color-bg-outline-hover: $color-secondary-vibrant;
+$button-color-border-outline-hover: $color-secondary-vibrant;
+$button-color-text-outline-hover: $color-neutrals-white-100;

@@ -1,0 +1,102 @@
+/*------------------------------------*\
+  COMPONENT > DOCUMENT LIST
+\*------------------------------------*/
+
+.document-list {
+    $document-list: &;
+
+    &__header {
+        margin-bottom: 24px;
+
+        @include mq($from: tablet) {
+            margin-bottom: 32px;
+        }
+    }
+
+    &__item {
+        color: $color-text-default;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 20px 0;
+        padding: 24px 32px;
+        position: relative;
+        overflow: hidden;
+
+        @include mq($until: desktop-large) {
+            align-items: flex-end;
+            padding: 24px 16px;
+        }
+
+        @include mq($until: tablet) {
+            margin: 12px 0;
+        }
+
+        &-name {
+            line-height: 1.4;
+            flex: 1;
+
+            @include mq($until: tablet) {
+                width: 100%;
+            }
+        }
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        &-details {
+            @include font-body-regular($size: $font-size-small);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            @include mq($until: desktop-large) {
+                height: 36px;
+            }
+        }
+
+        &-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            @include mq($until: desktop-large) {
+                position: absolute;
+                right: 16px;
+                bottom: 24px;
+            }
+
+            &::after {
+                @include pseudo;
+                @include square(36px);
+                flex: 0 0 36px;
+                border-radius: 50%;
+                background-color: $color-ui-cta-default;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M3.125 18.75a.627.627 0 0 1-.625-.625c0-.344.281-.625.625-.625h13.75c.344 0 .625.281.625.625a.627.627 0 0 1-.625.625H3.125Zm7.316-3.934a.627.627 0 0 1-.882 0l-5-5a.627.627 0 0 1 0-.882.627.627 0 0 1 .882 0l3.934 3.933V1.875c0-.344.281-.625.625-.625s.625.281.625.625v10.992l3.934-3.933a.627.627 0 0 1 .882 0 .627.627 0 0 1 0 .882l-5 5Z'/%3E%3C/svg%3E");
+                background-size: 20px;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+                @include basic-transition((background-color, transform));
+            }
+        }
+
+        @include on-event {
+            #{$document-list}__item-name {
+                text-decoration: underline;
+                text-underline-offset: 0.25em;
+            }
+
+            #{$document-list}__item-download {
+                &::after {
+                    background-color: $color-ui-cta-vibrant;
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}

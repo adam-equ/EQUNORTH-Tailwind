@@ -1,0 +1,46 @@
+/*------------------------------------*\
+  SETTINGS > SPACING-VARIABLES
+\*------------------------------------*/
+
+@use 'sass:math';
+
+$base-spacing-unit: 16px;
+$base-spacing-sides: $base-spacing-unit * 2;
+$base-spacing-sides\@tablet: $base-spacing-unit * 2;
+$base-spacing-sides\@desktop: $base-spacing-unit * 2;
+
+$spacing-xxs: math.div($base-spacing-unit, 2); // 8px
+$spacing-xs: $base-spacing-unit; // 16px
+$spacing-md: $base-spacing-unit * 2; // 32px
+$spacing-lg: $base-spacing-unit * 4; // 64px
+$spacing-xl: $base-spacing-unit * 6; // 96px
+$spacing-xxl: $base-spacing-unit * 8; // 128px
+
+$section-spacing-min: $base-spacing-unit * 10;
+$section-spacing-max: $base-spacing-unit * 20;
+
+$column-width: 96px;
+$column-gap-width: 32px;
+$column-gap-width-mobile: 24px;
+$gutter-width: 64px;
+$gutter-width-mobile: 16px;
+$page-gutter: 12px;
+
+// Container width calculated from combination of columns and gutters (container padding equal to $gutter-width * 2)
+$container-width: ($column-width * 12) + ($column-gap-width * 13);
+$container-width-medium: ($column-width * 9) + ($column-gap-width * 10);
+$container-width-narrow: ($column-width * 6) + ($column-gap-width * 7);
+$container-width-small: ($column-width * 6) + ($column-gap-width * 7);
+
+$ad-space-height: 130px;
+$ad-space-height-tablet: 142px;
+$ad-space-height-mobile: 115px;
+
+$header-top-height: 44px;
+
+$header-height: 72px;
+$header-height-tablet: 72px;
+$header-height-mobile: 72px;
+$header-height-sticky: 72px;
+$header-height-sticky-tablet: 72px;
+$header-height-sticky-mobile: 72px;

@@ -1,0 +1,52 @@
+/*------------------------------------*\
+  OBJECTS > CONTAINER
+\*------------------------------------*/
+
+.o-container {
+    padding: 0 $gutter-width;
+    max-width: $container-width;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+
+    @include mq($until: tablet) {
+        padding: 0 $gutter-width-mobile;
+    }
+
+    // No padding when nested, unless full-width
+    &:not(.o-container--max-width) {
+        .o-container {
+            min-width: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+    }
+
+    &--small {
+        max-width: $container-width-small !important;
+
+        @include mq($from: desktop-large) {
+            box-sizing: content-box;
+        }
+    }
+
+    &--narrow {
+        max-width: $container-width-narrow !important;
+
+        @include mq($from: desktop-large) {
+            box-sizing: content-box;
+        }
+    }
+
+    &--medium {
+        max-width: $container-width-medium !important;
+
+        @include mq($from: desktop-large) {
+            box-sizing: content-box;
+        }
+    }
+
+    &--max-width {
+        max-width: $bp-maxwidth !important;
+    }
+}

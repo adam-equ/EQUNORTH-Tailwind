@@ -1,0 +1,69 @@
+/*------------------------------------*\
+  SETTINGS > FONT INCLUDES @font-face 
+\*------------------------------------*/
+
+$base-font-path: "/fonts";
+
+@font-face {
+  font-family: "Cambon";
+  src: url("#{$base-font-path}/Cambon-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cambon";
+  src: url("#{$base-font-path}/Cambon-BlackItalic.woff2") format("woff2");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cambon";
+  src: url("#{$base-font-path}/Cambon-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cambon";
+  src: url("#{$base-font-path}/Cambon-BoldItalic.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MierA";
+  src: url("#{$base-font-path}/MierA-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MierA";
+  src: url("#{$base-font-path}/MierA-Italic.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MierA";
+  src: url("#{$base-font-path}/MierA-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MierA";
+  src: url("#{$base-font-path}/MierA-BoldItalic.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}

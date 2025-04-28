@@ -4,9 +4,10 @@ import { LinkFieldType } from "./blocks/types";
 
 export interface LinkFieldProps {
   link_field: LinkFieldType;
+  className?: string;
 }
 
-export function LinkFieldButton({ link_field }: LinkFieldProps) {
+export function LinkFieldButton({ link_field, className }: LinkFieldProps) {
   const publicUrl = process.env.NEXT_PUBLIC_WP_URL;
   const link_target = link_field.link?.target
     ? link_field.link?.target
@@ -18,15 +19,13 @@ export function LinkFieldButton({ link_field }: LinkFieldProps) {
   return (
     <div className="link-wrap">
       {!link_field.link_type ? (
-        <Button asChild>
-          <Link href={internal_link}>{link_title}</Link>
-        </Button>
+        <Link className={className} href={internal_link}>
+          {link_title}
+        </Link>
       ) : (
-        <Button asChild>
-          <a href={external_link} target={link_target}>
-            {link_title}
-          </a>
-        </Button>
+        <a className={className} href={external_link} target={link_target}>
+          {link_title}
+        </a>
       )}
     </div>
   );

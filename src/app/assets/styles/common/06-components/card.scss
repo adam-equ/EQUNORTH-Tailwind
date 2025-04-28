@@ -1,0 +1,124 @@
+@use 'sass:color';
+
+.c-card {
+    $card: &;
+
+    @extend .o-box--rounded-large;
+    @extend .o-box--border;
+    @extend .o-box--hover;
+
+    box-sizing: border-box;
+    display: block;
+    max-width: width(4, false);
+    overflow: hidden;
+
+    // Required to handle .c-card--inside variant
+    &__container {
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    // Required to set aspect ratios
+    &__image-container {
+        height: 180px;
+        position: relative;
+
+        @include mq($from: tablet) {
+            height: 220px;
+        }
+    }
+
+    &__image {
+        @include absolute-fit-parent;
+    }
+
+    &__content-container {
+        background: $color-white;
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 16px;
+        padding: 24px;
+        margin-top: -24px;
+        border-top-left-radius: $border-radius-large;
+        border-top-right-radius: $border-radius-large;
+    }
+
+    &__content {
+    }
+
+    &__title {
+        @include h5;
+        color: $color-primary-default;
+        margin: 0;
+        display: inline-flex;
+        gap: 8px;
+    }
+
+    &__label {
+        @extend .o-label;
+        @extend .o-label--small;
+        @extend .o-label--grey;
+        margin-top: 0.4em;
+    }
+
+    &__text {
+        @include font-body-regular($size: $font-size-small, $lh: 1.5);
+        margin-top: 0.7em;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        p {
+            font-size: inherit;
+            line-height: inherit;
+        }
+    }
+
+    &__link {
+        @include mq($until: desktop) {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 12px;
+        }
+    }
+
+    &--link {
+        #{$card}__content-container {
+            @include mq($from: desktop) {
+                padding-bottom: 64px;
+                margin-bottom: -40px;
+                @include basic-transition(transform);
+            }
+        }
+
+        #{$card}__link {
+            @include mq($from: desktop) {
+                margin: 0;
+                position: absolute;
+                bottom: 24px;
+                right: 24px;
+                opacity: 0;
+                @include basic-transition(opacity);
+            }
+        }
+
+        @include on-event {
+            @include mq($from: desktop) {
+                #{$card}__content-container {
+                    transform: translate3d(0, -40px, 0);
+                }
+
+                #{$card}__link {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,550 @@
+/*------------------------------------*\
+  COMPONENT > FORM
+\*------------------------------------*/
+
+@use 'sass:math';
+
+.form-panel {
+    &__header {
+        &-text {
+            max-width: 740px;
+            margin: 0 auto;
+        }
+    }
+}
+
+.c-form {
+    max-width: 740px;
+    margin: 0 auto;
+
+    &__page {
+        &-caption {
+            @include font-body-bold($color: $color-body, $size: 24px, $lh: 1.4);
+            margin-bottom: 1em;
+        }
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        &-caption {
+            @include font-body-bold($color: $color-body, $size: 16px, $lh: 1.4);
+        }
+    }
+
+    &__column {
+    }
+
+    &__field-wrapper {
+        margin-bottom: $spacing-md;
+        position: relative;
+
+        legend {
+            font-size: 13px;
+            font-weight: $font-weight-bold;
+            margin-bottom: 4px;
+        }
+
+        input[type='text'],
+        textarea,
+        select {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            border-radius: 5px;
+            padding: 24px 10px 7px;
+            font-size: 16px;
+            font-weight: $font-weight-bold;
+            color: $color-body;
+            min-height: 54px;
+
+            &.input-validation-error {
+                background: #f4dcda !important;
+            }
+        }
+
+        textarea {
+            height: 200px;
+        }
+
+        .styled-select {
+            position: relative;
+            z-index: 1;
+
+            &::after {
+                @include pseudo;
+                z-index: -1;
+                top: 50%;
+                right: 20px;
+                margin: -3px 0 0;
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-top: 8px solid $color-primary-default;
+                pointer-events: none;
+                transform: none;
+            }
+
+            select {
+                appearance: none;
+                background: none;
+                font-size: 16px;
+                font-weight: $font-weight-bold;
+                color: $color-body;
+                padding-top: 7px;
+
+                &::-ms-expand {
+                    display: none;
+                }
+
+                option {
+                    font-size: 16px;
+                    font-weight: $font-weight-bold;
+                    color: $color-body;
+                }
+            }
+        }
+
+        input[type='radio'] {
+            & + label {
+                color: $color-body;
+                font-weight: $font-weight-bold;
+                font-size: 16px;
+            }
+        }
+
+        input[type='checkbox'] {
+            & + label {
+                color: $color-body;
+                font-weight: $font-weight-bold;
+                font-size: 16px;
+            }
+        }
+    }
+
+    &__input-field {
+    }
+
+    &__validation-message {
+        display: block;
+        color: $color-error;
+        font-size: 12px;
+        font-weight: $font-weight-bold;
+        margin-top: 4px;
+    }
+
+    &__disclaimer {
+        @include font-body-regular($size: $font-size-tiny, $lh: 1.2);
+
+        @include override-section-dark {
+            color: $color-white;
+        }
+    }
+
+    &__required {
+        @include font-body-bold($font-size-body);
+        color: $color-primary-default;
+    }
+
+    &__validation-summary {
+        color: $color-error;
+        font-weight: $font-weight-bold;
+
+        @include override-section-dark {
+            color: $color-white;
+        }
+    }
+
+    &__success {
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+
+        @include mq($from: tablet) {
+            padding: 40px;
+        }
+
+        &-container {
+            max-width: 400px;
+            text-align: center;
+        }
+
+        &-icon {
+            @include square(40px);
+            color: $color-primary-default;
+            margin-bottom: $spacing-xs;
+
+            path {
+                fill: currentColor;
+            }
+        }
+
+        &-title {
+            color: $color-primary-default;
+        }
+
+        &-text {
+            color: $color-primary-default;
+            margin-top: 1em;
+
+            p {
+                color: inherit !important;
+            }
+        }
+    }
+
+    &__navigation {
+        margin-top: $spacing-md;
+
+        > div {
+            display: flex;
+            align-items: center;
+        }
+
+        &-submit {
+            padding: 0 50px !important;
+            line-height: 50px !important;
+            border-radius: 28px !important;
+            font-size: 16px !important;
+            border-width: 3px !important;
+        }
+    }
+
+    .input-label {
+        color: $color-secondary-default;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 4px;
+
+        &--inline {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            z-index: 2;
+            top: 5px;
+            left: 10px;
+        }
+    }
+
+    .choice-field-group {
+        .choice-options {
+            .choice-option {
+                margin: $spacing-xs 0;
+            }
+        }
+    }
+}
+
+.umbraco-forms-form {
+    width: 100%;
+    @include basic-transition((opacity), 0.4s);
+
+    &.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    input[type='date'],
+    textarea {
+        &.input-validation-error {
+            border-color: $color-error !important;
+
+            @include input-placeholder {
+                color: $color-error !important;
+            }
+        }
+    }
+
+    select {
+        &.input-validation-error {
+            border-color: $color-error !important;
+        }
+    }
+
+    .umbraco-forms-page {
+        .row,
+        .row-fluid,
+        .umbraco-forms-fieldset {
+            display: flex;
+            gap: $spacing-md;
+            width: 100%;
+
+            @include mq($until: tablet) {
+                flex-wrap: wrap;
+            }
+
+            > [class*='col-md-'] {
+                flex: 1;
+
+                @include mq($until: tablet) {
+                    flex: 1 0 100%;
+                }
+            }
+        }
+
+        // No margin should be set on the input, only the navigation wrapper, because the spinner sits alongside it
+        input[type='submit'] {
+            margin: 0 !important;
+        }
+
+        .umbraco-forms-fieldset {
+            margin: $spacing-md 0;
+        }
+
+        // Margins handled by fields
+        .umbraco-forms-container {
+            margin: 0 !important;
+        }
+
+        .umbraco-forms-field-group {
+            display: flex;
+            flex-direction: column;
+
+            &.rich-text-group {
+                margin-bottom: 12px;
+
+                @include mq($from: desktop) {
+                    margin-bottom: 24px;
+                }
+            }
+        }
+
+        .umbraco-forms-field {
+            position: relative;
+            margin-bottom: 12px;
+
+            @include mq($from: desktop) {
+                margin-bottom: 24px;
+            }
+
+            &.dataconsent {
+                position: static;
+
+                input {
+                    bottom: 4px;
+                    left: 0;
+                    position: absolute;
+                    cursor: pointer;
+
+                    & + label {
+                        padding-left: 40px;
+                        cursor: pointer;
+                    }
+                }
+
+                label {
+                    position: relative;
+
+                    &::before {
+                        bottom: 0;
+                        top: auto !important;
+                    }
+                }
+
+                .umbraco-forms-label {
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+
+            &.checkbox {
+                .umbraco-forms-label {
+                    cursor: pointer;
+                    display: inline-block;
+                    padding: 0 0 0 40px;
+                    position: relative;
+                }
+
+                input[type='checkbox'] {
+                    position: absolute;
+                    top: 4px;
+                    left: 0;
+                }
+            }
+
+            &.contentmarcohiddenfield,
+            &.hidden,
+            &.recaptcha {
+                margin: 0 !important;
+                padding: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+
+                .umbraco-forms-tooltip {
+                    display: none;
+                }
+            }
+        }
+
+        .umbraco-forms-label {
+            order: -1;
+        }
+
+        .umbraco-forms-navigation {
+            margin-top: $spacing-md;
+
+            .col-md-12 {
+                display: flex;
+                align-items: center;
+
+                .template-portal & {
+                    justify-content: center;
+                }
+            }
+        }
+
+        .field-validation-error {
+            color: $color-error !important;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .spinner {
+            margin-left: 12px;
+        }
+    }
+
+    .forms-navigation {
+        margin-top: $spacing-md;
+
+        > div {
+            display: flex;
+            align-items: center;
+
+            .template-portal & {
+                justify-content: center;
+            }
+        }
+    }
+
+    // Hide badge unless it needs to be shown
+    .grecaptcha-badge {
+        display: none !important;
+    }
+}
+
+.grecaptcha-badge {
+    display: none;
+    visibility: hidden;
+}
+
+.hbspt-form form {
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    input[type='date'],
+    textarea,
+    select {
+        @include input-style;
+    }
+
+    .hs-form-field {
+        margin: 32px 0;
+    }
+
+    .hs-input {
+        &.error {
+            @include input-style-error;
+        }
+    }
+
+    .inputs-list {
+        &:not(.no-list) {
+            list-style-type: none;
+
+            @include mq($from: tablet) {
+                margin-left: -20px;
+
+                li {
+                    padding-left: 20px;
+                }
+            }
+        }
+    }
+
+    .hs-fieldtype-select {
+        .input {
+            @include select-style;
+        }
+    }
+
+    .hs-form-radio-display,
+    .hs-form-checkbox-display,
+    .hs-form-booleancheckbox-display {
+        padding: 0 0 0 40px;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+            display: none !important;
+        }
+
+        .hs-input {
+            @include square(24px, true);
+            background: $color-grey-light;
+            border: 1px solid $color-grey;
+            border-radius: 4px;
+            margin-right: 13px;
+            min-height: auto !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            accent-color: $color-tertiary-default; // Manual colour to force a white checkmark (automatic)
+            cursor: pointer;
+        }
+    }
+
+    .hs-error-msgs {
+        @include reset-list;
+
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 8px !important;
+    }
+
+    .hs-error-msg,
+    .hs-error-msgs label {
+        @include font-body-regular($size: $font-size-tiny, $color: $color-error);
+        color: $color-error !important;
+        display: block;
+        margin: 0 !important;
+    }
+
+    .hs_error_rollup {
+        .hs-error-msg,
+        .hs-error-msgs label {
+            font-size: $font-size-medium !important;
+        }
+    }
+
+    .hs-submit {
+        margin: 32px 0;
+    }
+
+    .hs-button {
+        @include button;
+    }
+
+    .legal-consent-container {
+        margin: 32px 0;
+        text-align: left;
+
+        // checkbox then text spacing
+        .hs-form-booleancheckbox-display > span {
+            margin-left: 0;
+        }
+
+        // text then red * spacing
+        .hs-form-required {
+            margin-left: 6px;
+        }
+    }
+}

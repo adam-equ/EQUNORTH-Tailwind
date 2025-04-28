@@ -1,0 +1,100 @@
+.subscribe-panel {
+    $subscribe-panel: &;
+
+    padding: 32px 48px;
+
+    @include mq($until: tablet) {
+        padding: 32px 16px;
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+
+        @include mq($until: desktop) {
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    &__content {
+        max-width: 400px;
+
+        @include mq($from: desktop) {
+            max-width: 370px;
+        }
+
+        @include mq($from: desktop-large) {
+            max-width: 460px;
+        }
+
+        button {
+            @include mq($until: desktop) {
+                margin-top: 24px !important;
+            }
+
+            svg {
+                @include mq($until: tablet) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &__social {
+        position: relative;
+
+        @include mq($until: desktop) {
+            background: $color-tertiary-default;
+            padding-top: 32px;
+        }
+
+        &::before {
+            @include pseudo;
+            background: $color-tertiary-default;
+            z-index: -1;
+
+            @include mq($until: desktop) {
+                top: -30px;
+                right: -100%;
+                bottom: -100%;
+                left: -100%;
+            }
+
+            @include mq($from: desktop) {
+                mask-image: url('/assets/static/images/svg/mask-brush-stroke.svg');
+                top: 50%;
+                right: -270px;
+                height: 380px;
+                width: 800px;
+                transform: translateY(-50%);
+
+                @include mq($until: desktop-large) {
+                    right: -390px;
+                }
+            }
+        }
+
+        &-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 16px;
+
+            @include mq($until: desktop) {
+                align-items: center;
+            }
+        }
+
+        .social-links {
+            ul {
+                @include mq($until: desktop) {
+                    gap: 24px;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

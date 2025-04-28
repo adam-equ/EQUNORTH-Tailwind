@@ -1,0 +1,96 @@
+.team-members {
+    $team-members: &;
+
+    &__header {
+        margin-bottom: 24px;
+
+        @include mq($from: tablet) {
+            margin-bottom: 32px;
+        }
+    }
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+
+        > * {
+            flex: 1 0 100%;
+            max-width: 400px;
+
+            @include mq($from: tablet) {
+                flex: 1 0 calc(50% - 16px);
+                max-width: calc(50% - 16px);
+            }
+
+            @include mq($from: desktop) {
+                flex: 1 0 calc((100% / 3) - 16px);
+                max-width: calc((100% / 3) - 16px);
+            }
+
+            @include mq($from: desktop-large) {
+                flex: 1 0 calc(25% - 16px);
+                max-width: calc(25% - 16px);
+            }
+
+            @include override-page-narrow {
+                @include mq($from: desktop) {
+                    flex: 1 0 calc(50% - 16px);
+                    max-width: calc(50% - 16px);
+                }
+
+                @include mq($from: desktop-large) {
+                    flex: 1 0 calc((100% / 3) - 16px);
+                    max-width: calc((100% / 3) - 16px);
+                }
+
+                @include mq($from: wide) {
+                    flex: 1 0 calc(25% - 16px);
+                    max-width: calc(25% - 16px);
+                }
+            }
+        }
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        padding: 32px 24px;
+
+        @include mq($until: tablet) {
+            flex-direction: row;
+            gap: 16px;
+            padding: 16px;
+        }
+
+        &-image {
+            flex: 0 0 168px;
+            @include square(168px);
+
+            @include mq($until: tablet) {
+                flex: 0 0 100px;
+                @include square(100px);
+            }
+        }
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            @include mq($from: tablet) {
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        &-title {
+        }
+
+        &-description {
+        }
+    }
+}

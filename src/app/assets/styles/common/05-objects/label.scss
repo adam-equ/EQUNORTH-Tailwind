@@ -1,0 +1,27 @@
+.o-label {
+    @include font-label-standard;
+
+    &--tiny {
+        @include font-label-tiny;
+    }
+
+    &--small {
+        @include font-label-small;
+    }
+
+    &--large {
+        @include font-label-large;
+    }
+
+    &--bold {
+        font-weight: $font-weight-bold;
+    }
+
+    &--upper {
+        text-transform: uppercase;
+    }
+
+    &--grey {
+        color: $color-text-grey;
+    }
+}

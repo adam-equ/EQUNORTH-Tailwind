@@ -1,0 +1,96 @@
+/*------------------------------------*\
+  COMPONENTS > SEARCH RESULTS
+\*------------------------------------*/
+
+.search-results-wrapper {
+    min-height: 210px;
+}
+
+.search-box {
+    &__input {
+        background: $color-primary-light;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 16px;
+        height: 76px;
+        border-radius: 38px;
+        padding: 0 16px 0 32px;
+
+        input {
+            @include font-body-bold($size: $font-size-extralarge, $lh: 1.2);
+            border: 0;
+            outline: none;
+            width: 100%;
+            padding: 0;
+
+            @include mq($until: desktop-large) {
+                font-size: $font-size-large;
+            }
+        }
+
+        button {
+            &[disabled] {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
+    }
+
+    &__icon {
+        color: $color-tertiary-default;
+        flex: 0 0 24px;
+        @include square(24px);
+
+        svg {
+            @include square(100%);
+        }
+    }
+}
+
+.search-results {
+    &__sort {
+        label {
+            margin-right: 16px;
+        }
+
+        .styled-select {
+            @include select-style;
+
+            select {
+                width: 188px;
+            }
+        }
+    }
+
+    &__item {
+        margin-top: 8px;
+        padding-top: 8px;
+
+        &:not(:first-child) {
+            border-top: solid 1px $color-grey-light;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            display: inline-block;
+        }
+
+        &-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            @include basic-transition(background-color);
+
+            @include on-event {
+                background: $color-primary-light;
+            }
+        }
+    }
+}

@@ -1,0 +1,219 @@
+/*------------------------------------*\
+  TOOLS > FONTS MIXIN
+\*------------------------------------*/
+
+@function calculateRem($size) {
+    $remSize: $size / $base-font-size;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+// Base font mixin
+@mixin font-mixin(
+    $family: false,
+    $size: false,
+    $color: false,
+    $weight: false,
+    $style: false,
+    $lh: false,
+    $ls: false,
+    $serif: false
+) {
+    @if $family {
+        @if $serif {
+            font-family: $family, Georgia, 'Times New Roman', Times, serif;
+        } @else {
+            font-family: $family, Helvetica, Arial, sans-serif;
+        }
+    }
+
+    @if $size {
+        font-size: $size;
+    }
+
+    @if $color {
+        color: $color;
+    }
+
+    @if $weight {
+        font-weight: $weight;
+    }
+
+    @if $style {
+        font-style: $style;
+    }
+
+    @if $lh {
+        line-height: $lh;
+    }
+
+    @if $ls {
+        letter-spacing: $ls;
+    }
+}
+
+// Generic font mixins
+@mixin font-heading-large($size: false, $color: false, $style: false, $lh: false, $ls: false) {
+    @include font-mixin('Cambon', $size, $color, 900, $style, $lh, $ls, false);
+}
+
+@mixin font-heading($size: false, $color: false, $style: false, $lh: false, $ls: false) {
+    @include font-mixin('Cambon', $size, $color, 700, $style, $lh, $ls, false);
+}
+
+@mixin font-body-bold($size: false, $color: false, $style: false, $lh: false, $ls: 0.04em) {
+    @include font-mixin('MierA', $size, $color, 700, $style, $lh, $ls, false);
+}
+
+@mixin font-body-regular($size: false, $color: false, $style: false, $lh: false, $ls: 0.04em) {
+    @include font-mixin('MierA', $size, $color, 400, $style, $lh, $ls, false);
+}
+
+// Heading mixins
+@mixin heading {
+    @include font-heading;
+    color: $color-body;
+    line-height: $line-height-headings;
+    display: block;
+    margin: 0;
+}
+
+@mixin hero-size {
+    @include interpolate('font-size', $bp-tablet, 32px, $bp-wide, 48px, 'ease');
+    line-height: 1.3;
+}
+
+@mixin h1-size {
+    @include interpolate('font-size', $bp-tablet, 30px, $bp-wide, 40px, 'ease');
+    line-height: 1.3;
+}
+
+@mixin h2-size {
+    @include interpolate('font-size', $bp-tablet, 28px, $bp-wide, 38px, 'ease');
+    line-height: 1.3;
+}
+
+@mixin h3-size {
+    @include interpolate('font-size', $bp-tablet, 24px, $bp-wide, 32px, 'ease');
+    line-height: 1.3;
+}
+
+@mixin h4-size {
+    @include interpolate('font-size', $bp-tablet, 20px, $bp-wide, 26px, 'ease');
+    line-height: $line-height-headings;
+}
+
+@mixin h5-size {
+    @include interpolate('font-size', $bp-tablet, 18px, $bp-wide, 22px, 'ease');
+    line-height: $line-height-headings;
+}
+
+@mixin h6-size {
+    @include interpolate('font-size', $bp-tablet, 18px, $bp-wide, 22px, 'ease');
+    line-height: $line-height-headings;
+}
+
+@mixin h1($color: false, $margin: false) {
+    @include font-heading($color: $color);
+    @include h1-size;
+    @if $margin {
+        margin: 0 0 0.3em;
+    }
+}
+
+@mixin h2($color: false, $margin: true) {
+    @include font-heading($color: $color);
+    @include h2-size;
+    @if $margin {
+        margin: 0 0 0.3em;
+    }
+}
+
+@mixin h3($color: false, $margin: true) {
+    @include font-heading($color: $color);
+    @include h3-size;
+    @if $margin {
+        margin: 0 0 0.3em;
+    }
+}
+
+@mixin h4($color: false, $margin: true) {
+    @include font-heading($color: $color);
+    @include h4-size;
+    @if $margin {
+        margin: 0 0 0.3em;
+    }
+}
+
+@mixin h5($color: false, $margin: true) {
+    @include font-heading($color: $color);
+    @include h5-size;
+    @if $margin {
+        margin: 0 0 0.3em;
+    }
+}
+
+@mixin h6($color: false, $margin: true) {
+    @include font-body-bold($color: $color);
+    @include h6-size;
+    @if $margin {
+        margin: 0 0 0.3em;
+    }
+}
+
+@mixin font-tag {
+    @include font-label-small($bold: true);
+    white-space: nowrap;
+}
+
+@mixin font-label-tiny($bold: false, $uppercase: false) {
+    @if $bold {
+        @include font-body-bold($size: $font-size-tiny, $lh: 1.2, $ls: 0.04em);
+    } @else {
+        @include font-body-regular($size: $font-size-tiny, $lh: 1.2, $ls: 0.04em);
+    }
+
+    @if $uppercase {
+        text-transform: uppercase;
+    }
+}
+
+@mixin font-label-small($bold: false, $uppercase: false) {
+    @if $bold {
+        @include font-body-bold($size: $font-size-small, $lh: 1.2, $ls: 0.04em);
+    } @else {
+        @include font-body-regular($size: $font-size-small, $lh: 1.2, $ls: 0.04em);
+    }
+
+    @if $uppercase {
+        text-transform: uppercase;
+    }
+}
+
+@mixin font-label-standard($bold: false, $uppercase: false) {
+    @if $bold {
+        @include font-body-bold($size: $font-size-medium, $lh: 1.2, $ls: 0.04em);
+    } @else {
+        @include font-body-regular($size: $font-size-medium, $lh: 1.2, $ls: 0.04em);
+    }
+
+    @if $uppercase {
+        text-transform: uppercase;
+    }
+}
+
+@mixin font-label-large($bold: false, $uppercase: false) {
+    @if $bold {
+        @include font-body-bold($size: $font-size-large, $lh: 1.2, $ls: 0.04em);
+    } @else {
+        @include font-body-regular($size: $font-size-large, $lh: 1.2, $ls: 0.04em);
+    }
+
+    @if $uppercase {
+        text-transform: uppercase;
+    }
+}

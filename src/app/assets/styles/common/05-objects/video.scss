@@ -1,0 +1,13 @@
+/*------------------------------------*\
+  OBJECTS > VIDEO
+\*------------------------------------*/
+
+video.lazy {
+    opacity: 0;
+    transition: all 0.25s $easing;
+
+    &.loaded,
+    &.ignore-opacity {
+        opacity: 1;
+    }
+}

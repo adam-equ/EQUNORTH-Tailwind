@@ -1,0 +1,63 @@
+/*------------------------------------*\
+  UTILITIES > COLOURS
+\*------------------------------------*/
+
+.u-bg-primary {
+    background: $color-primary-default !important;
+}
+
+.u-bg-secondary {
+    background: $color-secondary-default !important;
+}
+
+.u-bg-body {
+    background: $color-body !important;
+}
+
+.u-bg-white {
+    background: $color-white !important;
+}
+
+.u-bg-grey {
+    background: $color-grey-light !important;
+}
+
+.u-color-primary {
+    color: $color-primary-default !important;
+}
+
+.u-hover-primary {
+    @include basic-transition(color);
+
+    @include on-event() {
+        color: $color-primary-default;
+    }
+}
+
+.u-color-secondary {
+    color: $color-secondary-default !important;
+}
+
+.u-color-white {
+    color: $color-white !important;
+
+    p {
+        color: $color-white !important;
+    }
+}
+
+.u-color-body {
+    color: $color-body !important;
+
+    p {
+        color: $color-body !important;
+    }
+}
+
+.u-color-error {
+    color: $color-error !important;
+
+    p {
+        color: $color-error !important;
+    }
+}

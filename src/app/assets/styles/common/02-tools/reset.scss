@@ -1,0 +1,34 @@
+/*------------------------------------*\
+  TOOLS > RESET
+\*------------------------------------*/
+
+// Clears user agent styles
+@mixin reset-appearance {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 0;
+    background: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    color: inherit;
+    line-height: $line-height-body;
+
+    &:focus:not(.focus-visible) {
+        outline: none;
+    }
+}
+
+// Clears default link styles
+@mixin reset-anchor {
+    color: inherit;
+    text-decoration: none;
+}
+
+// Makes a vertical list without bullet points
+@mixin reset-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

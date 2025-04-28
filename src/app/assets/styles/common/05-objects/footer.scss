@@ -1,0 +1,189 @@
+/*------------------------------------*\
+  OBJECTS > FOOTER
+\*------------------------------------*/
+
+.site-footer {
+    $site-footer: &;
+
+    background: $color-primary-default;
+    overflow: hidden;
+    position: relative;
+
+    &__top {
+        color: $color-white;
+        height: 100%;
+        position: relative;
+        padding: 32px 0;
+
+        p {
+            color: $color-white;
+        }
+    }
+
+    &__container {
+        display: flex;
+
+        @include mq($until: desktop) {
+            flex-wrap: wrap;
+
+            > * {
+                flex: 1 0 100%;
+            }
+        }
+    }
+
+    &__social {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        @include mq($until: desktop) {
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(228, 236, 242, 0.2);
+        }
+
+        @include mq($from: desktop) {
+            padding-right: 48px;
+            margin-right: 48px;
+            border-right: 1px solid rgba(228, 236, 242, 0.2);
+        }
+
+        .social-links {
+            margin-left: -4px;
+        }
+    }
+
+    &__contact {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        &-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            a {
+                @include font-body-regular($size: 12px);
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                text-underline-offset: 2px;
+
+                @include on-event {
+                    text-decoration: underline;
+                }
+
+                img,
+                svg {
+                    @include square(16px);
+                    color: $color-ui-cta-default;
+                }
+            }
+        }
+    }
+
+    &__nav {
+        flex: 1;
+    }
+
+    &__tray {
+        background: $color-primary-dark;
+        color: $color-white;
+        font-size: $font-size-small;
+        padding: 20px 0;
+
+        &-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px 60px;
+        }
+    }
+
+    &__links {
+        ul {
+            @include reset-list;
+            display: flex;
+            gap: $spacing-xs;
+
+            @include mq($from: tablet) {
+                gap: $spacing-md;
+            }
+
+            li {
+                a {
+                    @include font-label-small($bold: true);
+                    text-underline-offset: 2px;
+
+                    @include on-event {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    &__copyright {
+        @include mq($until: desktop) {
+            flex: 1;
+            text-align: center;
+            white-space: nowrap;
+        }
+    }
+}
+
+.footer-nav {
+    > ul {
+        @include reset-list;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 24px;
+
+        @include mq($until: tablet) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        > li {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+
+            a {
+                @include basic-transition(color);
+
+                @include on-event {
+                    text-decoration: underline;
+                    text-underline-offset: 0.25em;
+                }
+            }
+
+            > ul {
+                @include reset-list;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+
+                > li {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+
+                    > a {
+                        @include font-label-standard;
+                    }
+                }
+            }
+        }
+    }
+
+    &__list {
+        &-title {
+            @include font-label-small($bold: true, $uppercase: true);
+        }
+    }
+}

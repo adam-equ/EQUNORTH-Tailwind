@@ -1,0 +1,25 @@
+/*------------------------------------*\
+  TOOLS > ON-EVENT MIXIN
+
+// .usage {
+//   @include on-event {
+//     color: rebeccapurple;
+//   }
+\*------------------------------------*/
+
+@mixin on-event($self: false) {
+    @include mq($from: desktop) {
+        @if $self {
+            &,
+            &:hover,
+            &:active {
+                @content;
+            }
+        } @else {
+            &:hover,
+            &:active {
+                @content;
+            }
+        }
+    }
+}

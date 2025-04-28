@@ -1,0 +1,152 @@
+/*------------------------------------*\
+  OBJECTS > RICH TEXT
+\*------------------------------------*/
+
+.o-rich-text {
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &:not(:first-child) {
+            margin: 1em 0 0.3em;
+        }
+    }
+
+    ul,
+    ol {
+        list-style: none;
+        margin: 1.5em 0 2.5em;
+        margin-left: 0;
+        padding-left: 0;
+
+        li {
+            position: relative;
+            padding-left: 24px;
+
+            &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            &:not(:first-child) {
+                margin-top: 12px;
+            }
+        }
+    }
+
+    ul {
+        li {
+            &::before {
+                content: '';
+                height: 8px;
+                width: 8px;
+                border-radius: 50%;
+                background: $color-primary-default;
+                display: inline-block;
+                top: 0.55em;
+            }
+        }
+    }
+
+    ol {
+        counter-reset: li;
+
+        li {
+            counter-increment: li;
+
+            &::before {
+                content: counter(li) '.';
+                @include font-body-bold($color: $color-primary-default);
+                display: inline-block;
+                width: 1em;
+            }
+        }
+    }
+
+    blockquote,
+    p,
+    ol,
+    ul {
+        a {
+            font-weight: $font-weight-bold;
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+            color: $color-text-link;
+            @include basic-transition(color);
+
+            @include on-event {
+                color: $color-text-hover !important;
+                text-decoration: none;
+            }
+        }
+    }
+
+    blockquote {
+        @include h5;
+        background: $color-primary-default;
+        border-radius: $border-radius-large;
+        color: $color-white !important;
+        font-style: italic;
+        margin: $spacing-md 0;
+        padding: $spacing-md;
+        position: relative;
+
+        @include interpolate('font-size', $bp-tablet, 18px, $bp-desktop, 22px);
+
+        @include mq($until: tablet) {
+            border-radius: $border-radius-default;
+        }
+
+        p {
+            @include font-heading($size: 22px, $lh: 1.4);
+            @include interpolate('font-size', $bp-tablet, 18px, $bp-desktop, 22px);
+            color: $color-white !important;
+        }
+
+        a {
+            color: $color-text-link-light;
+        }
+
+        // &::before {
+        //     content: '“';
+        //     margin-left: -18px;
+        //     margin-right: 6px;
+        //     position: absolute;
+        // }
+
+        // &::after {
+        //     content: '”';
+        //     margin-left: 6px;
+        // }
+    }
+
+    table {
+        th,
+        td {
+            padding: 16px;
+            text-align: left;
+
+            @include mq($until: desktop) {
+                min-width: 160px;
+            }
+        }
+
+        th {
+            background: $color-grey-light;
+            color: $color-text-default;
+
+            &:not(:last-child) {
+                border-right: 1px solid $color-grey-dark;
+            }
+        }
+
+        tfoot {
+            td {
+                background: $color-grey-light;
+                font-weight: $font-weight-bold;
+            }
+        }
+    }
+}

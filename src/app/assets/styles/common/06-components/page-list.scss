@@ -1,0 +1,224 @@
+/*------------------------------------*\
+  COMPONENTS > PAGE LIST
+\*------------------------------------*/
+
+.page-list {
+    $page-list: &;
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+
+        > * {
+            flex: 1 0 100%;
+            max-width: 400px;
+
+            @include mq($from: tablet) {
+                flex: 1 0 calc(50% - 16px);
+                max-width: calc(50% - 16px);
+            }
+
+            @include mq($from: desktop) {
+                flex: 1 0 calc((100% / 3) - 16px);
+                max-width: calc((100% / 3) - 16px);
+            }
+
+            @include mq($from: desktop-large) {
+                flex: 1 0 calc(25% - 16px);
+                max-width: calc(25% - 16px);
+            }
+
+            @include override-page-narrow {
+                @include mq($from: desktop) {
+                    flex: 1 0 calc(50% - 16px);
+                    max-width: calc(50% - 16px);
+                }
+
+                @include mq($from: desktop-large) {
+                    flex: 1 0 calc((100% / 3) - 16px);
+                    max-width: calc((100% / 3) - 16px);
+                }
+
+                @include mq($from: wide) {
+                    flex: 1 0 calc(25% - 16px);
+                    max-width: calc(25% - 16px);
+                }
+            }
+        }
+    }
+
+    &__item {
+        display: flex;
+        justify-content: center;
+
+        > * {
+            flex: 1;
+
+            @include mq($from: tablet) {
+                height: 100%;
+            }
+        }
+    }
+}
+
+.page-card {
+    $page-card: &;
+
+    @include basic-transition(background-color);
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        @include mq($from: tablet) {
+            align-items: center;
+        }
+    }
+
+    &__header {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+
+        @include mq($until: tablet) {
+            padding: 16px 24px 12px;
+
+            &::after {
+                @include pseudo;
+                @include square(36px);
+                flex: 0 0 36px;
+                border-radius: 50%;
+                background-color: $color-ui-cta-default;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 12 12'%3E%3Cpath fill='%23002B49' d='M11.288 6.1a.387.387 0 0 0 0-.544L7.045 1.312a.387.387 0 0 0-.545 0 .387.387 0 0 0 0 .545l3.585 3.585h-9.1a.387.387 0 0 0-.385.386c0 .212.174.386.386.386h9.099L6.5 9.799a.387.387 0 0 0 0 .545c.15.15.395.15.545 0L11.288 6.1Z'/%3E%3C/svg%3E");
+                background-size: 20px;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+                @include basic-transition(transform);
+            }
+        }
+
+        @include mq($from: tablet) {
+            text-align: center;
+            padding: 32px 24px 16px;
+        }
+
+        @include mq($from: desktop-large) {
+            padding: 40px 24px 24px;
+        }
+
+        &-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+    }
+
+    &__tagline {
+        @include basic-transition(color);
+    }
+
+    &__title {
+        @include basic-transition(color);
+    }
+
+    &__image-container {
+        position: relative;
+
+        @include mq($until: tablet) {
+            width: 100%;
+            order: -1;
+        }
+
+        @include mq($from: tablet) {
+            margin: 0 24px 24px;
+
+            &::before {
+                @include pseudo;
+                background: $color-elevation-light;
+                mask-image: url('/assets/static/images/svg/mask-brush-stroke.svg');
+                mask-repeat: no-repeat;
+                height: 240px;
+                left: 50%;
+                top: 50%;
+                width: 500px;
+                transform: translate(-50%, -50%);
+                z-index: -1;
+                @include basic-transition(background-color);
+            }
+
+            &::after {
+                @include pseudo;
+                @include square(40px);
+                flex: 0 0 40px;
+                border-radius: 50%;
+                background-color: $color-ui-cta-vibrant;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 12 12'%3E%3Cpath fill='%23002B49' d='M11.288 6.1a.387.387 0 0 0 0-.544L7.045 1.312a.387.387 0 0 0-.545 0 .387.387 0 0 0 0 .545l3.585 3.585h-9.1a.387.387 0 0 0-.385.386c0 .212.174.386.386.386h9.099L6.5 9.799a.387.387 0 0 0 0 .545c.15.15.395.15.545 0L11.288 6.1Z'/%3E%3C/svg%3E");
+                background-size: 24px;
+                background-position: center;
+                background-repeat: no-repeat;
+                bottom: 4px;
+                right: 12px;
+                opacity: 0;
+                @include basic-transition(opacity);
+            }
+        }
+    }
+
+    &__image {
+        background: $color-grey-light;
+
+        @include mq($until: tablet) {
+            height: 120px;
+        }
+
+        @include mq($from: tablet) {
+            @include square(180px);
+            mask-image: url('/assets/static/images/svg/mask-circle-image.svg');
+            mask-repeat: no-repeat;
+            overflow: hidden;
+            @include basic-transition(transform);
+
+            &::before {
+                @include pseudo;
+                @include absolute-fit-parent;
+                background-image: url('/assets/static/images/graphics/bg-specks-square.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                mix-blend-mode: multiply;
+                z-index: 1;
+            }
+        }
+    }
+
+    &__text {
+        @include font-body-regular($size: $font-size-small);
+        @include basic-transition(color);
+
+        @include mq($until: tablet) {
+            font-size: $font-size-tiny;
+            padding: 0 24px 24px;
+        }
+
+        @include mq($from: tablet) {
+            text-align: center;
+            padding: 0 24px 32px;
+        }
+    }
+
+    @include on-event {
+        #{$page-card}__image-container {
+            &::before {
+                background: $color-elevation-vibrant;
+            }
+
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+/*------------------------------------*\
+  OBJECTS > SECTION
+\*------------------------------------*/
+
+.o-section {
+  position: relative;
+
+  // Changing page layout for sidebar impacts the ability for components to span the window width, but can be allowed for mobile
+  // @include mq($from: tablet) {
+  //     overflow: hidden;
+  // }
+
+  &--white {
+    background: $color-white;
+  }
+
+  &--grey {
+    background: $color-grey-light;
+  }
+  &.pt-0 {
+    padding-top: 0;
+  }
+  &.pt-8 {
+    padding-top: 8px;
+  }
+  &.pt-16 {
+    padding-top: 16px;
+  }
+  &.pt-32 {
+    padding-top: 32px;
+  }
+  &.pb-0 {
+    padding-bottom: 0;
+  }
+  &.pb-8 {
+    padding-bottom: 8px;
+  }
+  &.pb-16 {
+    padding-bottom: 16px;
+  }
+  &.pb-32 {
+    padding-bottom: 32px;
+  }
+}

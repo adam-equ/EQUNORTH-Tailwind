@@ -1,0 +1,97 @@
+.c-pagination {
+    @include reset-list;
+
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+
+    li {
+        display: inline-block;
+
+        a {
+            @include square(32px);
+            @include font-label-standard($bold: true);
+            color: $color-text-default;
+            line-height: 32px;
+            border-radius: 50%;
+            display: block;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            @include basic-transition(background-color);
+
+            @include mq($until: tablet) {
+                @include square(24px);
+                line-height: 24px;
+            }
+
+            @include on-event {
+                background-color: $color-primary-light;
+            }
+        }
+
+        &.break {
+            a {
+                border: 0;
+            }
+        }
+
+        &.selected,
+        &.is-active {
+            a {
+                background: $color-elevation-vibrant;
+            }
+        }
+
+        &.previous,
+        &.next {
+            display: inline-flex;
+            align-items: center;
+            margin: 0;
+
+            a {
+                height: auto;
+                width: auto;
+                display: inline-flex;
+                align-items: center;
+                flex-wrap: nowrap;
+                text-indent: -9999em;
+
+                &::after {
+                    @include pseudo($pos: relative);
+                    @include square(36px);
+                    background: $icon-url-arrow center no-repeat;
+                    background-size: 20px;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    transform: rotate(0deg);
+                    @include basic-transition(opacity);
+                }
+
+                @include on-event {
+                    &::after {
+                    }
+                }
+            }
+        }
+
+        &.previous {
+            a {
+                &::after {
+                    transform: rotate(-180deg);
+                    order: -1;
+                }
+            }
+        }
+
+        &.next {
+            a {
+            }
+        }
+
+        &.disabled {
+            display: none;
+        }
+    }
+}

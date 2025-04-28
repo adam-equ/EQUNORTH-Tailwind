@@ -1,0 +1,41 @@
+/*------------------------------------*\
+  TOOLS > ASPECT RATIO MIXIN
+\*------------------------------------*/
+
+@use 'sass:math';
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: #{$width + ' / ' + $height};
+
+    > *:first-child {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+// Presets
+
+@mixin aspect-ratio-square {
+    @include aspect-ratio(1, 1);
+}
+
+@mixin aspect-ratio-4-3 {
+    @include aspect-ratio(4, 3);
+}
+
+@mixin aspect-ratio-3-4 {
+    @include aspect-ratio(3, 4);
+}
+
+@mixin aspect-ratio-16-9 {
+    @include aspect-ratio(16, 9);
+}
+
+@mixin aspect-ratio-9-16 {
+    @include aspect-ratio(9, 16);
+}
