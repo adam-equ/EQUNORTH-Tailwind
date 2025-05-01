@@ -1,0 +1,52 @@
+.infopoints {
+  $infopoints: &;
+  &-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+  }
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @include mq($from: tablet) {
+      gap: 12px;
+      display: grid;
+
+      @include mq($until: desktop-large) {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    @include mq($from: desktop-large) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @include override-page-narrow {
+      @include mq($until: desktop-large) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+
+    > * {
+      flex: 1;
+    }
+  }
+}
+.infopoint {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  text-align: center;
+}

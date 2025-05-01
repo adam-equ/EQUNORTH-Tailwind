@@ -1,9 +1,9 @@
 import Image from "next/image";
 import type { WpImage } from "@nextwp/core";
-import { cn } from "@/lib/utils";
 import BlocksWrapper from "../blocks-wrapper";
 export interface ImagePanelProps {
-  image_image?: WpImage;
+  image_image: WpImage;
+  caption?: string;
   full_width?: boolean;
   background_colour?: string;
   component_padding?: {
@@ -15,6 +15,7 @@ export interface ImagePanelProps {
 export function ImagePanel({
   image_image,
   full_width = false,
+  caption,
   background_colour,
   component_padding,
 }: ImagePanelProps) {
@@ -23,21 +24,39 @@ export function ImagePanel({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div
-        className={cn(
-          !full_width
-            ? "mx-auto flex justify-center items-center w-full max-w-7xl max-h-[600px] overflow-hidden"
-            : "flex justify-center items-center max-h-[600px] overflow-hidden"
+      <div className="image-widget" data-aos="fade-in">
+        {full_width ? (
+          <div className="image-widget__image-nocrop">
+            <picture>
+              <Image
+                alt={image_image.alt || ""}
+                src={image_image.url as string}
+                width={image_image.width}
+                height={image_image.height}
+                className=""
+                loading="lazy"
+              />
+            </picture>
+          </div>
+        ) : (
+          <div className="image-widget__image o-box--rounded-large">
+            <div className="o-image o-image--fit lazy-img image--medium">
+              <picture>
+                <Image
+                  alt={image_image.alt || ""}
+                  src={image_image.url as string}
+                  width={image_image.width}
+                  height={image_image.height}
+                  className=""
+                />
+              </picture>
+            </div>
+          </div>
         )}
-      >
-        {image_image?.url ? (
-          <Image
-            alt={image_image.alt || ""}
-            src={image_image.url}
-            width={image_image.width}
-            height={image_image.height}
-            className="relative flex justify-center items-center object-cover object-center z-0"
-          />
+        {caption ? (
+          <div className="o-image__caption u-spacer-top-xs">
+            <span>{caption}</span>
+          </div>
         ) : null}
       </div>
     </BlocksWrapper>

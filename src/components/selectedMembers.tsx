@@ -44,23 +44,29 @@ export function SelectedMembers({ select_members }: SelectedTestimonialProps) {
     return <div>Loading...</div>;
   }
   return (
-    <div className="relative">
+    <div className="team-members__items o-container">
       {members.map((member, index) => {
         return (
-          <div key={index} className="flex gap-8 my-16">
+          <div
+            key={index}
+            className="team-members__item o-box--rounded-large o-box--border"
+          >
             {member.acf?.profile_image?.url ? (
-              <Image
-                alt={member.acf?.profile_image.alt || ""}
-                height={member.acf?.profile_image.height}
-                src={member.acf?.profile_image.url}
-                width={member.acf.profile_image.width}
-                className="text-center w-[250px] h-[250px] rounded-md mb-8"
-              />
+              <div className="team-members__item-image o-image o-image--fit o-image--circle">
+                <Image
+                  alt={member.acf?.profile_image.alt || ""}
+                  height={member.acf?.profile_image.height}
+                  src={member.acf?.profile_image.url}
+                  width={member.acf.profile_image.width}
+                />
+              </div>
             ) : null}
-            <div className="grow text-left">
-              <div className="flex items-start">
-                <h3 className="text-4xl">{member.acf?.full_name}</h3>
-                {member.acf?.linkedin_url && member.acf?.linkedin_url.url ? (
+            <div className="team-members__item-content">
+              <div className="team-members__item-title h5 u-no-margin">
+                {member.acf?.full_name}
+              </div>
+              {member.acf?.linkedin_url && member.acf?.linkedin_url.url ? (
+                <div className="team-members__item-url">
                   <a
                     href={member.acf?.linkedin_url.url}
                     target="_blank"
@@ -70,21 +76,25 @@ export function SelectedMembers({ select_members }: SelectedTestimonialProps) {
                     <ContactRound size={24} className="mr-2" />
                     <span className="text-sm">Connect</span>
                   </a>
-                ) : null}
+                </div>
+              ) : null}
+              <div className="team-members__item-description o-label o-label--small o-label--grey">
+                {member.acf?.job_title_position}
               </div>
-              <p>{member.acf?.job_title_position}</p>
-              <p className="text-gray-600">{member.acf?.intro}</p>
+              <div className="team-members__item-description o-label o-label--small o-label--grey">
+                {member.acf?.intro}
+              </div>
               {member.acf?.bio ? (
                 <Collapsible>
                   <CollapsibleTrigger>
-                    <span className="flex font-bold">
+                    <span className="team-members__item-readmore">
                       More
                       <ChevronDown size={24} />
                     </span>
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <div
-                      className="text-gray-600 pt-4"
+                      className="team-members__item-bio"
                       dangerouslySetInnerHTML={{
                         __html: member.acf?.bio,
                       }}

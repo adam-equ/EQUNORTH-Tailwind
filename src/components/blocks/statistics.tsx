@@ -36,20 +36,14 @@ export function Statistics({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        {stats_title ? (
-          <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-            {stats_title}
-          </h2>
-        ) : null}
+      <div className="statistics">
+        <div className="o-container o-container--narrow u-text-center u-spacer-bottom-md">
+          {stats_title ? <h3>{stats_title}</h3> : null}
 
-        {stats_copy ? (
-          <p className="mt-3 text-lg text-gray-500 dark:text-equ-white">
-            {stats_copy}
-          </p>
-        ) : null}
+          {stats_copy ? <p>{stats_copy}</p> : null}
+        </div>
         {statistic_items ? (
-          <div>
+          <div className="o-container">
             {statistic_items.map(
               ({ statistic_intro, statistic_value, stat_detail }, index) => {
                 return (
@@ -67,23 +61,23 @@ export function Statistics({
                       }
                     }}
                     onClick={() => handleStatWrapperClick(index)}
-                    className="stat-wrapper w-[60vw] mx-auto relative text-left m-4 cursor-pointer group"
+                    className="stat-wrapper"
                   >
                     <div
-                      className="stat-intro dark:text-equ-white text-6xl absolute w-full h-full p-8 opacity-1"
+                      className="stat-intro"
                       dangerouslySetInnerHTML={{ __html: statistic_intro }}
                     />
-                    <div className="stat-detail dark:text-equ-white absolute bg-equ-teal w-full h-full p-8 opacity-0">
+                    <div className="stat-detail">
                       <div
-                        className="stat-value dark:text-equ-white text-8xl font-bold"
+                        className="stat-detail--value"
                         dangerouslySetInnerHTML={{ __html: statistic_value }}
                       />
                       <div
-                        className="stat-details dark:text-equ-white text-6xl"
+                        className="stat-detail--details"
                         dangerouslySetInnerHTML={{ __html: stat_detail }}
                       />
                     </div>
-                    <div className="page-curl group-hover:h-[90px] group-hover:w-[90px]"></div>
+                    <div className="page-curl"></div>
                   </div>
                 );
               }
@@ -91,7 +85,7 @@ export function Statistics({
           </div>
         ) : null}
       </div>
-      <style jsx>
+      {/* <style jsx>
         {`
           .stat-wrapper {
             background-color: rgba(0, 0, 0, 0.8);
@@ -136,19 +130,19 @@ export function Statistics({
             transition: all 0.4s ease;
             width: 0;
           }
-          .show-detail .page-curl {
-            display: none;
-          }
-          .stat-wrapper.show-detail .stat-intro {
-            transform: rotateX(180deg);
+          // .show-detail .page-curl {
+          //   display: none;
+          // }
+          // .stat-wrapper.show-detail .stat-intro {
+          //   transform: rotateX(180deg);
             
-          }
-            .stat-wrapper.show-detail .stat-detail {
-            opacity:1;
-            transform:rotateX(0deg);
-            }
+          // }
+            // .stat-wrapper.show-detail .stat-detail {
+            // opacity:1;
+            // transform:rotateX(0deg);
+            // }
         `}
-      </style>
+      </style> */}
     </BlocksWrapper>
   );
 }

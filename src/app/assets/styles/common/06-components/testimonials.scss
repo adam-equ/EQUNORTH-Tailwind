@@ -1,0 +1,53 @@
+.testimonials {
+  &--slider {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  &--card {
+    padding: 16px;
+    &--inner {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+    }
+    &--content {
+      padding: 32px;
+      picture {
+        display: block;
+        width: auto;
+        height: 110px;
+        img {
+          display: block;
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+      &-quote {
+        padding-top: 32px;
+        padding-bottom: 32px;
+      }
+    }
+    &--profile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      .full-name {
+        font-size: $font-size-extralarge;
+      }
+      .company {
+        font-size: $font-size-small;
+      }
+    }
+  }
+}

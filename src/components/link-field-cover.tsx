@@ -20,16 +20,9 @@ export function LinkFieldCover({ link_field }: LinkFieldProps) {
     // />
     <>
       {!link_field.link_type ? (
-        <Link
-          href={internal_link}
-          className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
-        />
+        <Link href={internal_link} className="u-link-fill" />
       ) : (
-        <a
-          href={external_link}
-          target={link_target}
-          className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
-        />
+        <a href={external_link} target={link_target} className="u-link-fill" />
       )}
     </>
   );

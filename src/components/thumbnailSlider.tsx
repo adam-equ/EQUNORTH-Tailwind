@@ -31,7 +31,7 @@ const ThumbnailSlider = ({ images }: SliderProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   return (
     // Container for both main slider and thumbnail slider
-    <div className="w-4/5 h-full flex flex-col gap-4">
+    <div className="gallery-carousel__carousel-wrapper">
       <Slider images={images} thumbs={{ thumbsSwiper, setThumbsSwiper }} />
       <Thumbnail images={images} thumbs={{ thumbsSwiper, setThumbsSwiper }} />
     </div>
@@ -42,9 +42,9 @@ const Slider = ({ images, thumbs }: SliderProps) => {
   const thumbsSwiper = thumbs?.thumbsSwiper;
   return (
     // Main image slider component
-    <div className="w-full h-4/5 overflow-hidden">
+    <div className="gallery-carousel__carousel-main-slider-wrapper">
       <Swiper
-        className="h-full"
+        className="main-slider"
         grabCursor
         loop
         thumbs={{ swiper: thumbsSwiper }} // Connects main slider to thumbsSwiper for thumbnail synchronization
@@ -67,7 +67,7 @@ const Slider = ({ images, thumbs }: SliderProps) => {
         {/* Iterate over images to create each slide */}
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-full">
+            <div className="main-slider-item o-image--fit">
               {/* Image component for each slide */}
               <Image
                 key={index}
@@ -75,7 +75,6 @@ const Slider = ({ images, thumbs }: SliderProps) => {
                 width={image.width}
                 height={image.height}
                 alt={image.alt ?? ""}
-                className="object-cover object-center w-full h-full"
                 priority={index === 0 && true} // Ensures first image loads with priority
               />
             </div>
@@ -92,11 +91,11 @@ const Thumbnail = ({ images, thumbs }: SliderProps) => {
   const setThumbsSwiper = thumbs?.setThumbsSwiper;
   return (
     // Thumbnail navigation slider component
-    <div className="relative flex gap-2 justify-center h-14">
+    <div className="gallery-carousel__carousel-thumb-slider-wrapper">
       <Swiper
-        className="w-2/4 h-[150px]"
+        className="thumb-slider"
         loop
-        slidesPerView={3}
+        slidesPerView={4}
         spaceBetween={8}
         onSwiper={setThumbsSwiper} // Sets thumbsSwiper when component mounts
         freeMode // Allows free sliding without snap points
@@ -104,18 +103,14 @@ const Thumbnail = ({ images, thumbs }: SliderProps) => {
       >
         {/* Iterate over images to create each thumbnail */}
         {images.map((image, index) => (
-          <SwiperSlide
-            key={index}
-            className="rounded-md cursor-pointer border-[3px] border-solid border-transparent overflow-hidden"
-          >
-            <div className="relative w-full h-full">
+          <SwiperSlide key={index} className="thumb-slider-item">
+            <div className="o-image--fit">
               {/* Thumbnail image component */}
               <Image
                 src={image.url as string}
                 width={image.width}
                 height={image.height}
                 alt={image.alt ?? ""}
-                className="object-cover object-center"
               />
             </div>
           </SwiperSlide>

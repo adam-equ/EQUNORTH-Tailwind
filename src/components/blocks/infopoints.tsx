@@ -30,54 +30,61 @@ export function Infopoints({
       component_padding={component_padding}
     >
       {infop_bg?.url ? (
-        <Image
-          alt={infop_bg.alt || ""}
-          src={infop_bg.url}
-          width={infop_bg.width}
-          height={infop_bg.height}
-          className="absolute top-0 left-0 h-full w-full object-cover z-0"
-        />
+        <div className="infopoints-bg o-image--fit">
+          <Image
+            alt={infop_bg.alt || ""}
+            src={infop_bg.url}
+            width={infop_bg.width}
+            height={infop_bg.height}
+          />
+        </div>
       ) : null}
-      <div className="relative mx-auto w-full max-w-7xl text-center lg:text-center z-1">
+      <div className="o-container o-container--narrow u-text-center u-spacer-bottom-md">
         {infop_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
+          <h3 className="u-space-bottom-md" data-aos="fade-in">
             {infop_title}
-          </h2>
+          </h3>
         ) : null}
 
         {infop_copy ? (
-          <p className="mt-3 text-lg text-gray-500 dark:text-gray-100">
+          <p className="u-spacer-top-md u-text-balance" data-aos="fade-in">
             {infop_copy}
           </p>
         ) : null}
+      </div>
+      <div className="o-container">
         {infop_items ? (
-          <div className="grid grid-flow-col gap-2">
+          <div className="infopoints__items">
             {infop_items.map(
               ({ infopoint_title, infopoint_copy, infopoint_image }, index) => {
                 return (
                   <div
-                    className="text-center p-8 rounded-md relative flex flex-col items-center"
+                    className="infopoints__item"
                     key={index}
+                    data-aos="fade-in"
+                    data-aos-delay={index * 100}
                   >
-                    {infopoint_image?.url ? (
-                      <Image
-                        alt={infopoint_image.alt || ""}
-                        height={infopoint_image.height}
-                        src={infopoint_image.url}
-                        width={infopoint_image.width}
-                        className="text-center"
-                      />
-                    ) : null}
-                    {infopoint_title ? (
-                      <h4 className="font-bold text-2xl dark:text-equ-white">
-                        {infopoint_title}
-                      </h4>
-                    ) : null}
-                    {infopoint_copy ? (
-                      <p className="text-gray-500 text-sm dark:text-gray-100">
-                        {infopoint_copy}
-                      </p>
-                    ) : null}
+                    <div className="infopoint">
+                      {infopoint_image?.url ? (
+                        <Image
+                          alt={infopoint_image.alt || ""}
+                          height={infopoint_image.height}
+                          src={infopoint_image.url}
+                          width={infopoint_image.width}
+                          className="text-center"
+                        />
+                      ) : null}
+                      {infopoint_title ? (
+                        <div className="infopoint__title h5 u-no-margin">
+                          {infopoint_title}
+                        </div>
+                      ) : null}
+                      {infopoint_copy ? (
+                        <p className="u-text-balance u-no-margin">
+                          {infopoint_copy}
+                        </p>
+                      ) : null}
+                    </div>
                   </div>
                 );
               }

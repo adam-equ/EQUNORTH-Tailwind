@@ -14,12 +14,14 @@ export interface CtaProps {
     bottom_padding: string;
   };
   link_field?: LinkFieldType;
+  secondary_link_field?: LinkFieldType;
 }
 
 export function CallToAction({
   cta_title,
   cta_copy,
   link_field,
+  secondary_link_field,
   background_image,
   background_colour,
   component_padding,
@@ -29,31 +31,35 @@ export function CallToAction({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
+      <div className="cta">
         {background_image?.url ? (
-          <Image
-            alt={background_image.alt || ""}
-            src={background_image.url}
-            width={background_image.width}
-            height={background_image.height}
-            className="absolute top-0 left-0 h-full w-full object-cover z-0"
-          />
+          <div className="cta--bg o-image o-image--fit">
+            <Image
+              alt={background_image.alt || ""}
+              src={background_image.url}
+              width={background_image.width}
+              height={background_image.height}
+              className=""
+            />
+          </div>
         ) : null}
-        <div className="relative">
-          {cta_title ? (
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-              {cta_title}
-            </h2>
-          ) : null}
+        <div className="cta__content">
+          {cta_title ? <h3 className="cta__title">{cta_title}</h3> : null}
 
-          {cta_copy ? (
-            <p className="mt-3 text-lg text-gray-500 dark:text-gray-200">
-              {cta_copy}
-            </p>
-          ) : null}
+          {cta_copy ? <div className="cta__text">{cta_copy}</div> : null}
 
-          {link_field?.display_link ? (
-            <LinkFieldButton link_field={link_field} />
+          {link_field || secondary_link_field ? (
+            <div className="cta__buttons u-spacer-top-md">
+              {link_field?.display_link ? (
+                <LinkFieldButton link_field={link_field} className="btn" />
+              ) : null}
+              {secondary_link_field?.display_link ? (
+                <LinkFieldButton
+                  link_field={secondary_link_field}
+                  className="btn btn--outline-light"
+                />
+              ) : null}
+            </div>
           ) : null}
         </div>
       </div>

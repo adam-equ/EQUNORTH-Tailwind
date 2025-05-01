@@ -38,56 +38,65 @@ export function AccordionPanel({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        {accordion_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {accordion_title}
-          </h2>
-        ) : null}
+      <div className="accordion">
+        <div className="o-container o-container--narrow u-text-center u-spacer-bottom-md">
+          {accordion_title ? (
+            <h3 className="u-space-bottom-md" data-aos="fade-in">
+              {accordion_title}
+            </h3>
+          ) : null}
 
-        {accordion_copy ? (
-          <p className="mt-3 text-lg text-gray-500">{accordion_copy}</p>
-        ) : null}
-
-        {accordion_items ? (
-          <div className="mt-10">
-            <Accordion type="single" collapsible>
-              {accordion_items.map(
-                ({ acc_intro, acc_copy, acc_image, reverse }, index) => {
-                  return (
-                    <AccordionItem key={index} value={`value-${index}`}>
-                      <AccordionTrigger className="text-2xl">
-                        {acc_intro}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div className="flex gap-12">
-                          <div
-                            className={cn(
-                              "text-lg text-gray-500 text-left flex-auto",
-                              reverse ? "order-1" : null
-                            )}
-                            dangerouslySetInnerHTML={{ __html: acc_copy }}
-                          />
-                          {acc_image?.url ? (
-                            <div className="w-64 flex-none">
-                              <Image
-                                alt={acc_image.alt || ""}
-                                src={acc_image.url}
-                                width={acc_image.width}
-                                height={acc_image.height}
-                                className=""
-                              />
-                            </div>
-                          ) : null}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  );
-                }
-              )}
-            </Accordion>
-          </div>
-        ) : null}
+          {accordion_copy ? (
+            <p className="u-spacer-top-md u-text-balance" data-aos="fade-in">
+              {accordion_copy}
+            </p>
+          ) : null}
+        </div>
+        <div className="o-container" data-aos="fade-in">
+          {accordion_items ? (
+            <div className="ac">
+              <Accordion type="single" collapsible>
+                {accordion_items.map(
+                  ({ acc_intro, acc_copy, acc_image, reverse }, index) => {
+                    return (
+                      <AccordionItem key={index} value={`value-${index}`}>
+                        <AccordionTrigger className="ac-trigger u-flex u-flex-center u-flex-space-between">
+                          <span className="ac-trigger__title h5 u-no-margin">
+                            {acc_intro}
+                          </span>
+                          <div className="ac-trigger__expand o-label o-label--bold">
+                            <span className="u-hidden">Expand</span>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <div className="ac-panel">
+                            <div
+                              className={cn(
+                                "ac-text",
+                                reverse ? "ac-text--reverse" : null
+                              )}
+                              dangerouslySetInnerHTML={{ __html: acc_copy }}
+                            />
+                            {acc_image?.url ? (
+                              <div className="ac-image o-image o-image--fit">
+                                <Image
+                                  alt={acc_image.alt || ""}
+                                  src={acc_image.url}
+                                  width={acc_image.width}
+                                  height={acc_image.height}
+                                />
+                              </div>
+                            ) : null}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    );
+                  }
+                )}
+              </Accordion>
+            </div>
+          ) : null}
+        </div>
       </div>
     </BlocksWrapper>
   );

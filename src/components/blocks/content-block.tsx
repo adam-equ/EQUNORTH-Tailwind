@@ -18,10 +18,12 @@ export function ContentBlock({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div
-        className="relative mx-auto w-full max-w-7xl prose"
-        dangerouslySetInnerHTML={{ __html: contentb_copy }}
-      />
+      <div className="o-container">
+        <div
+          className="content-block o-rich-text relative mx-auto w-full max-w-7xl prose"
+          dangerouslySetInnerHTML={{ __html: contentb_copy }}
+        />
+      </div>
     </BlocksWrapper>
   );
 }

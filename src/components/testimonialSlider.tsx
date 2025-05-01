@@ -30,17 +30,22 @@ interface TestimonialProps {
 export function TestimonialSlider({ testimonials }: TestimonialProps) {
   return (
     // Main image slider component
-    <div className="w-full h-full flex-1 overflow-hidden">
+    <div className="testimonials--slider w-full h-full flex-1 overflow-hidden">
       <Swiper
         className="h-full"
         grabCursor
         loop
         modules={[Navigation, Pagination]}
         speed={1000}
-        slidesPerView={2}
+        slidesPerView={1}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
+        }}
+        breakpoints={{
+          768: {
+            slidesPerView: 2,
+          },
         }}
       >
         {/* Iterate over images to create each slide */}

@@ -3,128 +3,154 @@
 \*------------------------------------*/
 
 .accordion {
-    .u-bg-dark &,
-    .u-bg-dark2 & {
-        color: #fff;
-    }
+  .u-bg-dark &,
+  .u-bg-dark2 & {
+    color: #fff;
+  }
 }
 
 .ac {
-    &:first-child {
-        margin-top: 20px;
+  &:first-child {
+    margin-top: 20px;
+  }
+
+  .border-b {
+    border-bottom: 1px solid $color-elevation-offcolour;
+  }
+
+  &-trigger {
+    $ac-trigger: &;
+
+    gap: 32px;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    padding: 24px 16px;
+    @include basic-transition(color);
+
+    @include mq($from: desktop-large) {
+      padding: 40px 16px;
     }
 
-    &:not(:last-child) {
-        border-bottom: 1px solid $color-elevation-offcolour;
+    > * {
+      pointer-events: none;
     }
 
-    &-trigger {
-        $ac-trigger: &;
+    &__title {
+      display: inline-flex;
+      @include basic-transition(color);
+    }
 
-        gap: 32px;
-        box-sizing: border-box;
-        width: 100%;
+    &__expand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      @include basic-transition(color);
+
+      &::after {
+        @include pseudo;
+        @include square(36px);
+        flex: 0 0 36px;
+        border-radius: 50%;
+        background-color: $color-ui-cta-default;
+        background-size: 20px;
+        background-position: center;
+        background-repeat: no-repeat;
         position: relative;
-        padding: 24px 16px;
-        @include basic-transition(color);
+        @include basic-transition((background-color, transform));
 
-        @include mq($from: desktop-large) {
-            padding: 40px 16px;
+        @include mq($until: tablet) {
+          @include square(24px);
+          flex: 0 0 24px;
+          background-size: 12px;
         }
-
-        > * {
-            pointer-events: none;
-        }
-
-        &__title {
-            display: inline-flex;
-            @include basic-transition(color);
-        }
-
-        &__expand {
-            display: inline-flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            @include basic-transition(color);
-
-            &::after {
-                @include pseudo;
-                @include square(36px);
-                flex: 0 0 36px;
-                border-radius: 50%;
-                background-color: $color-ui-cta-default;
-                background-size: 20px;
-                background-position: center;
-                background-repeat: no-repeat;
-                position: relative;
-                @include basic-transition((background-color, transform));
-
-                @include mq($until: tablet) {
-                    @include square(24px);
-                    flex: 0 0 24px;
-                    background-size: 12px;
-                }
-            }
-        }
-
-        &[aria-expanded='false'] {
-            #{$ac-trigger}__expand {
-                &::after {
-                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M9.273 19.271c0 .4.329.729.729.729.4 0 .728-.329.728-.729v-8.544h8.544c.4 0 .73-.329.73-.729 0-.4-.33-.728-.73-.728H10.73l.003-8.541c0-.4-.328-.729-.728-.729-.4 0-.729.329-.729.729l-.003 8.54H.729C.329 9.27 0 9.6 0 10c0 .4.329.728.729.728h8.544v8.544Z'/%3E%3C/svg%3E");
-                }
-            }
-        }
-
-        &[aria-expanded='true'] {
-            #{$ac-trigger}__expand {
-                &::after {
-                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M20 9.77c0 .422-.346.769-.77.769H.77a.772.772 0 0 1-.77-.77C0 9.346.346 9 .77 9h18.46c.424 0 .77.346.77.77Z'/%3E%3C/svg%3E");
-                }
-            }
-        }
-
-        @include on-event {
-            color: $color-text-hover;
-
-            #{$ac-trigger}__expand {
-                &::after {
-                    background-color: $color-ui-cta-vibrant;
-                    transform: scale(1.1);
-                }
-            }
-
-            .u-bg-dark &,
-            .u-bg-dark2 & {
-                color: $color-secondary-default;
-            }
-        }
-
-        .is-active & {
-            svg {
-                transform: translateY(-50%) rotate(0deg);
-            }
-        }
+      }
     }
 
-    &-panel {
-        overflow: hidden;
-        transition-property: height, visibility;
-        transition-timing-function: ease;
-        height: 0;
-        padding: 0 16px;
-
-        .is-active & {
-            visibility: visible;
-            height: auto;
+    &[aria-expanded="false"] {
+      #{$ac-trigger}__expand {
+        &::after {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M9.273 19.271c0 .4.329.729.729.729.4 0 .728-.329.728-.729v-8.544h8.544c.4 0 .73-.329.73-.729 0-.4-.33-.728-.73-.728H10.73l.003-8.541c0-.4-.328-.729-.728-.729-.4 0-.729.329-.729.729l-.003 8.54H.729C.329 9.27 0 9.6 0 10c0 .4.329.728.729.728h8.544v8.544Z'/%3E%3C/svg%3E");
         }
+      }
     }
 
-    &-text {
-        padding-bottom: 40px;
-
-        @include mq($from: desktop-large) {
-            padding-bottom: 64px;
+    &[aria-expanded="true"] {
+      #{$ac-trigger}__expand {
+        &::after {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath fill='%23000' d='M20 9.77c0 .422-.346.769-.77.769H.77a.772.772 0 0 1-.77-.77C0 9.346.346 9 .77 9h18.46c.424 0 .77.346.77.77Z'/%3E%3C/svg%3E");
         }
+      }
     }
+
+    @include on-event {
+      color: $color-text-hover;
+
+      #{$ac-trigger}__expand {
+        &::after {
+          background-color: $color-ui-cta-vibrant;
+          transform: scale(1.1);
+        }
+      }
+
+      .u-bg-dark &,
+      .u-bg-dark2 & {
+        color: $color-secondary-default;
+      }
+    }
+
+    .is-active & {
+      svg {
+        transform: translateY(-50%) rotate(0deg);
+      }
+    }
+  }
+  &-panel {
+    overflow: hidden;
+    transition-property: height, visibility;
+    transition-timing-function: ease;
+    height: 0;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include mq($from: tablet) {
+      flex-direction: row;
+      gap: 64px;
+    }
+    padding-bottom: 40px;
+    @include mq($from: desktop-large) {
+      padding-bottom: 64px;
+    }
+  }
+
+  &-text {
+    flex: 1 1 auto;
+
+    order: 1;
+    @include mq($from: tablet) {
+      &--reverse {
+        order: -1;
+      }
+    }
+  }
+  &-image {
+    max-height: 360px;
+    @include mq($from: tablet) {
+      //   &--reverse {
+      //     order: 2;
+      //   }
+    }
+  }
+}
+.accordion {
+  [data-state="open"] {
+    .ac {
+      &-panel {
+        visibility: visible;
+        height: auto;
+      }
+    }
+  }
 }

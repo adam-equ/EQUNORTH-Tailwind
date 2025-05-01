@@ -27,23 +27,31 @@ export function Testimonials({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="relative mx-auto w-full max-w-7xl text-center lg:text-center z-1">
-        {testim_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-            {testim_title}
-          </h2>
-        ) : null}
-
-        {testim_copy ? (
-          <p className="mt-3 text-lg text-gray-500 dark:text-gray-100">
-            {testim_copy}
-          </p>
-        ) : null}
+      <div className="testimonials">
+        <div className="testimonials__header o-container o-container--narrow u-text-center">
+          {testim_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {testim_title}
+            </h3>
+          ) : null}
+          {testim_copy ? (
+            <p
+              className="u-spacer-top-md u-text-balance u-text-large"
+              data-aos="fade-in"
+            >
+              {testim_copy}
+            </p>
+          ) : null}
+        </div>
         {select_testimonials ? (
-          <SelectedTestimonials select_testimonials={select_testimonials} />
+          <div className="o-container">
+            <SelectedTestimonials select_testimonials={select_testimonials} />
+          </div>
         ) : null}
         {link_field?.display_link ? (
-          <LinkFieldButton link_field={link_field} />
+          <div className="o-container u-text-center">
+            <LinkFieldButton link_field={link_field} className="arrow-link" />
+          </div>
         ) : null}
       </div>
     </BlocksWrapper>

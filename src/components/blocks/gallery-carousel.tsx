@@ -25,23 +25,17 @@ export function GalleryCarousel({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        {gallery_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-            {gallery_title}
-          </h2>
-        ) : null}
+      <div className="o-container">
+        <div className="gallery-carousel">
+          {gallery_title ? <h2>{gallery_title}</h2> : null}
 
-        {gallery_copy ? (
-          <p className="mt-3 text-lg dark:text-gray-100 text-gray-500">
-            {gallery_copy}
-          </p>
-        ) : null}
-        {gallery_items ? (
-          <div className="relative w-full h-screen flex items-center justify-center">
-            <ThumbnailSlider images={gallery_items} />
-          </div>
-        ) : null}
+          {gallery_copy ? <p>{gallery_copy}</p> : null}
+          {gallery_items ? (
+            <div className="gallery-carousel__carousel">
+              <ThumbnailSlider images={gallery_items} />
+            </div>
+          ) : null}
+        </div>
       </div>
     </BlocksWrapper>
   );

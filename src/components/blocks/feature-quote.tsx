@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { WpImage } from "@nextwp/core";
 import BlocksWrapper from "../blocks-wrapper";
+import { Quote } from "lucide-react";
 
 export interface FeatureQuoteProps {
   single_quote?: string;
@@ -27,25 +28,28 @@ export function FeatureQuote({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        <div className="flex flex-col items-center w-full">
-          {profile_image_logo?.url ? (
-            <Image
-              alt={profile_image_logo.alt || ""}
-              height={profile_image_logo.height}
-              src={profile_image_logo.url}
-              width={profile_image_logo.width}
-              className="text-center w-[100px] h-[100px] rounded-full mb-8"
-            />
-          ) : null}
-          <div className="text-2xl lg:w-[50vw] dark:text-equ-white mb-8">
-            {single_quote}
-          </div>
-          <div className="text-sm lg:w-[50vw] dark:text-equ-white">
-            {quote_details?.full_name}
-          </div>
-          <div className="text-xs lg:w-[50vw] dark:text-equ-white">
-            {quote_details?.company_name}
+      <div className="feature-quote">
+        <div className="o-container o-container--narrow">
+          <div className="feature-quote-content">
+            {profile_image_logo?.url ? (
+              <div className="feature-quote-image o-image o-image--fit o-image--circle">
+                <Image
+                  alt={profile_image_logo.alt || ""}
+                  height={profile_image_logo.height}
+                  src={profile_image_logo.url}
+                  width={profile_image_logo.width}
+                />
+              </div>
+            ) : null}
+            <div className="feature-quote-quote">
+              <Quote size={16} className="before-quote" />
+              {single_quote}
+              <Quote size={16} className="after-quote" />
+            </div>
+            <div className="feature-quote-name">{quote_details?.full_name}</div>
+            <div className="o-label o-label--small o-label--grey">
+              {quote_details?.company_name}
+            </div>
           </div>
         </div>
       </div>

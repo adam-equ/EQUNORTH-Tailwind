@@ -34,60 +34,69 @@ export function Quicklinks({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        {quickl_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {quickl_title}
-          </h2>
-        ) : null}
+      <div className="quick-links">
+        <div className="o-container">
+          {quickl_title ? (
+            <h2 className="u-space-bottom-md" data-aos="fade-in">
+              {quickl_title}
+            </h2>
+          ) : null}
 
-        {quickl_copy ? (
-          <p className="mt-3 text-lg text-gray-500">{quickl_copy}</p>
-        ) : null}
-        {quickl_items ? (
-          <div className="grid grid-flow-col gap-2">
-            {quickl_items.map(
-              (
-                {
-                  link_field,
-                  quickl_link_title,
-                  quickl_link_copy,
-                  quickl_link_image,
-                },
-                index
-              ) => {
-                return (
-                  <div
-                    className="text-left p-8 bg-equ-concrete rounded-md relative hover:bg-equ-lavender transition duration-300 ease-in-out"
-                    key={index}
-                  >
-                    {quickl_link_image?.url ? (
-                      <Image
-                        alt={quickl_link_image.alt || ""}
-                        height={quickl_link_image.height}
-                        src={quickl_link_image.url}
-                        width={quickl_link_image.width}
-                      />
-                    ) : null}
-                    {quickl_link_title ? (
-                      <h4 className="font-bold text-2xl">
-                        {quickl_link_title}
-                      </h4>
-                    ) : null}
-                    {quickl_link_copy ? (
-                      <p className="text-gray-500 text-sm">
-                        {quickl_link_copy}
-                      </p>
-                    ) : null}
-                    {link_field?.display_link ? (
-                      <LinkFieldCover link_field={link_field} />
-                    ) : null}
-                  </div>
-                );
-              }
-            )}
-          </div>
-        ) : null}
+          {quickl_copy ? (
+            <p className="u-spacer-top-md u-text-balance" data-aos="fade-in">
+              {quickl_copy}
+            </p>
+          ) : null}
+
+          {quickl_items ? (
+            <div className="quick-links__items">
+              {quickl_items.map(
+                (
+                  {
+                    link_field,
+                    quickl_link_title,
+                    quickl_link_copy,
+                    quickl_link_image,
+                  },
+                  index
+                ) => {
+                  return (
+                    <div
+                      className="quick-links__item"
+                      key={index}
+                      data-aos="fade-in"
+                      data-aos-delay={index * 100}
+                    >
+                      <div className="quick-link">
+                        {quickl_link_image?.url ? (
+                          <Image
+                            alt={quickl_link_image.alt || ""}
+                            height={quickl_link_image.height}
+                            src={quickl_link_image.url}
+                            width={quickl_link_image.width}
+                          />
+                        ) : null}
+                        <div className="quick-link__content">
+                          {quickl_link_title ? (
+                            <div className="quick-link__title h5 u-no-margin">
+                              {quickl_link_title}
+                            </div>
+                          ) : null}
+                          {quickl_link_copy ? (
+                            <p className="u-text-balance">{quickl_link_copy}</p>
+                          ) : null}
+                        </div>
+                        {link_field?.display_link ? (
+                          <LinkFieldCover link_field={link_field} />
+                        ) : null}
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          ) : null}
+        </div>
       </div>
     </BlocksWrapper>
   );

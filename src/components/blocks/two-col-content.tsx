@@ -23,20 +23,20 @@ export function TwoColContent({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="relative mx-auto w-full max-w-7xl grid md:grid-cols-2 lg:gap-x-32 sm:gap-y-20 gap-y-10 gap-x-20">
-        <div className={cn(reverse ? "order-1" : null)}>
-          {twocol_title ? (
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-              {twocol_title}
-            </h2>
+      <div className="two-col-content">
+        <div className="o-container two-col-content--content">
+          <div
+            className={cn(
+              "two-col-content--title",
+              reverse ? "two-col-content--title--reverse" : null
+            )}
+          >
+            {twocol_title ? <h2>{twocol_title}</h2> : null}
+          </div>
+          {twocol_copy ? (
+            <div dangerouslySetInnerHTML={{ __html: twocol_copy }} />
           ) : null}
         </div>
-        {twocol_copy ? (
-          <div
-            className="mt-3 text-lg text-gray-500 dark:text-gray-200"
-            dangerouslySetInnerHTML={{ __html: twocol_copy }}
-          ></div>
-        ) : null}
       </div>
     </BlocksWrapper>
   );

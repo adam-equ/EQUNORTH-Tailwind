@@ -26,18 +26,20 @@ export function TeamMembers({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="relative mx-auto w-full max-w-7xl text-center lg:text-center z-1">
-        {teamm_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-            {teamm_title}
-          </h2>
-        ) : null}
+      <div className="team-members">
+        <div className="team-members__header o-container o-container--narrow u-text-center">
+          {teamm_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {teamm_title}
+            </h3>
+          ) : null}
 
-        {teamm_copy ? (
-          <p className="mt-3 text-lg text-gray-500 dark:text-gray-100">
-            {teamm_copy}
-          </p>
-        ) : null}
+          {teamm_copy ? (
+            <p className="u-spacer-top-md u-text-balance" data-aos="fade-in">
+              {teamm_copy}
+            </p>
+          ) : null}
+        </div>
         {select_members ? (
           <SelectedMembers select_members={select_members} />
         ) : null}

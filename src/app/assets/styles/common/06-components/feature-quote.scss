@@ -1,0 +1,35 @@
+.feature-quote {
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  &-image {
+    flex: 0 0 120px;
+    @include square(120px);
+
+    @include mq($until: tablet) {
+      flex: 0 0 100px;
+      @include square(100px);
+    }
+    margin-bottom: 16px;
+  }
+  &-quote {
+    font-size: $font-size-extralarge;
+    font-weight: $font-weight-bold;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    svg {
+      margin-bottom: 6px;
+      stroke: $color-primary-vibrant;
+    }
+    .before-quote {
+      transform: rotate(180deg);
+    }
+  }
+  &-name {
+    font-weight: $font-weight-semibold;
+  }
+}

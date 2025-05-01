@@ -1,15 +1,18 @@
 .image-widget {
-    &__image {
-        @include mq($until: tablet) {
-            border-radius: $border-radius-default !important;
-            height: 380px;
+  &__image {
+    @include mq($until: tablet) {
+      border-radius: $border-radius-default !important;
+      height: 380px;
 
-            * {
-                height: 100%;
-            }
-        }
+      * {
+        height: 100%;
+      }
     }
+  }
 
-    &__image-nocrop {
-    }
+  &__image-nocrop {
+  }
+  img {
+    height: auto;
+  }
 }

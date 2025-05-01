@@ -3,6 +3,7 @@ import type { WpImage } from "@nextwp/core";
 import BlocksWrapper from "../blocks-wrapper";
 import { LinkFieldType } from "./types";
 import { LinkFieldCover } from "../link-field-cover";
+import { cn } from "@/lib/utils";
 
 export interface LogoImageGridProps {
   logo_title?: string;
@@ -30,49 +31,67 @@ export function LogoImageGrid({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="relative mx-auto w-full max-w-7xl text-center lg:text-center z-1">
-        {logo_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {logo_title}
-          </h2>
-        ) : null}
+      <div className="logo-grid logo-grid--grid">
+        <div className="logo-grid__header o-container o-container--narrow u-text-center">
+          {logo_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {logo_title}
+            </h3>
+          ) : null}
 
-        {logo_copy ? (
-          <p className="mt-3 text-lg text-gray-500">{logo_copy}</p>
-        ) : null}
+          {logo_copy ? (
+            <p
+              className="u-spacer-top-md u-text-balance u-text-large"
+              data-aos="fade-in"
+            >
+              {logo_copy}
+            </p>
+          ) : null}
+        </div>
+
         {logo_items ? (
-          <div className="grid grid-cols-3 gap-8">
-            {logo_items.map(
-              (
-                { logo_item_image, logo_item_description, link_field },
-                index
-              ) => {
-                return (
-                  <div
-                    className="text-center p-8 rounded-md relative flex flex-col items-center bg-equ-white"
-                    key={index}
-                  >
-                    {logo_item_image?.url ? (
-                      <Image
-                        alt={logo_item_image.alt || ""}
-                        height={logo_item_image.height}
-                        src={logo_item_image.url}
-                        width={logo_item_image.width}
-                        className="text-center max-w-[200px]"
-                      />
-                    ) : null}
-                    {logo_item_description ? (
-                      <p className="text-gray-500 text-sm pt-2 mb-0">
-                        {logo_item_description}
-                      </p>
-                    ) : null}
-                    {link_field?.display_link ? (
-                      <LinkFieldCover link_field={link_field} />
-                    ) : null}
-                  </div>
-                );
-              }
-            )}
+          <div className="o-container">
+            <div className="logo-grid__items">
+              {logo_items.map(
+                (
+                  { logo_item_image, logo_item_description, link_field },
+                  index
+                ) => {
+                  return (
+                    <div
+                      className={cn(
+                        "logo-grid__item o-box--rounded-large o-box--border",
+                        link_field?.display_link
+                          ? "o-box--hover u-relative"
+                          : null
+                      )}
+                      key={index}
+                    >
+                      {link_field?.display_link ? (
+                        <LinkFieldCover link_field={link_field} />
+                      ) : null}
+                      <div className="logo-grid__item-inner">
+                        {logo_item_image?.url ? (
+                          <picture>
+                            <Image
+                              alt={logo_item_image.alt || ""}
+                              height={logo_item_image.height}
+                              src={logo_item_image.url}
+                              width={logo_item_image.width}
+                            />
+                          </picture>
+                        ) : null}
+                        {logo_item_description ? (
+                          <div className="o-label o-label--small o-label--grey">
+                            {logo_item_description}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
           </div>
         ) : null}
       </div>
