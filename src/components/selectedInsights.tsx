@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import getSelectedInsights from "server-actions/getSelectedInsights";
+import AOS from "aos";
 
 export interface InsightListing {
   slug: string;
@@ -42,6 +43,13 @@ export function SelectedInsights({ select_insights }: SelectedInsightsProps) {
         });
     }
   }, [select_insights]);
+
+  useEffect(() => {
+    if (insightList.length > 0) {
+      AOS.refresh();
+    }
+  }, [insightList]);
+
   if (loading) {
     return <div>Loading...</div>;
   }

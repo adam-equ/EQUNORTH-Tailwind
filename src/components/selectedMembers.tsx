@@ -9,6 +9,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
+import AOS from "aos";
 
 export interface Member {
   acf: {
@@ -40,6 +41,11 @@ export function SelectedMembers({ select_members }: SelectedTestimonialProps) {
         });
     }
   }, [select_members]);
+  useEffect(() => {
+    if (members.length > 0) {
+      AOS.refresh();
+    }
+  }, [members]);
   if (loading) {
     return <div>Loading...</div>;
   }

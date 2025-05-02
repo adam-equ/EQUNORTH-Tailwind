@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { AcfFile } from "@nextwp/core";
 import { FileIcon } from "lucide-react";
 import BlocksWrapper from "../blocks-wrapper";

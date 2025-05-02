@@ -27,9 +27,9 @@ interface TimelineProps {
 export function TimelineSlider({ timeline_items }: TimelineProps) {
   return (
     // Main image slider component
-    <div className="w-full h-full flex-1 relative">
+    <div className="timeline-slider--wrapper">
       <Swiper
-        className="h-full relative"
+        className="timeline-slider-slider"
         grabCursor
         modules={[Navigation, Pagination]}
         speed={1000}
@@ -41,13 +41,13 @@ export function TimelineSlider({ timeline_items }: TimelineProps) {
       >
         {/* Iterate over images to create each slide */}
         {timeline_items.map((item, index) => (
-          <SwiperSlide key={index} className="mt-12 timeline-card">
+          <SwiperSlide key={index} className="timeline-slider-slide">
             <TimelineCard timeline={item} />
           </SwiperSlide>
         ))}
-        <div className="slider-controls-small absolute top-2 right-0 w-[100px] h-[32px] z-5">
-          <div className="swiper-button-prev w-[32px] h-[32px] rounded-md"></div>
-          <div className="swiper-button-next w-[30px] h-[30px] rounded-md"></div>
+        <div className="slider-controls-small">
+          <div className="swiper-button-prev"></div>
+          <div className="swiper-button-next"></div>
         </div>
       </Swiper>
     </div>

@@ -4,13 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import getSelectedPages from "server-actions/getSelectedPages";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import AOS from "aos";
 
 export interface PageListing {
   slug: string;
@@ -44,35 +38,42 @@ export function SelectedPages({ select_pages }: SelectedPagesProps) {
         });
     }
   }, [select_pages]);
+  useEffect(() => {
+    if (pageList.length > 0) {
+      AOS.refresh();
+    }
+  }, [pageList]);
   if (loading) {
     return <div>Loading...</div>;
   }
   return (
-    <div className="grid grid-cols-3 gap-8 my-8">
+    <div className="page-cards_grid">
       {pageList.map((item, index) => {
         return (
-          <Card key={index} className="rounded-t-none text-left relative">
-            <CardHeader className="p-0">
+          <div
+            key={index}
+            className="page-cards_card o-box--rounded o-box--border o-box--hover u-relative"
+          >
+            <div className="page-cards_card--header">
               {item.acf?.pl_image?.url ? (
-                <Image
-                  alt={item.acf.pl_image.alt || ""}
-                  height={item.acf.pl_image.height}
-                  src={item.acf.pl_image.url}
-                  width={item.acf.pl_image.width}
-                  className="text-center w-full h-full object-cover"
-                />
+                <div className="page-cards_card-image-container">
+                  <div className="page-cards_card--image o-box--rounded-small o-image o-image--fit">
+                    <Image
+                      alt={item.acf.pl_image.alt || ""}
+                      height={item.acf.pl_image.height}
+                      src={item.acf.pl_image.url}
+                      width={item.acf.pl_image.width}
+                    />
+                  </div>
+                </div>
               ) : null}
-              <CardTitle className="py-4 px-6">
+              <div className="page-cards_card--title h5">
                 {item.acf.pl_title || item.title.rendered}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-500 text-sm">
-              {item.acf.pl_intro}
-            </CardContent>
-            <CardFooter className="absolute w-full h-full top-0 left-0 right-0 bottom-0">
-              <Link href={item.slug} className="w-full h-full" />
-            </CardFooter>
-          </Card>
+              </div>
+            </div>
+            <div className="page-cards_card--intro">{item.acf.pl_intro}</div>
+            <Link href={item.slug} className="u-link-fill" />
+          </div>
         );
       })}
     </div>

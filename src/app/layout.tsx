@@ -4,6 +4,11 @@ import Footer from "@/components/footer";
 import SmoothScrolling from "@/components/smoothScrolling";
 import AOSInitialiser from "@/components/aosinitialiser";
 
+const ClientSideAOSInitialiser = () => {
+  "use client";
+  return <AOSInitialiser />;
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -13,9 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SmoothScrolling>
+          <ClientSideAOSInitialiser />
           <div className="site-wrap">
             <Navbar />
-            <AOSInitialiser />
             {children}
             <Footer />
           </div>

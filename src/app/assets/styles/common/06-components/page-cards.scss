@@ -1,0 +1,54 @@
+.page-cards {
+  &_grid {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    @include mq($from: mobile-large) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mq($from: desktop-large) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+  &_card {
+    position: relative;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    &-image-container {
+      height: 180px;
+      position: relative;
+      @include mq($from: mobile-large) {
+        height: 220px;
+      }
+    }
+    &--image {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    // &--header {
+    //   img {
+    //     display: block;
+    //     width: 100%;
+    //     max-height: 180px;
+    //     object-fit: cover;
+    //     object-position: center;
+    //   }
+    // }
+    &--title {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+    &--intro {
+      flex-grow: 1;
+      font-size: $font-size-small;
+      padding: 0 8px 8px;
+    }
+  }
+}

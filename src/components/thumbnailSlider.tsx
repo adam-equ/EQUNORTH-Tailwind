@@ -10,10 +10,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import "swiper/css/effect-fade";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/thumbs";
+// import "swiper/css/effect-fade";
 
 // import required modules
 import { Thumbs, Navigation, EffectFade, Autoplay } from "swiper/modules";

@@ -23,21 +23,28 @@ export function Timeline({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="relative mx-auto w-full max-w-7xl text-center lg:text-center z-1">
-        {timeline_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-            {timeline_title}
-          </h2>
-        ) : null}
+      <div className="timeline">
+        <div className="timeline__header o-container o-container--narrow u-text-center">
+          {timeline_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {timeline_title}
+            </h3>
+          ) : null}
 
-        {timeline_copy ? (
-          <p className="mt-3 text-lg text-gray-500 dark:text-gray-100">
-            {timeline_copy}
-          </p>
-        ) : null}
-        {timeline_items ? (
-          <TimelineSlider timeline_items={timeline_items} />
-        ) : null}
+          {timeline_copy ? (
+            <p
+              className="u-spacer-top-md u-text-balance u-text-large"
+              data-aos="fade-in"
+            >
+              {timeline_copy}
+            </p>
+          ) : null}
+        </div>
+        <div className="o-container">
+          {timeline_items ? (
+            <TimelineSlider timeline_items={timeline_items} />
+          ) : null}
+        </div>
       </div>
     </BlocksWrapper>
   );

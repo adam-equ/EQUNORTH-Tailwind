@@ -3,6 +3,7 @@ import { WpImage, WpLink } from "@nextwp/core";
 import { useEffect, useState } from "react";
 import getSelectedTestimonials from "server-actions/getSelectedTestimonials";
 import TestimonialSlider from "./testimonialSlider";
+import AOS from "aos";
 
 export interface Testimonial {
   acf: {
@@ -35,6 +36,11 @@ export function SelectedTestimonials({
         });
     }
   }, [select_testimonials]);
+  useEffect(() => {
+    if (testimonials.length > 0) {
+      AOS.refresh();
+    }
+  }, [testimonials]);
   if (loading) {
     return <div>Loading...</div>;
   }

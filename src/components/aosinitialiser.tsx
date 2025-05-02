@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 const AOSInitialiser = () => {
   useEffect(() => {
     AOS.init({
-      once: true,
+      once: false,
       disable: "phone",
       offset: 100,
       duration: 1000,

@@ -23,18 +23,25 @@ export function PageCards({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        {pcards_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-            {pcards_title}
-          </h2>
-        ) : null}
-        {pcards_copy ? (
-          <p className="mt-3 text-lg text-gray-500 dark:text-equ-white">
-            {pcards_copy}
-          </p>
-        ) : null}
-        {pcard_pages ? <SelectedPages select_pages={pcard_pages} /> : null}
+      <div className="page-cards">
+        <div className="page-cards__header o-container o-container--narrow u-text-center">
+          {pcards_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {pcards_title}
+            </h3>
+          ) : null}
+          {pcards_copy ? (
+            <p
+              className="u-spacer-top-md u-text-balance u-text-large"
+              data-aos="fade-in"
+            >
+              {pcards_copy}
+            </p>
+          ) : null}
+        </div>
+        <div className="o-container">
+          {pcard_pages ? <SelectedPages select_pages={pcard_pages} /> : null}
+        </div>
       </div>
     </BlocksWrapper>
   );
