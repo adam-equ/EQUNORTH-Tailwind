@@ -1,5 +1,5 @@
 import BlocksWrapper from "../blocks-wrapper";
-import HubspotContactForm from "./hubspotform";
+import HubspotContactForm from "../hubspotform";
 export interface FormPanelProps {
   form_title?: string;
   form_copy?: string;
@@ -24,18 +24,23 @@ export function FormPanel({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        <div className="flex gap-32 max-w-[800px] mx-auto">
-          <div className="form-copy-wrapper text-left">
-            {form_title ? (
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                {form_title}
-              </h2>
-            ) : null}
-            {form_copy ? (
-              <p className="mt-3 text-lg text-gray-500">{form_copy}</p>
-            ) : null}
-          </div>
+      <div className="form-panel">
+        <div className="form-panel__header o-container o-container--narrow u-text-center">
+          {form_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {form_title}
+            </h3>
+          ) : null}
+          {form_copy ? (
+            <p
+              className="u-spacer-top-md u-text-balance u-text-large"
+              data-aos="fade-in"
+            >
+              {form_copy}
+            </p>
+          ) : null}
+        </div>
+        <div className="o-container o-container--narrow">
           {hsregion && hsportalId && form_id ? (
             <HubspotContactForm
               region={hsregion}

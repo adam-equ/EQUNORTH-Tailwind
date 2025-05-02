@@ -25,5 +25,7 @@ export const GoogleMaps = ({
     }
   }, [ref, locations]);
 
-  return <div ref={ref} className="mx-auto w-full min-h-[400px]" />;
+  return (
+    <div ref={ref} className="google-map-map o-box--rounded o-box--border" />
+  );
 };

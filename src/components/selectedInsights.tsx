@@ -3,13 +3,6 @@ import { WpImage } from "@nextwp/core";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
 import getSelectedInsights from "server-actions/getSelectedInsights";
 
 export interface InsightListing {
@@ -53,50 +46,55 @@ export function SelectedInsights({ select_insights }: SelectedInsightsProps) {
     return <div>Loading...</div>;
   }
   return (
-    <div className="grid grid-cols-4 gap-8 my-8">
+    <div className="insights_grid">
       {insightList.map((item, index) => {
         return (
-          <Card key={index} className="text-left relative overflow-hidden">
-            <CardHeader className="p-0">
+          <div
+            key={index}
+            className="insights_card o-box--rounded o-box--border o-box--hover u-relative"
+          >
+            <div className="insights_card--header">
               {item.acf?.pl_image?.url ? (
-                <Image
-                  alt={item.acf.pl_image.alt || ""}
-                  height={item.acf.pl_image.height}
-                  src={item.acf.pl_image.url}
-                  width={item.acf.pl_image.width}
-                  className="text-center w-full h-full object-cover"
-                />
-              ) : null}
-              <CardTitle className="py-4 px-6">
-                {item.acf.pl_title || item.title.rendered}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-500 text-sm">
-              {item.acf.pl_intro}
-              <div className="flex pt-2 items-center">
-                {item.acf.team_member?.profile_image.url ? (
+                <div className="o-box--rounded-small">
                   <Image
-                    alt={item.acf.team_member?.profile_image.alt || ""}
-                    height={item.acf.team_member?.profile_image.height}
-                    src={item.acf.team_member?.profile_image.url}
-                    width={item.acf.team_member?.profile_image.width}
-                    className="text-center w-[46px] h-[46px] object-cover rounded-full mr-2"
+                    alt={item.acf.pl_image.alt || ""}
+                    height={item.acf.pl_image.height}
+                    src={item.acf.pl_image.url}
+                    width={item.acf.pl_image.width}
                   />
-                ) : null}
-                <div className="flex flex-col">
-                  <span className="font-semibold">
-                    {item.acf.team_member?.full_name}
-                  </span>
-                  <span className="text-sm font-light">
-                    {item.acf.team_member?.job_title}
-                  </span>
                 </div>
+              ) : null}
+              <div className="insights_card--title h5">
+                {item.acf.pl_title || item.title.rendered}
               </div>
-            </CardContent>
-            <CardFooter className="absolute w-full h-full top-0 left-0 right-0 bottom-0">
-              <Link href={item.slug} className="w-full h-full" />
-            </CardFooter>
-          </Card>
+            </div>
+            <div className="insights_card--content">
+              <div className="insights_card--intro">{item.acf.pl_intro}</div>
+              {item.acf.team_member ? (
+                <div className="insights_card--author flex pt-2 items-center">
+                  {item.acf.team_member?.profile_image.url ? (
+                    <div className="insights_card--author-image o-image o-image--fit o-image--circle">
+                      <Image
+                        alt={item.acf.team_member?.profile_image.alt || ""}
+                        height={item.acf.team_member?.profile_image.height}
+                        src={item.acf.team_member?.profile_image.url}
+                        width={item.acf.team_member?.profile_image.width}
+                      />
+                    </div>
+                  ) : null}
+                  <div className="insights_card--author-details">
+                    <span className="insights_card--author-name">
+                      {item.acf.team_member?.full_name}
+                    </span>
+                    <span className="insights_card--author-title">
+                      {item.acf.team_member?.job_title}
+                    </span>
+                  </div>
+                </div>
+              ) : null}
+            </div>
+            <Link href={item.slug} className="u-link-fill" />
+          </div>
         );
       })}
     </div>

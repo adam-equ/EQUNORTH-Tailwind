@@ -4,13 +4,14 @@ import BlocksWrapper from "../blocks-wrapper";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import FeaturePanelSlider from "../featurepanelSlider";
+import { LinkFieldType } from "./types";
 
 interface FeaturepItem {
   featurep_image: WpImage;
   featurep_pre_title?: string;
   featurep_title: string;
   featurep_copy: string;
-  featurep_link: WpLink;
+  link_field?: LinkFieldType;
 }
 export interface FeaturePanelProps {
   featp_title?: string;
@@ -40,20 +41,27 @@ export function FeaturePanelCarousel({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        {featp_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-            {featp_title}
-          </h2>
-        ) : null}
+      <div className="feature-panel">
+        <div className="feature-panel__header o-container o-container--narrow u-text-center">
+          {featp_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {featp_title}
+            </h3>
+          ) : null}
 
-        {featp_copy ? (
-          <p className="mt-3 text-lg text-gray-500 dark:text-gray-100">
-            {featp_copy}
-          </p>
-        ) : null}
-        <div className="relative w-full h-[600px] flex items-center justify-center">
-          <FeaturePanelSlider features={featp_items} />
+          {featp_copy ? (
+            <p
+              className="u-spacer-top-md u-text-balance u-text-large"
+              data-aos="fade-in"
+            >
+              {featp_copy}
+            </p>
+          ) : null}
+        </div>
+        <div className="o-container">
+          <div className="feature-panel-carousel-wrapper o-box--rounded o-box--border">
+            <FeaturePanelSlider features={featp_items} />
+          </div>
         </div>
       </div>
     </BlocksWrapper>

@@ -42,7 +42,7 @@ const Slider = ({ images, thumbs }: SliderProps) => {
   const thumbsSwiper = thumbs?.thumbsSwiper;
   return (
     // Main image slider component
-    <div className="gallery-carousel__carousel-main-slider-wrapper">
+    <div className="gallery-carousel__carousel-main-slider-wrapper o-box--rounded o-box--border">
       <Swiper
         className="main-slider"
         grabCursor
@@ -67,16 +67,18 @@ const Slider = ({ images, thumbs }: SliderProps) => {
         {/* Iterate over images to create each slide */}
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="main-slider-item o-image--fit">
+            <div className="main-slider-item">
               {/* Image component for each slide */}
-              <Image
-                key={index}
-                src={image.url as string}
-                width={image.width}
-                height={image.height}
-                alt={image.alt ?? ""}
-                priority={index === 0 && true} // Ensures first image loads with priority
-              />
+              <div className="main-slider-item-image o-image o-image--fit">
+                <Image
+                  key={index}
+                  src={image.url as string}
+                  width={image.width}
+                  height={image.height}
+                  alt={image.alt ?? ""}
+                  priority={index === 0 && true} // Ensures first image loads with priority
+                />
+              </div>
             </div>
           </SwiperSlide>
         ))}
@@ -104,14 +106,16 @@ const Thumbnail = ({ images, thumbs }: SliderProps) => {
         {/* Iterate over images to create each thumbnail */}
         {images.map((image, index) => (
           <SwiperSlide key={index} className="thumb-slider-item">
-            <div className="o-image--fit">
-              {/* Thumbnail image component */}
-              <Image
-                src={image.url as string}
-                width={image.width}
-                height={image.height}
-                alt={image.alt ?? ""}
-              />
+            <div className="thumb-slider-item-border">
+              <div className="thumb-slider-item-image o-image o-image--fit">
+                {/* Thumbnail image component */}
+                <Image
+                  src={image.url as string}
+                  width={image.width}
+                  height={image.height}
+                  alt={image.alt ?? ""}
+                />
+              </div>
             </div>
           </SwiperSlide>
         ))}

@@ -13,16 +13,16 @@ import "swiper/css/effect-fade";
 
 // import required modules
 import { Navigation, Autoplay, EffectFade, Pagination } from "swiper/modules";
-import { WpImage, WpLink } from "@nextwp/core";
-import { Button } from "./ui/button";
-import Link from "next/link";
+import { WpImage } from "@nextwp/core";
+import { LinkFieldType } from "./blocks/types";
+import { LinkFieldButton } from "./link-field-button";
 
 interface FeaturepItem {
   featurep_image: WpImage;
   featurep_pre_title?: string;
   featurep_title: string;
   featurep_copy: string;
-  featurep_link: WpLink;
+  link_field?: LinkFieldType;
 }
 
 interface FeaturesProps {
@@ -32,9 +32,9 @@ interface FeaturesProps {
 export function FeaturePanelSlider({ features }: FeaturesProps) {
   return (
     // Main image slider component
-    <div className="w-full h-full flex-1 overflow-hidden">
+    <div className="feature-panel-carousel">
       <Swiper
-        className="h-full"
+        className="feature-panel-carousel-swiper"
         grabCursor
         loop
         modules={[Navigation, Autoplay, EffectFade, Pagination]}
@@ -49,7 +49,7 @@ export function FeaturePanelSlider({ features }: FeaturesProps) {
         speed={1000}
         slidesPerView={1}
         pagination={{
-          el: ".swiper-pagination",
+          el: ".feature-panel-pagination",
           type: "bullets",
           clickable: true,
         }}
@@ -61,38 +61,34 @@ export function FeaturePanelSlider({ features }: FeaturesProps) {
         {/* Iterate over images to create each slide */}
         {features.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-full featurep-slide">
+            <div className="feature-panel-carousel-item">
               {/* Image component for each slide */}
-              <div className="slide-overlay">
+              <div className="feature-panel-carousel-image o-image o-image--fit o-image--overlay">
                 <Image
                   key={index}
                   src={item.featurep_image.url as string}
                   width={item.featurep_image.width}
                   height={item.featurep_image.height}
                   alt={item.featurep_image.alt ?? ""}
-                  priority
-                  className="w-full h-full object-cover object-center flex justify-center items-center"
-                  // priority={index === 0 && true} // Ensures first image loads with priority
+                  // priority
+                  priority={index === 0 && true} // Ensures first image loads with priority
                 />
               </div>
-              <div className="feature-panel-content absolute bottom-[80px] left-0 px-16 text-left">
-                <div className="tag text-lg font-bold uppercase text-equ-white relative">
-                  {item.featurep_pre_title}
-                </div>
-                <div className="title tag text-4xl font-bold text-equ-white">
-                  {item.featurep_title}
-                </div>
-                <div className="text-equ-white">{item.featurep_copy}</div>
-                <Button variant="default" size="lg" asChild className="mt-6">
-                  <Link href={item.featurep_link.url as string}>
-                    {item.featurep_link.title}
-                  </Link>
-                </Button>
+              <div className="feature-panel-content">
+                <div className="tag">{item.featurep_pre_title}</div>
+                <div className="title tag">{item.featurep_title}</div>
+                <div className="copy">{item.featurep_copy}</div>
+                {item.link_field?.display_link ? (
+                  <LinkFieldButton
+                    link_field={item.link_field}
+                    className="btn u-spacer-top"
+                  />
+                ) : null}
               </div>
             </div>
           </SwiperSlide>
         ))}
-        <div className="swiper-pagination"></div>
+        <div className="swiper-pagination feature-panel-pagination"></div>
         <div className="swiper-button-prev"></div>
         <div className="swiper-button-next"></div>
       </Swiper>

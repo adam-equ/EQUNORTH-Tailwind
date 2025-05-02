@@ -23,16 +23,28 @@ export function InsightCards({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        {icards_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            {icards_title}
-          </h2>
+      <div className="insights">
+        <div className="insights__header o-container o-container--narrow u-text-center">
+          {icards_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {icards_title}
+            </h3>
+          ) : null}
+          {icards_copy ? (
+            <p
+              className="u-spacer-top-md u-text-balance u-text-large"
+              data-aos="fade-in"
+            >
+              {icards_copy}
+            </p>
+          ) : null}
+        </div>
+
+        {insights ? (
+          <div className="o-container">
+            <SelectedInsights select_insights={insights} />
+          </div>
         ) : null}
-        {icards_copy ? (
-          <p className="mt-3 text-lg text-gray-500">{icards_copy}</p>
-        ) : null}
-        {insights ? <SelectedInsights select_insights={insights} /> : null}
       </div>
     </BlocksWrapper>
   );

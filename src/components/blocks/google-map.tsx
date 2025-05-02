@@ -29,21 +29,28 @@ export function GoogleMap({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full max-w-7xl text-center lg:text-center">
-        {map_title ? (
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-            {map_title}
-          </h2>
-        ) : null}
+      <div className="google-map">
+        <div className="google-map__header o-container o-container--narrow u-text-center">
+          {map_title ? (
+            <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+              {map_title}
+            </h3>
+          ) : null}
 
-        {map_copy ? (
-          <p className="mt-3 text-lg text-gray-500 dark:text-gray-200">
-            {map_copy}
-          </p>
-        ) : null}
-        <GoogleMapsWrapper>
-          <GoogleMaps locations={LOCATION} />
-        </GoogleMapsWrapper>
+          {map_copy ? (
+            <p
+              className="u-spacer-top-md u-text-balance u-text-large"
+              data-aos="fade-in"
+            >
+              {map_copy}
+            </p>
+          ) : null}
+        </div>
+        <div className="o-container">
+          <GoogleMapsWrapper>
+            <GoogleMaps locations={LOCATION} />
+          </GoogleMapsWrapper>
+        </div>
       </div>
     </BlocksWrapper>
   );
