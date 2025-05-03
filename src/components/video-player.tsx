@@ -25,12 +25,26 @@ export function VideoPlayer({ videoUrl, options }: VideoPlayerProps) {
       playsinline={true}
       width="100%"
       height="100%"
+      className="react-player"
       style={{
-        width: "100%",
-        height: "100%", // use 100vh to fill the full height of the viewport
-        aspectRatio: "16/9",
-        overflow: "hidden", // position: "absolute",
+        // width: "100%",
+        // height: "100%", // use 100vh to fill the full height of the viewport
+        // aspectRatio: "16/9",
+        // overflow: "hidden",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        objectFit: "cover",
       }}
+      // config={{
+      //   file: {
+      //     attributes: {
+      //       style: {
+      //         objectFit: "cover",
+      //       },
+      //     },
+      //   },
+      // }}
     />
   );
 }

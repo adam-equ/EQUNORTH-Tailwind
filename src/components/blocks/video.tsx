@@ -8,6 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { ChevronDownCircle } from "lucide-react";
 import { VideoPlayer } from "../video-player";
 import BlocksWrapper from "../blocks-wrapper";
+import { cn } from "@/lib/utils";
 export interface VideoProps {
   video_title?: string;
   video_copy?: string;
@@ -18,6 +19,7 @@ export interface VideoProps {
     muted: boolean;
     loop: boolean;
     controls: boolean;
+    full_width: boolean;
   };
   transcript?: string;
   background_colour?: string;
@@ -43,34 +45,51 @@ export function Video({
       background_colour={background_colour}
       component_padding={component_padding}
     >
-      <div className="mx-auto w-full h-full max-w-7xl text-center lg:text-center">
-        <div className="relative">
-          {video_title ? (
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-equ-white">
-              {video_title}
-            </h2>
-          ) : null}
+      <div className="video-inline">
+        {video_title || video_copy ? (
+          <div className="video-inline__header o-container o-container--narrow u-text-center">
+            {video_title ? (
+              <h3 className="u-spacer-bottom-md" data-aos="fade-in">
+                {video_title}
+              </h3>
+            ) : null}
 
-          {video_copy ? (
-            <p className="mt-3 text-lg text-gray-500 dark:text-gray-200">
-              {video_copy}
-            </p>
-          ) : null}
-        </div>
+            {video_copy ? (
+              <p
+                className="u-spacer-top-md u-text-balance u-text-large"
+                data-aos="fade-in"
+              >
+                {video_copy}
+              </p>
+            ) : null}
+          </div>
+        ) : null}
 
         {videoUrl ? (
-          <div className="w-full h-[calc(100vh-72px)] lg:w-[56vw] m-auto flex flex-col items-center justify-center flex-grow relative">
-            <VideoPlayer videoUrl={videoUrl} options={options} />
+          <div
+            className={cn(
+              "video-inline-content",
+              options?.full_width ? "" : "o-container"
+            )}
+          >
+            <div
+              className={cn(
+                "video-inline-wrapper",
+                options?.full_width ? "video-full" : ""
+              )}
+            >
+              <VideoPlayer videoUrl={videoUrl} options={options} />
+            </div>
           </div>
         ) : null}
         {transcript ? (
-          <Collapsible className="py-8 relative z-2">
-            <CollapsibleTrigger className="flex w-full items-center justify-center pb-8">
-              View Transcript <ChevronDownCircle size={24} className="ml-2" />
+          <Collapsible className="video-inline-transcript">
+            <CollapsibleTrigger className="video-inline-transcript--trigger">
+              View Transcript <ChevronDownCircle size={24} />
             </CollapsibleTrigger>
-            <CollapsibleContent>
+            <CollapsibleContent className="video-inline-transcript--content">
               <ScrollArea
-                className="h-[200px] w-full text-left rounded-md border p-4 overflow-scroll relative z-2 bg-equ-white"
+                className="video-inline-transcript--scrollarea o-box o-box--rounded o-box--border"
                 data-lenis-prevent
               >
                 <div dangerouslySetInnerHTML={{ __html: transcript }} />

@@ -39,7 +39,7 @@ export function ImagePanel({
             </picture>
           </div>
         ) : (
-          <div className="image-widget__image o-box--rounded-large">
+          <div className="image-widget__image">
             <div className="o-image o-image--fit lazy-img image--medium">
               <picture>
                 <Image

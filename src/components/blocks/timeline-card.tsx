@@ -12,7 +12,7 @@ interface TimelineCardProps {
 
 const TimelineCard = ({ timeline }: TimelineCardProps) => {
   return (
-    <div className="timeline-card relative flex flex-col content-between p-4 h-full flex-grow">
+    <div className="timeline-card">
       {timeline?.time_image?.url ? (
         <div className="timeline-card-image-container">
           <div className="timeline-card--image o-box--rounded-small o-image o-image--fit">
